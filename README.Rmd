@@ -1,0 +1,113 @@
+---
+title: "dbGaPCheckup"
+output: 
+  github_document:
+    number_sections: true
+# To update the *.md version of this, run devtools::build_readme()
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# Overview
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+*I want to make the data sing, but it is torturing me instead. Will the real data please stand up?*
+
+The goal of `dbGaPCheckup` is to make your National Library of Medicine database of Genotypes and Phenotypes ([dbGaP](https://www.ncbi.nlm.nih.gov/gap/)) data set submission a tiny bit easier. Specifically, our package implements several check, awareness, utility, and reporting functions designed to help you ensure that your Subject Phenotype data set and data dictionary meet a variety of dbGaP specific [formatting requirements](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/). A list of the functions available can be found below. 
+
+```{r individual_checks, echo=FALSE}
+fn.path <- system.file("extdata", "Functions.xlsx",
+   package = "dbGaPCheckup", mustWork=TRUE)
+fns <- readxl::read_xlsx(fn.path)
+knitr::kable(fns, caption="List of function names and types.")
+```
+
+# Copyright information 
+
+Copyright 2022, University of Pittsburgh. All Rights Reserved.
+License: [GPL-2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+
+# Installation
+
+You can install the development version of dbGaPCheckup from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("lwheinsberg/dbGaPCheckup")
+```
+
+# Example
+
+More detailed instructions can be found in the `dbGaPCheckup_vignette` (expanded instructions) or `dbGaPCheckup` (Quick Start) vignette documents, but an introductory example can be found below.
+
+A special note: As you will see below, this package requires several fields beyond those required by the dbGaP [formatting requirements](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/). Specifically, while dbGaP requires that only the `VARNAME`, `VARDESC`, `UNITS`, and `VALUES` columns be present in the data dictionary, this package requires that `MIN`, `MAX`, and `TYPE` fields are also included. If your data dictionary does not include these fields already, you can use the `add_missing_fields` function to auto fill them (see below).
+
+```{r library}
+library(dbGaPCheckup)
+```
+
+Read in your Subject Phenotype data into `DS.data`.
+
+```{r data}
+DS.path <- system.file("extdata", "DS_Example.txt",
+   package = "dbGaPCheckup", mustWork=TRUE)
+DS.data <- read.table(DS.path, header=TRUE, sep="\t", quote="", as.is = TRUE)
+```
+
+Read in your Subject Phenotype data dictionary into `DD.dict`.
+
+```{r dict}
+DD.path <- system.file("extdata", "3b_SSM_DD_Example2f.xlsx",
+   package = "dbGaPCheckup", mustWork=TRUE)
+DD.dict <- readxl::read_xlsx(DD.path)
+```
+
+Run the function `check_report`. Note that, for many functions, specification of missing value codes are important for accurate results. 
+
+```{r cr1}
+report <- check_report(DD.dict = DD.dict, DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
+```
+
+As described in more detail in the `dbGaPCheckup_vignette` vignette, some checks contain embedded "prechecks" that must be passed before the check can be run. For example,  as mentioned above, this package requires `MIN`, `MAX`, and `TYPE` fields in the data dictionary. We can see above that several of the checks (e.g., `NA_check`, `integer_check`, `decimal_check`) were not run because these additional required fields were missing. Never fear though! We have created a function to auto fill these fields that can be used to get further along in the checks!
+
+```{r add_missing}
+DD.dict.updated <- add_missing_fields(DD.dict, DS.data)
+```
+
+Once the fields are added, you can simply return to run your checks. Don't forget to use the updated dictionary though! 
+
+```{r cr2}
+report.v2 <- check_report(DD.dict = DD.dict.updated , DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
+```
+
+Now we see that 13 out of 15 checks pass, but the workflow fails at `description_check` and `missing_value_check`. Specifically, in `description_check` we see that variables `PREGNANT` and `REACT` were identified as having missing variable descriptions (`VARDESC`), and variables `HEIGHT` and `WEIGHT` incorrectly have identical descriptions. In `missing_value_check`, we see that the variable `CUFFSIZE` contains a `-9999` encoded value that is not specified in a `VALUES` column. While we have included functions that support "simple fixes", the issues identified here would need to be corrected manually in your data dictionary before moving on. 
+
+Note that our package also includes some helpful reporting functions (`create_report` and `create_awareness_report`) that can help you more fully interrogate your data and catch potential errors prior to dbGaP data submission.
+
+Finally, after your data dictionary is fully consistent with your data, you can use the `label_data` function to convert your data to labelled data, essentially embedding the data dictionary into the data.  
+
+For more information about these reporting functions, and all of the checks available in our package, see the Quick Start (`dbGaPCheckup`) or expanded (`dbGaPCheckup_vignette`) vignettes for more information! 
+
+# Contact information 
+
+If you have any questions or comments, please feel free to contact us!           
+
+Lacey W. Heinsberg, PhD, RN: law145@pitt.edu             
+Daniel E. Weeks, PhD: weeks@pitt.edu                 
+
+Bug reports: https://github.com/lwheinsberg/dbGaPCheckup/issues
+
+# Acknowledgments
+
+This package was developed with partial support from the National Institutes of Health under award numbers R01HL093093, R01HL133040, and K99HD107030.

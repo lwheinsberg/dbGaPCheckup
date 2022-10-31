@@ -1,0 +1,23 @@
+Package: dbGaPCheckup
+Type: Package
+Title: dbGaP Checkup
+Version: 1.0.0
+Authors@R: c(person(c("Lacey", "W."), "Heinsberg", email = "law145@pitt.edu", role = c("aut", "cre")), 
+           person(c("Daniel","E."), "Weeks",    email = "weeks@pitt.edu", role = c("aut")),
+           person("","University of Pittsburgh",role=c("cph")))
+URL: https://github.com/lwheinsberg/dbGaPCheckup
+Description: Contains functions that check for formatting of the data set and data dictionary as required by the National Center for Biotechnology Information (NCBI) Database of Genotypes and Phenotypes (dbGaP). 
+Imports: 
+    readxl, tidyr, dplyr, formatR, ggplot2, pander, magrittr, rmarkdown, purrr, questionr, tibble, rlang, labelled, stats, utils, graphics
+License: GPL-2 
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.1
+Suggests: 
+    testthat,
+    knitr
+BugReports: https://github.com/lwheinsberg/dbGaPCheckup/issues
+Depends: 
+    R (>= 3.5.0)
+VignetteBuilder: knitr, rmarkdown, formatR
+Roxygen: list(markdown = TRUE)

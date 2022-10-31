@@ -1,0 +1,143 @@
+---
+title: "dbGaP Awareness Report"
+author: "The dbGaPCheckup package"
+date: "`r format(Sys.time(), '%B %d, %Y, %R')`"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+    toc_depth: 3
+params:
+  DS.data: 1
+  DD.dict: 1
+  non.NA.missing.codes: 1
+  threshold: 1
+---
+
+```{r su, echo=FALSE,message=FALSE,warning=FALSE}
+require(knitr)
+# Set so that long lines in R will be wrapped:
+opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+# Load Libraries
+
+```{r lib, message=FALSE}
+library(tidyverse)
+```
+
+# Read parameters
+
+```{r param}
+DS.data <- params$DS.data
+DD.dict <- params$DD.dict
+non.NA.missing.codes <- params$non.NA.missing.codes
+threshold <- params$threshold
+```
+
+# Missingness Summary 
+
+```{r misssum}
+missingness_summary(DS.data, 
+  non.NA.missing.codes = non.NA.missing.codes, 
+  threshold = threshold)
+```
+
+# Values Missing Tables
+
+In the `value_missing_table` function, for each variable, we have three sets of possible values: 
+
+(1) the set D of all the unique values observed in the data;         
+(2) the set V of all the values explicitly encoded in the VALUES columns of the data dictionary; and         
+(3) the set M of the missing value codes defined by the user via the 'non.NA.missing.codes' argument.       
+         
+This function examines various intersections of these three sets, providing awareness checks about possible issues of concern. 
+
+## Check A: If the user defines a missing value code that is not present in the data (In Set M and Not in Set D). 
+
+```{r vmt1a, echo=FALSE}
+results.list <- value_missing_table(DD.dict, DS.data, 
+  non.NA.missing.codes = non.NA.missing.codes)
+results <- results.list$report
+kable(results$Information$details$CheckA.AllMInD, 
+      caption = "Table Check A: List of variables for 
+      which user-defined missing value code is not present
+      in the data.") 
+```
+
+The above table lists the variables for which the user-defined missing value code(s) are not present in the data. These are not necessarily errors, however, as `dbGaPCheckup` reads `non.NA.missing.codes` as "global" missing value codes, even if a specific variable does not contain the code. For example, let's say our study uses encoded missing value codes of `-9999`, and we have a variable named `SEX` that is complete with no missing data, containing only encoded values of 0=male, and 1=female. In this example, `SEX` would be flagged in the above variable list since it does not contain a `-9999` value. In other words, this variable's presence in the above list is NOT an issue that we should be concerned about. This function is attended only to bring awareness to potential errors in your data (e.g., perhaps you knew that the sex variable was missing for 5 participants for your specific study.)
+
+Interpretation of table column names:          
+--> `AllMInD`: Variable-specific check result communicating if user-defined missing value code(s) are detected in the data set (FALSE=no).          
+--> `NsetD`: Number of values (or levels) detected in the data for a specific variable.         
+--> `NsetM`: Number of missing value codes defined.          
+--> `NsetDAndSetM`: Number of occurrences detected in both the data set and the user-defined missing value code.          
+--> `MNotInD`: User-defined missing value code the function checked for.          
+--> `MInD`: Variable-specific number; user-defined missing value codes detected in the data.         
+
+## Check B: If a VALUES entry defines an encoded code value, but that value is not present in the data (In Set V and Not in Set D).
+
+```{r vmt2b, echo=FALSE}
+kable(results$Information$details$CheckB.AllVsInD, 
+      caption = "Table Check B: List of variables for which 
+      a VALUES entry defines an encoded code value, but that 
+      value is not present in the data.") 
+```
+
+The above table lists variables for which a VALUES entry defines an encoded value (i.e., value=meaning; e.g., 0=male), but that value is not present in the data. While ideally all defined encoded values (i.e., in set V) should be observed in the data (i.e., in set D), it is NOT necessarily an error if one does not.          
+
+Interpretation of table column names:          
+--> `AllVsInD`: Check result communicating if all parsed VALUES entries were detected in the data set (FALSE=no).         
+--> `NsetD`: Number of values (or levels) detected in the data for a specific variable.          
+--> `NsetV`: Number of encoded value codes detected for a specific variable.         
+--> `NsetDAndSetV`: Number of occurrences detected in both the data set and the VALUES entries.         
+--> `VsNotInD`: Encoded value not detected in the data.         
+
+## Check C: If the user defines a missing value code that is not defined in a VALUES entry (In Set M and Not in Set V).
+
+```{r vmt3c, echo=FALSE}
+kable(results$Information$details$CheckC.AllSetMInSetV, 
+      caption = "Table Check C: List of variables for which 
+      user-defined missing value code(s) are not defined in 
+      a VALUES entry.") 
+```
+
+Interpretation of table column names:          
+--> `AllSetMInSetV`: Variable-specific check result communicating if user-defined missing value code(s) are detected as a VALUES entry (FALSE=no).          
+--> `NsetV`: Number of encoded value codes detected for a specific variable.         
+--> `NsetM`: Number of missing value codes defined.          
+--> `NsetMAndSetD`: Number of occurrences detected in both the user-defined missing value code and data set.          
+--> `SetMsNotInSetV`: Missing value code defined that was not detected in the VALUES entries.          
+
+## Check D: If a user-defined missing value code is present in the data for a given variable, but that variable does not have a corresponding VALUES entry (M in Set D and Not in Set V).
+
+```{r vmt4d, echo=FALSE}
+kable(results$Information$details$CheckD.All_MInSetD_InSetV, 
+      caption = "Table Check D: List of variables for which a 
+      user-defined missing value code is present in the data for 
+      a given variable, but that variable does not have a 
+      corresponding VALUES entry.") 
+```
+
+Interpretation of table column names:          
+--> `All_MInSetD_InSetV`: Variable-specific check result communicating if user-defined missing value code(s) are detected in the data for a given variable, but that variable does not have a corresponding VALUES entry (FALSE=no).         
+--> `setMInDNotInV`: Encoded value codes detected in the data but not in a corresponding VALUES entry. 
+
+## Check E: If a VALUES entry is NOT defined as a missing value code AND is NOT identified in the data. ((Set V values that are NOT in Set M) that are NOT in Set D).
+
+```{r vmt4e, echo=FALSE}
+kable(results$Information$details$CheckE.All_VNotInM_NotInD, 
+      caption = "Table Check E: List of variables for which a 
+      VALUES entry is NOT defined as a missing value code 
+      AND is NOT identified in the data") 
+```
+
+Interpretation of table column names:          
+--> `All_VNotInM_NotInD`: Variable-specific check result communicating if encoded values that are NOT defined as a missing value code are detected in the data (FALSE=no).         
+--> `setVNotInM_NotInD`: Encoded value codes detected as a VALUES entry but NOT listed as a missing value code and NOT detected in the data. 
+
+# Session Information
+
+```{r sess_inf}
+sessionInfo()
+```

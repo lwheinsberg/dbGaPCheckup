@@ -1,0 +1,157 @@
+---
+title: "dbGaPCheckup Quick Start"
+author: "Lacey W. Heinsberg and Daniel E. Weeks\n"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+pkgdown:
+  as_is: true 
+  toc: true
+  toc_depth: 3
+  number_sections: true 
+vignette: >
+  %\VignetteIndexEntry{dbGaPCheckup Quick Start}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+# To render to GitHub markdown:
+# render("dbGaPCheckup.Rmd",github_document(toc=TRUE, toc_depth=3, number_sections=TRUE))
+
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Copyright information 
+
+Copyright 2022, University of Pittsburgh. All Rights Reserved.
+License: [GPL-2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+
+# Installation 
+
+To install, proceed as follows: 
+
+```
+devtools::install_github("lwheinsberg/dbGaPCheckup/pkg")
+```
+
+# Quick Start 
+
+This document is designed to provide "quick start" guidance for using the `dbGaPCheckUp` R package. Please see the table below and `dbGaPCheckup_vignette` for more detailed information. 
+
+```{r individual_checks, echo=FALSE}
+fn.path <- system.file("extdata", "Functions.xlsx",
+   package = "dbGaPCheckup", mustWork=TRUE)
+fns <- readxl::read_xlsx(fn.path)
+knitr::kable(fns, caption="List of function names and types.")
+```
+
+# Usage
+
+After the `dbGaPCheckup` package has been installed, you can load the R package using this command: 
+
+`library(dbGaPCheckup)`
+
+Then proceed as follows:
+
+1. Read in your data into `DS.data`; 
+2. Read in your data dictionary into `DD.dict`; 
+3. Run the function `check_report`, optionally defining any missing value codes (e.g., -9999) via the `non.NA.missing.codes` argument.
+
+Note, as you will see below, this package requires several fields beyond those required by the dbGaP [formatting requirements](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/). Specifically, the data dictionary is required to also have `MIN`, `MAX`, and `TYPE` fields. If your data dictionary does not include these fields already, you can use the `add_missing_fields` function to auto fill them (see below).
+
+# Example usage
+
+## Load the `dbGaPCheckup` R package
+
+```{r load_libraries}
+library(dbGaPCheckup)
+```
+
+##  Read in your Subject Phenotype data into `DS.data`.
+
+```{r data}
+DS.path <- system.file("extdata", "DS_Example.txt",
+   package = "dbGaPCheckup", mustWork=TRUE)
+DS.data <- read.table(DS.path, header=TRUE, sep="\t", quote="", as.is = TRUE)
+```
+
+## Read in your Subject Phenotype data dictionary into `DD.dict`.
+
+```{r dict}
+DD.path <- system.file("extdata", "3b_SSM_DD_Example2f.xlsx",
+   package = "dbGaPCheckup", mustWork=TRUE)
+DD.dict <- readxl::read_xlsx(DD.path)
+```
+
+## Run the function `check_report`.
+
+With many functions, specification of missing value codes are important for accurate results. 
+
+```{r cr1}
+report <- check_report(DD.dict = DD.dict, DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
+```
+
+As described in more detail in the `dbGaPCheckup_vignette` vignette, some checks contain embedded "prechecks" that must be passed before the check can be run. For example,  As mentioned above, this package requires `MIN`, `MAX`, and `TYPE` fields in the data dictionary. We have created a function to auto fill these fields that can be used to get further along in the checks. 
+
+```{r add_missing}
+DD.dict.updated <- add_missing_fields(DD.dict, DS.data)
+```
+
+Once the fields are added, you can return to run your checks.
+
+```{r cr2}
+report.v2 <- check_report(DD.dict = DD.dict.updated , DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
+```
+
+Now we see that 13 out of 15 checks pass, but the workflow fails at `description_check` and `missing_value_check`. Specifically, in `description_check` we see that variables `PREGNANT` and `REACT` were identified as having missing variable descriptions (`VARDESC`), and variables `HEIGHT` and `WEIGHT` incorrectly have identical descriptions. In `missing_value_check`, we see that the variable `CUFFSIZE` contains a `-9999` encoded value that is not specified in a `VALUES` column. While we have included functions that support "simple fixes", the issues identified here would need to be corrected manually in your data dictionary before moving on. 
+
+## Reporting
+
+Note that we have also created reporting functions that generate graphical and textual descriptions and awareness checks of the data in HTML format (see `dbGaPCheckup_vignette` vignette: `create_awareness_report` (Appendix A) and `create_report` (Appendix B) for more details). These reports are designed to help you catch other potential errors in your data set. Note that the `create_report` generated is quite long however, so we recommend that you only submit subsets of variables at a time. Specification of missing value codes are also important for effective plotting. 
+
+
+```
+# Functions not run here as they work best when initiated interactively
+# Awareness Report (See Appendix A of the `dbGaPCheckup` vignette)
+create_awareness_report(DD.dict.updated, DS.data, non.NA.missing.codes=c(-9999, -4444),
+   output.path= tempdir())
+   
+# Data Report (See Appendix B of the `dbGaPCheckup` vignette)
+create_report(DD.dict.updated, DS.data, sex.split=TRUE, sex.name= "SEX",
+   start = 3, end = 7, non.NA.missing.codes=c(-9999,-4444),
+   output.path= tempdir(), open.html=TRUE)
+```
+
+More details on execution and interpretation have been provided in the `dbGaPCheckup_vignette` vignette. 
+
+# Labelled data
+
+After your data dictionary is fully consistent with your data, you can use the `label_data` function to convert your data to labelled data, essentially embedding the data dictionary into the data for future use!  
+
+```{r label_data}
+DS_labelled_data <- label_data(DD.dict.updated, DS.data, non.NA.missing.codes=c(-9999))
+labelled::var_label(DS_labelled_data$SEX)
+labelled::val_labels(DS_labelled_data$SEX)
+attributes(DS_labelled_data$SEX)
+labelled::na_values(DS_labelled_data$HX_DEPRESSION)
+```
+
+# Contact information 
+
+If you have any questions or comments, please feel free to contact us! 
+
+Lacey W. Heinsberg: law145@pitt.edu       
+Daniel E. Weeks: weeks@pitt.edu             
+
+Bug reports: https://github.com/lwheinsberg/dbGaPCheckup/issues
+
+# Acknowledgments
+
+This package was developed with partial support from the National Institutes of Health under award numbers R01HL093093, R01HL133040, and K99HD107030.

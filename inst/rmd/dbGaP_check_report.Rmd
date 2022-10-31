@@ -1,0 +1,59 @@
+---
+title: "dbGaP Phenotype Check Report"
+author: "The dbGaPCheckup package"
+date: "`r format(Sys.time(), '%B %d, %Y, %R')`"
+output:
+  html_document:
+    toc: true
+    number_sections: true
+    toc_depth: 3
+params:
+  DS.data: 1
+  DD.dict: 1
+  start: 1
+  end: 1
+  sex.split: FALSE
+  sex.name: NULL
+  dataset.na: 1
+---
+
+```{r set, echo=FALSE,message=FALSE,warning=FALSE}
+require(knitr)
+# Set so that long lines in R will be wrapped:
+opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
+```
+
+# Load Libraries
+
+```{r ll,message=FALSE}
+library(pander)
+library(ggplot2)
+library(tidyverse)
+library(formatR)
+```
+
+# Read parameters
+
+```{r parameters}
+DS.data <- params$DS.data
+DD.dict <- params$DD.dict
+start <- params$start
+end <- params$end
+sex.split <- params$sex.split
+sex.name <- params$sex.name
+dataset.na <- params$dataset.na
+```
+
+# Summary and plots
+
+```{r applyfun5, results="asis"}
+panderOptions('knitr.auto.asis', FALSE)
+dat_function_selected(DS.data, DD.dict, sex.split = sex.split, sex.name = sex.name, start = start, end = end, dataset.na = dataset.na)
+```
+
+# Session Information
+
+```{r si}
+sessionInfo()
+```
+
