@@ -2,7 +2,7 @@ dbGaPCheckup Quick Start
 ================
 Lacey W. Heinsberg and Daniel E. Weeks
 
-October 28, 2022
+October 31, 2022
 
 -   <a href="#1-copyright-information" id="toc-1-copyright-information">1
     Copyright information</a>
@@ -37,7 +37,12 @@ Copyright 2022, University of Pittsburgh. All Rights Reserved. License:
 
 # 2 Installation
 
-To install, proceed as follows:
+To install from [CRAN](https://cran.r-project.org/) use:
+
+    install.packages("dbGaPCheckup")
+
+To install the development version from [GitHub](https://github.com/)
+use:
 
     devtools::install_github("lwheinsberg/dbGaPCheckup/pkg")
 

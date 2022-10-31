@@ -148,7 +148,14 @@ List of function names and types.
 
 # 3 Installation
 
-The package is written in R language. To install, proceed as follows:
+The package is written in R language.
+
+To install from [CRAN](https://cran.r-project.org/), proceed as follows:
+
+    install.packages("dbGaPCheckup")
+
+To install the development version from [GitHub](https://github.com/),
+proceed as follows:
 
 1.  Install and load the `devtools` package by issuing these commands:
 
@@ -1431,6 +1438,15 @@ the purposes of this vignette and ease of interpretation.
        output.path= tempdir(), open.html=TRUE)
 
 ### 6.3.1 Summary and plots
+
+    #> 
+    #> Attaching package: 'dplyr'
+    #> The following objects are masked from 'package:stats':
+    #> 
+    #>     filter, lag
+    #> The following objects are masked from 'package:base':
+    #> 
+    #>     intersect, setdiff, setequal, union
 
 ``` r
 dat_function_selected(DS.data.B, DD.dict.B, sex.split = TRUE, sex.name = "SEX", start = 3, end = 6, dataset.na=dataset.na, h.level=4)

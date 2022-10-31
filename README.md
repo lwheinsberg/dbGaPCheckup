@@ -63,8 +63,13 @@ Copyright 2022, University of Pittsburgh. All Rights Reserved. License:
 
 # 3 Installation
 
+You can install dbGaPCheckup from [CRAN](https://cran.r-project.org/)
+using:
+
+    install.packages("dbGaPCheckup")
+
 You can install the development version of dbGaPCheckup from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/) using:
 
 ``` r
 # install.packages("devtools")

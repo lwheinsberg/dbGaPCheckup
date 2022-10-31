@@ -49,7 +49,15 @@ knitr::kable(fns, caption = "List of function names and types.")
 
 # Installation 
 
-The package is written in R language. To install, proceed as follows: 
+The package is written in R language.          
+
+To install from [CRAN](https://cran.r-project.org/), proceed as follows: 
+
+```
+install.packages("dbGaPCheckup")
+```
+
+To install the development version from [GitHub](https://github.com/), proceed as follows: 
 
 1. Install and load the `devtools` package by issuing these commands: 
 

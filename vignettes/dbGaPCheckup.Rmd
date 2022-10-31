@@ -35,7 +35,13 @@ License: [GPL-2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
 # Installation 
 
-To install, proceed as follows: 
+To install from [CRAN](https://cran.r-project.org/) use: 
+
+```
+install.packages("dbGaPCheckup")
+```
+
+To install the development version from [GitHub](https://github.com/) use: 
 
 ```
 devtools::install_github("lwheinsberg/dbGaPCheckup/pkg")

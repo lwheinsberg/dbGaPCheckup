@@ -40,7 +40,13 @@ License: [GPL-2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
 # Installation
 
-You can install the development version of dbGaPCheckup from [GitHub](https://github.com/) with:
+You can install dbGaPCheckup from [CRAN](https://cran.r-project.org/) using: 
+
+```
+install.packages("dbGaPCheckup")
+```
+
+You can install the development version of dbGaPCheckup from [GitHub](https://github.com/) using:
 
 ``` r
 # install.packages("devtools")
