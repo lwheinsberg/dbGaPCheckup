@@ -1,0 +1,60 @@
+url: ~
+template:
+  bootstrap: 5
+reference: 
+- title: "Primary Function"
+  desc: > 
+    Primary function needed to run dbGaPCheckup.
+  contents: 
+  - check_report
+- title: "Reporting and Awareness Functions"
+  desc: >
+    Reporting functions to generate textual and graphical reports of the data.
+  contents: 
+  - create_report
+  - create_awareness_report 
+  - missingness_summary
+  - value_missing_table
+  - dictionary_search
+- title: "Quick Fix Functions"
+  desc: > 
+    Functions that implement "quick fixes" when scalable errors are identified.  
+  contents: 
+  - add_missing_fields
+  - name_correct
+  - reorder_dictionary
+  - reorder_data
+  - id_first_data
+  - id_first_dict
+- title: "Post-Cleaning Functions"
+  desc: > 
+    Functions designed to be used on the clean data set and data dictionary.  
+  contents: 
+  - label_data
+- title: "Check Functions"
+  desc: >
+    dbGaPCheckup check functions (most of which are embeeded in check_report).
+  contents: 
+  - ends_with("_check")
+- title: "Pre-check Functions"
+  desc: > 
+    Pre-checks embedded in several dbGaPCheckup check functions. 
+  contents: 
+  - ends_with("_precheck")
+- title: "Misc Utility Functions"
+  desc: > 
+    Miscellaneous utility functions. 
+  contents: 
+  - dat_function
+  - dat_function_selected
+  - eval_function
+  - dup_values
+  - value_meaning_table
+- title: "Example Data Sets"
+  desc: >
+    Variety of example data sets for illustrating function utility.
+  contents: 
+  - starts_with("Example")
+  - starts_with("DD.dict.")
+  - starts_with("DS.data.")
+    
