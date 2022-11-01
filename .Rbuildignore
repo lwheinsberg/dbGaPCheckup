@@ -8,3 +8,6 @@ vignettes/dbGaPCheckup_vignette\.md
 ^data-raw$
 ^cran-comments\.md$
 ^revdep$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
