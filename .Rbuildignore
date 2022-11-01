@@ -2,7 +2,9 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 docs
-vignettes/*.md
+vignettes/*\.md$
+vignettes/dbGaPCheckup\.md
+vignettes/dbGaPCheckup_vignette\.md
 ^data-raw$
 ^cran-comments\.md$
 ^revdep$
