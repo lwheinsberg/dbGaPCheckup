@@ -78,9 +78,10 @@ devtools::install_github("lwheinsberg/dbGaPCheckup")
 
 # 4 Example
 
-More detailed instructions can be found in the `dbGaPCheckup_vignette`
-(expanded instructions) or `dbGaPCheckup` (Quick Start) vignette
-documents, but an introductory example can be found below.
+An introductory example is provided below. For more details see
+<https://lwheinsberg.github.io/dbGaPCheckup/> or the
+`dbGaPCheckup_vignette` (expanded instructions) or `dbGaPCheckup` (Quick
+Start) vignette documents.
 
 A special note: As you will see below, this package requires several
 fields beyond those required by the dbGaP [formatting

@@ -5,7 +5,7 @@ Version: 1.0.0
 Authors@R: c(person(c("Lacey", "W."), "Heinsberg", email = "law145@pitt.edu", role = c("aut", "cre")), 
            person(c("Daniel","E."), "Weeks",    email = "weeks@pitt.edu", role = c("aut")),
            person("","University of Pittsburgh",role=c("cph")))
-URL: https://github.com/lwheinsberg/dbGaPCheckup
+URL: https://lwheinsberg.github.io/dbGaPCheckup/, https://github.com/lwheinsberg/dbGaPCheckup
 Description: Contains functions that check for formatting of the data set and data dictionary as required by the National Center for Biotechnology Information (NCBI) Database of Genotypes and Phenotypes (dbGaP). 
 Imports: 
     readxl, tidyr, dplyr, formatR, ggplot2, pander, magrittr, rmarkdown, purrr, questionr, tibble, rlang, labelled, stats, utils, graphics

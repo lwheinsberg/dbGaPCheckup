@@ -55,7 +55,7 @@ devtools::install_github("lwheinsberg/dbGaPCheckup")
 
 # Example
 
-More detailed instructions can be found in the `dbGaPCheckup_vignette` (expanded instructions) or `dbGaPCheckup` (Quick Start) vignette documents, but an introductory example can be found below.
+An introductory example is provided below. For more details see https://lwheinsberg.github.io/dbGaPCheckup/ or the `dbGaPCheckup_vignette` (expanded instructions) or `dbGaPCheckup` (Quick Start) vignette documents.
 
 A special note: As you will see below, this package requires several fields beyond those required by the dbGaP [formatting requirements](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/). Specifically, while dbGaP requires that only the `VARNAME`, `VARDESC`, `UNITS`, and `VALUES` columns be present in the data dictionary, this package requires that `MIN`, `MAX`, and `TYPE` fields are also included. If your data dictionary does not include these fields already, you can use the `add_missing_fields` function to auto fill them (see below).
 

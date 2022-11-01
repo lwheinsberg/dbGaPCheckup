@@ -11,6 +11,7 @@ Contains functions that check for formatting of the data set and data dictionary
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://lwheinsberg.github.io/dbGaPCheckup/}
   \item \url{https://github.com/lwheinsberg/dbGaPCheckup}
   \item Report bugs at \url{https://github.com/lwheinsberg/dbGaPCheckup/issues}
 }
