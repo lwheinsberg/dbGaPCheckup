@@ -4,3 +4,5 @@
 docs
 vignettes/*.md
 ^data-raw$
+^cran-comments\.md$
+^revdep$
