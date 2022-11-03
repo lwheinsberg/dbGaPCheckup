@@ -2,7 +2,7 @@ dbGaPCheckup Quick Start
 ================
 Lacey W. Heinsberg and Daniel E. Weeks
 
-October 31, 2022
+November 03, 2022
 
 -   <a href="#1-copyright-information" id="toc-1-copyright-information">1
     Copyright information</a>
@@ -332,4 +332,8 @@ Bug reports: <https://github.com/lwheinsberg/dbGaPCheckup/issues>
 
 This package was developed with partial support from the National
 Institutes of Health under award numbers R01HL093093, R01HL133040, and
-K99HD107030.
+K99HD107030. The ‘eval_function’ and ‘data_function’ functions that form
+the backbone of the awareness reports were inspired by an elegant 2016
+homework answer submitted by Tanbin Rahman in our HUGEN 2070 course
+‘Bioinformatics for Human Genetics’. We would also like to acknowledge
+Nick Moshgat for providing feedback on our package.

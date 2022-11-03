@@ -2,7 +2,7 @@ dbGaPCheckup Vignette
 ================
 Lacey W. Heinsberg and Daniel E. Weeks
 
-October 31, 2022
+November 03, 2022
 
 -   <a href="#1-copyright-information" id="toc-1-copyright-information">1
     Copyright information</a>
@@ -1439,15 +1439,6 @@ the purposes of this vignette and ease of interpretation.
 
 ### 6.3.1 Summary and plots
 
-    #> 
-    #> Attaching package: 'dplyr'
-    #> The following objects are masked from 'package:stats':
-    #> 
-    #>     filter, lag
-    #> The following objects are masked from 'package:base':
-    #> 
-    #>     intersect, setdiff, setequal, union
-
 ``` r
 dat_function_selected(DS.data.B, DD.dict.B, sex.split = TRUE, sex.name = "SEX", start = 3, end = 6, dataset.na=dataset.na, h.level=4)
 ```
@@ -1536,4 +1527,8 @@ Bug reports: <https://github.com/lwheinsberg/dbGaPCheckup/issues>
 
 This package was developed with partial support from the National
 Institutes of Health under award numbers R01HL093093, R01HL133040, and
-K99HD107030.
+K99HD107030. The ‘eval_function’ and ‘data_function’ functions that form
+the backbone of the awareness reports were inspired by an elegant 2016
+homework answer submitted by Tanbin Rahman in our HUGEN 2070 course
+‘Bioinformatics for Human Genetics’. We would also like to acknowledge
+Nick Moshgat for providing feedback on our package.
