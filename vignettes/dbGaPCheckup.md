@@ -7,7 +7,7 @@ November 03, 2022
 -   <a href="#1-copyright-information" id="toc-1-copyright-information">1
     Copyright information</a>
 -   <a href="#2-installation" id="toc-2-installation">2 Installation</a>
--   <a href="#3-quick-start" id="toc-3-quick-start">3 Quick Start</a>
+-   <a href="#3-quick-start" id="toc-3-quick-start">3 Quick start</a>
 -   <a href="#4-usage" id="toc-4-usage">4 Usage</a>
 -   <a href="#5-example-usage" id="toc-5-example-usage">5 Example usage</a>
     -   <a href="#51-load-the-dbgapcheckup-r-package"
@@ -46,7 +46,7 @@ use:
 
     devtools::install_github("lwheinsberg/dbGaPCheckup/pkg")
 
-# 3 Quick Start
+# 3 Quick start
 
 This document is designed to provide “quick start” guidance for using
 the `dbGaPCheckUp` R package. Please see the table below and

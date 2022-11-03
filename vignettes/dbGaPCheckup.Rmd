@@ -47,7 +47,7 @@ To install the development version from [GitHub](https://github.com/) use:
 devtools::install_github("lwheinsberg/dbGaPCheckup/pkg")
 ```
 
-# Quick Start 
+# Quick start 
 
 This document is designed to provide "quick start" guidance for using the `dbGaPCheckUp` R package. Please see the table below and `dbGaPCheckup_vignette` for more detailed information. 
 
