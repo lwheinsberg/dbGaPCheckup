@@ -272,5 +272,6 @@ Institutes of Health under award numbers R01HL093093, R01HL133040, and
 K99HD107030. The `eval_function` and `dat_function` functions that form
 the backbone of the awareness reports were inspired by an elegant 2016
 homework answer submitted by Tanbin Rahman in our HUGEN 2070 course
-‘Bioinformatics for Human Genetics’. We would also like to acknowledge
-Nick Moshgat for testing and providing feedback on our package.
+‘Bioinformatics for Human Genetics’. We would also like to thank Nick
+Moshgat for testing and providing feedback on our package during
+development.

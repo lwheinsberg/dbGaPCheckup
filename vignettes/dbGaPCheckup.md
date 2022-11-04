@@ -147,23 +147,23 @@ for accurate results.
 ``` r
 report <- check_report(DD.dict = DD.dict, DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
 #> # A tibble: 15 × 3
-#>    Function            Status        Message                                                                     
-#>    <chr>               <chr>         <chr>                                                                       
-#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the …
-#>  2 pkg_field_check     Failed        ERROR: not all package-level required fields are present in the data dictio…
-#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.
-#>  4 name_check          Passed        Passed: the variable names match between the data dictionary and the data.  
-#>  5 id_check            Passed        Passed: All ID variable checks passed.                                      
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                
-#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                           
-#>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fields functio…
-#>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                                
-#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                           
-#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                           
-#> 12 misc_format_check   Passed        Passed: no check-specific formatting issues identified.                     
-#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.         
-#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check failed.                           
-#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check failed.                           
+#>    Function            Status        Message                                                                                                     
+#>    <chr>               <chr>         <chr>                                                                                                       
+#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.                 
+#>  2 pkg_field_check     Failed        ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_mis…
+#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.                                
+#>  4 name_check          Passed        Passed: the variable names match between the data dictionary and the data.                                  
+#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                                      
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                                                
+#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                                                           
+#>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fields function to autofill TYPE.              
+#>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                                                                
+#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                           
+#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                           
+#> 12 misc_format_check   Passed        Passed: no check-specific formatting issues identified.                                                     
+#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                                         
+#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check failed.                                                           
+#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check failed.                                                           
 #> --------------------
 #> pkg_field_check: Failed 
 #> ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fields function to auto fill these fields. 
@@ -213,23 +213,23 @@ Once the fields are added, you can return to run your checks.
 ``` r
 report.v2 <- check_report(DD.dict = DD.dict.updated , DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
 #> # A tibble: 15 × 3
-#>    Function            Status Message                                                                            
-#>    <chr>               <chr>  <chr>                                                                              
-#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data di…
-#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the data dicti…
-#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.       
-#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.         
-#>  5 id_check            Passed Passed: All ID variable checks passed.                                             
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                       
-#>  7 NA_check            Passed Passed: no NA values detected in data set.                                         
-#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.  
-#>  9 values_check        Passed Passed: all four VALUES checks look good.                                          
-#> 10 integer_check       Passed Passed: all variables listed as TYPE integer appear to be integers.                
-#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appear to be decimals.                
-#> 12 misc_format_check   Passed Passed: no check-specific formatting issues identified.                            
-#> 13 description_check   Failed ERROR: missing and duplicate descriptions found in data dictionary.                
-#> 14 minmax_check        Passed Passed: when provided, all variables are within the MIN to MAX range.              
-#> 15 missing_value_check Failed ERROR: some variables have non-encoded missing value codes.                        
+#>    Function            Status Message                                                                                    
+#>    <chr>               <chr>  <chr>                                                                                      
+#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.
+#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.   
+#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.               
+#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                 
+#>  5 id_check            Passed Passed: All ID variable checks passed.                                                     
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                               
+#>  7 NA_check            Passed Passed: no NA values detected in data set.                                                 
+#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
+#>  9 values_check        Passed Passed: all four VALUES checks look good.                                                  
+#> 10 integer_check       Passed Passed: all variables listed as TYPE integer appear to be integers.                        
+#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appear to be decimals.                        
+#> 12 misc_format_check   Passed Passed: no check-specific formatting issues identified.                                    
+#> 13 description_check   Failed ERROR: missing and duplicate descriptions found in data dictionary.                        
+#> 14 minmax_check        Passed Passed: when provided, all variables are within the MIN to MAX range.                      
+#> 15 missing_value_check Failed ERROR: some variables have non-encoded missing value codes.                                
 #> --------------------
 #> description_check: Failed 
 #> ERROR: missing and duplicate descriptions found in data dictionary. 
@@ -335,5 +335,6 @@ Institutes of Health under award numbers R01HL093093, R01HL133040, and
 K99HD107030. The `eval_function` and `dat_function` functions that form
 the backbone of the awareness reports were inspired by an elegant 2016
 homework answer submitted by Tanbin Rahman in our HUGEN 2070 course
-‘Bioinformatics for Human Genetics’. We would also like to acknowledge
-Nick Moshgat for testing and providing feedback on our package.
+‘Bioinformatics for Human Genetics’. We would also like to thank Nick
+Moshgat for testing and providing feedback on our package during
+development.
