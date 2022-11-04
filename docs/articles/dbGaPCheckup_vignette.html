@@ -74,7 +74,7 @@
 <p>Lacey W.
 Heinsberg and Daniel E. Weeks</p>
             
-            <h4 data-toc-skip class="date">November 03, 2022</h4>
+            <h4 data-toc-skip class="date">November 04, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/lwheinsberg/dbGaPCheckup/blob/HEAD/vignettes/dbGaPCheckup_vignette.Rmd" class="external-link"><code>vignettes/dbGaPCheckup_vignette.Rmd</code></a></small>
       <div class="d-none name"><code>dbGaPCheckup_vignette.Rmd</code></div>
@@ -1558,8 +1558,8 @@ example.</p>
 <span><span class="co">#&gt; --------------------</span></span></code></pre></div>
 <p>Note that in this example, we see an error at
 <code>integer_check</code>. Let’s investigate this further.</p>
-<p>Speciically, we can use the awareness function to grep (i.e., search)
-this variable name in the dictionary</p>
+<p>Specifically, we can use the awareness function to grep (i.e.,
+search) this variable name in the dictionary</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dictionary_search.html">dictionary_search</a></span><span class="op">(</span><span class="va">DD.dict.H</span>, search.term<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SUP_SKF"</span><span class="op">)</span>, search.column<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"VARNAME"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 22</span></span></span>
@@ -1624,8 +1624,8 @@ recording error.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ExampleA</span><span class="op">)</span></span></code></pre></div>
 <p>As mentioned above, if you prefer, you can also simply run the
 individual checks that you are interested in rather than taking the
-complete workflow approach. Note that several package-specific prechecks
-are embedded in many of the functions (e.g.,
+complete workflow approach. Note that several package-specific
+pre-checks are embedded in many of the functions (e.g.,
 <code>integer_check</code>).</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/id_check.html">id_check</a></span><span class="op">(</span><span class="va">DS.data.A</span><span class="op">)</span></span>
@@ -1842,7 +1842,7 @@ data set.</p>
 <span><span class="co">#&gt; SOCIAL_SUPPORT             0                   0</span></span>
 <span><span class="co">#&gt; PERCEIVED_CONFLICT         0                   0</span></span>
 <span><span class="co">#&gt; PERCEIVED_HEALTH           0                   0</span></span></code></pre>
-<p>Above we that there are 0 variabels in our example data set that have
+<p>Above we that there are 0 variables in our example data set that have
 a percent missingness &gt;95%. Navigating through the output, we also
 see a complete summary of missingness in our data set, with
 <code>SAMPLE_ID</code> having the highest % missingness at 16%. Finally
@@ -1862,7 +1862,7 @@ we have three sets of possible values:</p>
 of the data dictionary; and<br>
 </li>
 <li>the set M of the missing value codes defined by the user via the
-‘non.NA.missing.codes’ argument.</li>
+<code>non.NA.missing.codes</code> argument.</li>
 </ol>
 <p>This function examines various intersections of these three sets,
 providing awareness checks about possible issues of concern.</p>
@@ -2252,9 +2252,9 @@ the data.</p>
 missing values codes are listed in the data - so our check passes.</p>
 </div>
 <div class="section level3" number="6.3">
-<h3 id="apendix-b-data-report">
-<span class="header-section-number">6.3</span> Apendix B: Data
-Report<a class="anchor" aria-label="anchor" href="#apendix-b-data-report"></a>
+<h3 id="appendix-b-data-report">
+<span class="header-section-number">6.3</span> Appendix B: Data
+Report<a class="anchor" aria-label="anchor" href="#appendix-b-data-report"></a>
 </h3>
 <p>Next we can run <code>create_report</code>, which generates a textual
 and graphical report of the selected variables in HTML format which will
@@ -2378,11 +2378,12 @@ Daniel E. Weeks: <a href="mailto:weeks@pitt.edu" class="email">weeks@pitt.edu</a
 </h2>
 <p>This package was developed with partial support from the National
 Institutes of Health under award numbers R01HL093093, R01HL133040, and
-K99HD107030. The ‘eval_function’ and ‘data_function’ functions that form
-the backbone of the awareness reports were inspired by an elegant 2016
-homework answer submitted by Tanbin Rahman in our HUGEN 2070 course
-‘Bioinformatics for Human Genetics’. We would also like to acknowledge
-Nick Moshgat for providing feedback on our package.</p>
+K99HD107030. The <code>eval_function</code> and
+<code>dat_function</code> functions that form the backbone of the
+awareness reports were inspired by an elegant 2016 homework answer
+submitted by Tanbin Rahman in our HUGEN 2070 course ‘Bioinformatics for
+Human Genetics’. We would also like to acknowledge Nick Moshgat for
+testing and providing feedback on our package.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

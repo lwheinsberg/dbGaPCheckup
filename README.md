@@ -170,7 +170,7 @@ report <- check_report(DD.dict = DD.dict, DS.data = DS.data, non.NA.missing.code
 ```
 
 As described in more detail in the `dbGaPCheckup_vignette` vignette,
-some checks contain embedded “prechecks” that must be passed before the
+some checks contain embedded “pre-checks” that must be passed before the
 check can be run. For example, as mentioned above, this package requires
 `MIN`, `MAX`, and `TYPE` fields in the data dictionary. We can see above
 that several of the checks (e.g., `NA_check`, `integer_check`,
@@ -269,8 +269,8 @@ Bug reports: <https://github.com/lwheinsberg/dbGaPCheckup/issues>
 
 This package was developed with partial support from the National
 Institutes of Health under award numbers R01HL093093, R01HL133040, and
-K99HD107030. The ‘eval_function’ and ‘data_function’ functions that form
+K99HD107030. The `eval_function` and `dat_function` functions that form
 the backbone of the awareness reports were inspired by an elegant 2016
 homework answer submitted by Tanbin Rahman in our HUGEN 2070 course
 ‘Bioinformatics for Human Genetics’. We would also like to acknowledge
-Nick Moshgat for providing feedback on our package.
+Nick Moshgat for testing and providing feedback on our package.

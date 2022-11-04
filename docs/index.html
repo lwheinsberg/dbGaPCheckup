@@ -329,7 +329,7 @@
 <span><span class="co">#&gt; 4 WEIGHT   Height of participant</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span></code></pre></div>
-<p>As described in more detail in the <code>dbGaPCheckup_vignette</code> vignette, some checks contain embedded “prechecks” that must be passed before the check can be run. For example, as mentioned above, this package requires <code>MIN</code>, <code>MAX</code>, and <code>TYPE</code> fields in the data dictionary. We can see above that several of the checks (e.g., <code>NA_check</code>, <code>integer_check</code>, <code>decimal_check</code>) were not run because these additional required fields were missing. Never fear though! We have created a function to auto fill these fields that can be used to get further along in the checks!</p>
+<p>As described in more detail in the <code>dbGaPCheckup_vignette</code> vignette, some checks contain embedded “pre-checks” that must be passed before the check can be run. For example, as mentioned above, this package requires <code>MIN</code>, <code>MAX</code>, and <code>TYPE</code> fields in the data dictionary. We can see above that several of the checks (e.g., <code>NA_check</code>, <code>integer_check</code>, <code>decimal_check</code>) were not run because these additional required fields were missing. Never fear though! We have created a function to auto fill these fields that can be used to get further along in the checks!</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">DD.dict.updated</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/add_missing_fields.html">add_missing_fields</a></span><span class="op">(</span><span class="va">DD.dict</span>, <span class="va">DS.data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Message</span></span>
@@ -394,7 +394,7 @@ Daniel E. Weeks, PhD: <a href="mailto:weeks@pitt.edu" class="email">weeks@pitt.e
 <div class="section level1">
 <h1 id="id_6-acknowledgments">6 Acknowledgments<a class="anchor" aria-label="anchor" href="#id_6-acknowledgments"></a>
 </h1>
-<p>This package was developed with partial support from the National Institutes of Health under award numbers R01HL093093, R01HL133040, and K99HD107030. The ‘eval_function’ and ‘data_function’ functions that form the backbone of the awareness reports were inspired by an elegant 2016 homework answer submitted by Tanbin Rahman in our HUGEN 2070 course ‘Bioinformatics for Human Genetics’. We would also like to acknowledge Nick Moshgat for providing feedback on our package.</p>
+<p>This package was developed with partial support from the National Institutes of Health under award numbers R01HL093093, R01HL133040, and K99HD107030. The <code>eval_function</code> and <code>dat_function</code> functions that form the backbone of the awareness reports were inspired by an elegant 2016 homework answer submitted by Tanbin Rahman in our HUGEN 2070 course ‘Bioinformatics for Human Genetics’. We would also like to acknowledge Nick Moshgat for testing and providing feedback on our package.</p>
 </div>
 
   </main><aside class="col-md-3"><div class="links">

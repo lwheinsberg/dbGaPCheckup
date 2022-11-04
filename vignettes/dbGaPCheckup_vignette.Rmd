@@ -258,7 +258,7 @@ e4_report <- check_report(DD.dict.H, DS.data.H, non.NA.missing.codes=c(-4444, -9
 
 Note that in this example, we see an error at `integer_check`. Let's investigate this further. 
 
-Speciically, we can use the awareness function to grep (i.e., search) this variable name in the dictionary
+Specifically, we can use the awareness function to grep (i.e., search) this variable name in the dictionary
 
 ```{r exp1}
 dictionary_search(DD.dict.H, search.term=c("SUP_SKF"), search.column=c("VARNAME"))
@@ -290,7 +290,7 @@ While `ABD_SKF` appears to be a true integer, `SUP_SKF` appears to have some dec
 data(ExampleA)
 ```
 
-As mentioned above, if you prefer, you can also simply run the individual checks that you are interested in rather than taking the complete workflow approach. Note that several package-specific prechecks are embedded in many of the functions (e.g., `integer_check`).
+As mentioned above, if you prefer, you can also simply run the individual checks that you are interested in rather than taking the complete workflow approach. Note that several package-specific pre-checks are embedded in many of the functions (e.g., `integer_check`).
 
 ```{r id_check}
 id_check(DS.data.A)
@@ -382,7 +382,8 @@ This awareness function summarizes the amount of missingness in the data set.
 ```{r misssum}
 missingness_summary(DS.data.B, non.NA.missing.codes = c(-9999), threshold = 95)
 ```
-Above we that there are 0 variabels in our example data set that have a percent missingness >95%. Navigating through the output, we also see a complete summary of missingness in our data set, with `SAMPLE_ID` having the highest % missingness at 16%. Finally we see a histogram plotting missingness across our data set. 
+
+Above we that there are 0 variables in our example data set that have a percent missingness >95%. Navigating through the output, we also see a complete summary of missingness in our data set, with `SAMPLE_ID` having the highest % missingness at 16%. Finally we see a histogram plotting missingness across our data set. 
 
 ### Values Missing Tables
 
@@ -390,7 +391,7 @@ In the `value_missing_table` function, for each variable, we have three sets of 
 
 (1) the set D of all the unique values observed in the data;         
 (2) the set V of all the values explicitly encoded in the VALUES columns of the data dictionary; and         
-(3) the set M of the missing value codes defined by the user via the 'non.NA.missing.codes' argument.       
+(3) the set M of the missing value codes defined by the user via the `non.NA.missing.codes` argument.       
          
 This function examines various intersections of these three sets, providing awareness checks about possible issues of concern. 
 
@@ -497,7 +498,7 @@ Interpretation of table column names:
 
 In our example here, all VALUES entries that are NOT defined as missing values codes are listed in the data - so our check passes. 
 
-## Apendix B: Data Report 
+## Appendix B: Data Report 
 
 Next we can run `create_report`, which generates a textual and graphical report of the selected variables in HTML format which will optionally open the report in a web browser. This awareness report is designed to help you catch other potential errors in your data set. Note that the report generated is quite long however, so we recommend that you only submit subsets of variables at a time. In the example below, for speed of rendering, we create the report for variables only in columns 3 through 7. Note that there is an option to plot/report the data split by sex if desired. Specification of missing value codes are also important for effective plotting. 
 
@@ -540,4 +541,4 @@ Bug reports: https://github.com/lwheinsberg/dbGaPCheckup/issues
 
 # Acknowledgments
 
-This package was developed with partial support from the National Institutes of Health under award numbers R01HL093093, R01HL133040, and K99HD107030. The ‘eval_function’ and ‘data_function’ functions that form the backbone of the awareness reports were inspired by an elegant 2016 homework answer submitted by Tanbin Rahman in our HUGEN 2070 course ‘Bioinformatics for Human Genetics’. We would also like to acknowledge Nick Moshgat for providing feedback on our package. 
+This package was developed with partial support from the National Institutes of Health under award numbers R01HL093093, R01HL133040, and K99HD107030. The `eval_function` and `dat_function` functions that form the backbone of the awareness reports were inspired by an elegant 2016 homework answer submitted by Tanbin Rahman in our HUGEN 2070 course ‘Bioinformatics for Human Genetics’. We would also like to acknowledge Nick Moshgat for testing and providing feedback on our package. 

@@ -85,7 +85,7 @@ Run the function `check_report`. Note that, for many functions, specification of
 report <- check_report(DD.dict = DD.dict, DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
 ```
 
-As described in more detail in the `dbGaPCheckup_vignette` vignette, some checks contain embedded "prechecks" that must be passed before the check can be run. For example,  as mentioned above, this package requires `MIN`, `MAX`, and `TYPE` fields in the data dictionary. We can see above that several of the checks (e.g., `NA_check`, `integer_check`, `decimal_check`) were not run because these additional required fields were missing. Never fear though! We have created a function to auto fill these fields that can be used to get further along in the checks!
+As described in more detail in the `dbGaPCheckup_vignette` vignette, some checks contain embedded "pre-checks" that must be passed before the check can be run. For example,  as mentioned above, this package requires `MIN`, `MAX`, and `TYPE` fields in the data dictionary. We can see above that several of the checks (e.g., `NA_check`, `integer_check`, `decimal_check`) were not run because these additional required fields were missing. Never fear though! We have created a function to auto fill these fields that can be used to get further along in the checks!
 
 ```{r add_missing}
 DD.dict.updated <- add_missing_fields(DD.dict, DS.data)
@@ -116,4 +116,4 @@ Bug reports: https://github.com/lwheinsberg/dbGaPCheckup/issues
 
 # Acknowledgments
 
-This package was developed with partial support from the National Institutes of Health under award numbers R01HL093093, R01HL133040, and K99HD107030. The ‘eval_function’ and ‘data_function’ functions that form the backbone of the awareness reports were inspired by an elegant 2016 homework answer submitted by Tanbin Rahman in our HUGEN 2070 course ‘Bioinformatics for Human Genetics’. We would also like to acknowledge Nick Moshgat for providing feedback on our package. 
+This package was developed with partial support from the National Institutes of Health under award numbers R01HL093093, R01HL133040, and K99HD107030. The `eval_function` and `dat_function` functions that form the backbone of the awareness reports were inspired by an elegant 2016 homework answer submitted by Tanbin Rahman in our HUGEN 2070 course ‘Bioinformatics for Human Genetics’. We would also like to acknowledge Nick Moshgat for testing and providing feedback on our package. 
