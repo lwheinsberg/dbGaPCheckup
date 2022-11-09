@@ -36,7 +36,7 @@ Full path to the HTML report document.
 This function generates an awareness report in HTML format, and optionally opens it in the web browser.
 }
 \examples{
-\dontrun{
+\donttest{
 data(ExampleB)
 create_awareness_report(DD.dict.B, DS.data.B, non.NA.missing.codes=c(-9999),
    output.path= tempdir())

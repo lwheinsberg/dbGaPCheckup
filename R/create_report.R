@@ -19,7 +19,7 @@
 #' @importFrom utils browseURL
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(ExampleB)
 #' create_report(DD.dict.B, DS.data.B, sex.split=TRUE, sex.name= "SEX",
 #'    start = 3, end = 7, non.NA.missing.codes=c(-9999,-4444),

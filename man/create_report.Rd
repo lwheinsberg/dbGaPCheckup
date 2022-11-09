@@ -45,7 +45,7 @@ Full path to the HTML report document.
 This function calls eval_function to generate a textual and graphical report of the selected variables in HTML format, and optionally opens it in the web browser.
 }
 \examples{
-\dontrun{
+\donttest{
 data(ExampleB)
 create_report(DD.dict.B, DS.data.B, sex.split=TRUE, sex.name= "SEX",
    start = 3, end = 7, non.NA.missing.codes=c(-9999,-4444),
