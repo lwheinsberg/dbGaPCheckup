@@ -11,3 +11,4 @@ vignettes/dbGaPCheckup_vignette\.md
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^CRAN-SUBMISSION$
