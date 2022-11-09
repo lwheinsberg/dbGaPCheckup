@@ -9,6 +9,9 @@ dup_values(DD.dict)
 \arguments{
 \item{DD.dict}{Data dictionary.}
 }
+\value{
+Logical, TRUE if only one VALUES column is detected.
+}
 \description{
 This function checks for duplicate VALUES column names in the data dictionary.
 }

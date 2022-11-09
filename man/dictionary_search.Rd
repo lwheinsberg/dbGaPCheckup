@@ -17,6 +17,9 @@ dictionary_search(
 
 \item{search.column}{Column of the data dictionary to search.}
 }
+\value{
+Tibble containing dictionary rows in which the search term was detected in specified column or an error message if the search column could not be detect.
+}
 \description{
 This awareness function helps you search the data dictionary for a specific term; intended for use as an investigative aid to supplement other checks in this package.
 }

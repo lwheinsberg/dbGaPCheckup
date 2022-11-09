@@ -9,6 +9,9 @@ int_check(data)
 \arguments{
 \item{data}{Number or vector of numbers.}
 }
+\value{
+Logical, TRUE if all non-missing entries in the input vector are integers.
+}
 \description{
 This function checks for integer values.
 }

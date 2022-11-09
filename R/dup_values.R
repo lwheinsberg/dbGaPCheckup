@@ -1,6 +1,7 @@
 #' @title Duplicate Values Function
 #' @description This function checks for duplicate VALUES column names in the data dictionary.
 #' @param DD.dict Data dictionary.
+#' @return Logical, TRUE if only one VALUES column is detected.
 #' @export
 
 # int_check called in both integer_check and decimal_check functions
