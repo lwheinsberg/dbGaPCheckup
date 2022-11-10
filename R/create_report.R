@@ -23,7 +23,7 @@
 #' data(ExampleB)
 #' create_report(DD.dict.B, DS.data.B, sex.split=TRUE, sex.name= "SEX",
 #'    start = 3, end = 7, non.NA.missing.codes=c(-9999,-4444),
-#'    output.path= tempdir())
+#'    output.path= tempdir(), open.html = FALSE)
 #' }
 
 create_report <- function(DD.dict, DS.data, sex.split = FALSE, sex.name = NULL, start = 1, end = 1, non.NA.missing.codes=NA, output.path = tempdir(), open.html = TRUE, fn.stem="Report") {

@@ -39,7 +39,7 @@ This function generates an awareness report in HTML format, and optionally opens
 \donttest{
 data(ExampleB)
 create_awareness_report(DD.dict.B, DS.data.B, non.NA.missing.codes=c(-9999),
-   output.path= tempdir())
+   output.path= tempdir(), open.html = FALSE)
 }
 }
 \seealso{

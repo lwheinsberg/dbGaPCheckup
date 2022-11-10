@@ -21,7 +21,7 @@
 #' \donttest{
 #' data(ExampleB)
 #' create_awareness_report(DD.dict.B, DS.data.B, non.NA.missing.codes=c(-9999),
-#'    output.path= tempdir())
+#'    output.path= tempdir(), open.html = FALSE)
 #' }
 
 create_awareness_report <- function(DD.dict, DS.data, non.NA.missing.codes=NA, threshold=95, output.path = tempdir(), open.html = TRUE, fn.stem = "AwarenessReport") {

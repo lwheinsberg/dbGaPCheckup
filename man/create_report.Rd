@@ -49,6 +49,6 @@ This function calls eval_function to generate a textual and graphical report of 
 data(ExampleB)
 create_report(DD.dict.B, DS.data.B, sex.split=TRUE, sex.name= "SEX",
    start = 3, end = 7, non.NA.missing.codes=c(-9999,-4444),
-   output.path= tempdir())
+   output.path= tempdir(), open.html = FALSE)
 }
 }
