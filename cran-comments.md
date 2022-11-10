@@ -62,6 +62,8 @@ with no space after 'doi:', 'arXiv:', 'https:' and angle brackets for
 auto-linking. (If you want to add a title as well please put it in 
 quotes: "Title")
 
+  Resolution: A link to the dbGaP submission guide has been added. 
+
 * Please add \value to .Rd files regarding exported methods and explain 
 the functions results in the documentation. Please write about the 
 structure of the output (class) and also what the output means. (If a 
@@ -74,6 +76,8 @@ Missing Rd-tags:
       dup_values.Rd: \value
       eval_function.Rd: \value
       int_check.Rd: \value
+      
+  Resolution: Return values have now been added for flagged functions. 
 
 * \dontrun{} should only be used if the example really cannot be executed 
 (e.g. because of missing additional software, missing API keys, ...) by 
