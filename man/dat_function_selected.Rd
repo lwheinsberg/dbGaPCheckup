@@ -32,6 +32,9 @@ dat_function_selected(
 
 \item{h.level}{Header level for pandoc function.}
 }
+\value{
+NULL, called for its side effects
+}
 \description{
 This function calls eval_function to generate a textual and graphical report of the selected variables.
 }

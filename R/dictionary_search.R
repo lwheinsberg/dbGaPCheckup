@@ -3,7 +3,7 @@
 #' @param DD.dict Data dictionary.
 #' @param search.term Search term.
 #' @param search.column Column of the data dictionary to search.
-#' @return Tibble containing dictionary rows in which the search term was detected in specified column or an error message if the search column could not be detect.
+#' @return Tibble containing dictionary rows in which the search term was detected in specified column or an error message if the search column could not be detected.
 #' @export
 #' @importFrom magrittr %>%
 #' @import dplyr

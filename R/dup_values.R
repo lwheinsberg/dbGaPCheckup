@@ -9,19 +9,8 @@ dup_values <- function(DD.dict) {
   vcol <- which(names(DD.dict)=="VALUES")
   if (length(vcol)==1) {
     chk <- TRUE
-    #Message <- NA
   } else {
     chk <- FALSE
   }
-  
-  #if (length(vcol)>1) {
-  #  chk <- FALSE
-  #  Message <- "ERROR: Multiple columns with name VALUES."
-  #}
-  
-  #if (length(vcol) == 0) {
-  #  chk <- ('VALUES' %in% names(DD.dict))
-  #  Message <- "ERROR: VALUES is not a column name in the data dictionary."
-  #}
-  isTRUE(chk)
+  return(chk)
 }
