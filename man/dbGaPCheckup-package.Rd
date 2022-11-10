@@ -6,7 +6,7 @@
 \alias{dbGaPCheckup-package}
 \title{dbGaPCheckup: dbGaP Checkup}
 \description{
-Contains functions that check for formatting of the data set and data dictionary as required by the National Center for Biotechnology Information (NCBI) Database of Genotypes and Phenotypes (dbGaP).
+Contains functions that check for formatting of the Subject Phenotype data set and data dictionary as specified by the National Center for Biotechnology Information (NCBI) Database of Genotypes and Phenotypes (dbGaP) \url{https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/}.
 }
 \seealso{
 Useful links:
