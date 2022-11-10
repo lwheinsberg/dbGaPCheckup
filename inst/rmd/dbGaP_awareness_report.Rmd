@@ -20,12 +20,6 @@ require(knitr)
 opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```
 
-# Load Libraries
-
-```{r lib, message=FALSE}
-library(tidyverse)
-```
-
 # Read parameters
 
 ```{r param}

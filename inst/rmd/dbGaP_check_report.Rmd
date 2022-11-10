@@ -28,7 +28,6 @@ opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
 ```{r ll,message=FALSE}
 library(pander)
 library(ggplot2)
-library(tidyverse)
 library(formatR)
 ```
 
