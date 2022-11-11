@@ -28,7 +28,7 @@ and
 * linux-x86_64-ubuntu-gcc
 * R version 4.2.2 (2022-10-31) -- "Innocent and Trusting"
 
-There are three NOTEs specific to linux platforms:
+There are three NOTEs specific to the linux platforms:
 
 * New submission
 
@@ -49,7 +49,20 @@ complete_check      3.277  0.012  11.960
 check_report        2.375  0.008   8.746
 
   Timing was not an issue on several other test machines. 
-   
+  
+And one NOTE specific to the Fedora linux platform.
+
+* checking HTML version of manual ... NOTE
+Skipping checking HTML validation: no command 'tidy' found
+
+  As described [here](https://groups.google.com/g/r-sig-mac/c/7u_ivEj4zhM?pli=1), our      understanding is that this is an old bug/issue which is located at the testing           environment.
+
+## Downstream dependencies
+
+First submission - no downstream dependencies. 
+
+## CRAN feedback
+
 This is a resubmission after CRAN feedback
 
 * If there are references describing the methods in your package, please 
@@ -89,7 +102,3 @@ Please unwrap the examples if they are executable in < 5 sec, or replace
 dontrun{} with \donttest{}.
 
   Resolution: Replaced \dontrun{} with \donttest{} as suggested.
-  
-## Downstream dependencies
-
-First submission - no downstream dependencies. 
