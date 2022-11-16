@@ -6,7 +6,7 @@
 #' @param sex.name Name of the Sex field.
 #' @param dataset.na Data set with missing values set to NA.
 #' @param h.level Header level for pandoc function.
-#' @return NULL, called for its side effects.
+#' @return Invisible NULL, called for its side effects.
 #' @export
 #' @importFrom graphics boxplot
 #' @importFrom stats addmargins
@@ -213,6 +213,6 @@ eval_function <- function(dataset, dictionary, sex.split = FALSE, sex.name = NUL
   } else {
     cat("\n\n-\n", trait, "has no missing values after mapping missing codes to NA.\n")
   }
-  return(NULL)
+  return(invisible(NULL))
 }
 

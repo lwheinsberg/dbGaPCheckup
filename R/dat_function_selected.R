@@ -8,7 +8,7 @@
 #' @param end   Ending index of the last selected trait.
 #' @param dataset.na Data set with missing values set to NA.
 #' @param h.level Header level for pandoc function.
-#' @return NULL, called for its side effects
+#' @return Invisible NULL, called for its side effects
 #' @export
 
 dat_function_selected <-function(dataset, dictionary, sex.split = FALSE,sex.name = NULL, start = 1,end = 1, dataset.na, h.level=2){
@@ -27,5 +27,5 @@ dat_function_selected <-function(dataset, dictionary, sex.split = FALSE,sex.name
     dictionary_pheno<-dictionary[dictionary$VARNAME==phenotype[i],]
     eval_function(dataset=dataset,dictionary =dictionary_pheno,sex.split=sex.split, sex.name = sex.name, dataset.na = dataset.na, h.level=h.level)
   }
-  return(NULL)
+  return(invisible(NULL))
 }

@@ -24,7 +24,7 @@ dat_function(
 \item{DS.dataset.na}{Data set with missing values set to NA.}
 }
 \value{
-NULL, called for its side effects.
+Invisible NULL, called for its side effects.
 }
 \description{
 This function calls eval_function to generate a textual and graphical report of the selected variables.

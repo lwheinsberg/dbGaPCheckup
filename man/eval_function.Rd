@@ -27,7 +27,7 @@ eval_function(
 \item{h.level}{Header level for pandoc function.}
 }
 \value{
-NULL, called for its side effects.
+Invisible NULL, called for its side effects.
 }
 \description{
 This function generates a textual and graphical report of the selected variables.
