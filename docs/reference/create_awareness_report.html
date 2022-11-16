@@ -30,6 +30,9 @@
     <a class="dropdown-item" href="../articles/dbGaPCheckup_vignette.html">dbGaPCheckup Vignette</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -112,11 +115,86 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ExampleB</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">create_awareness_report</span><span class="op">(</span><span class="va">DD.dict.B</span>, <span class="va">DS.data.B</span>, non.NA.missing.codes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">9999</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>   output.path<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span>   output.path<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, open.html <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> processing file: dbGaP_awareness_report.Rmd</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |....                                                                  |   6%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    inline R code fragments</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |........                                                              |  11%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> label: su (with options) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ echo   : logi FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ message: logi FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ warning: logi FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: knitr</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |............                                                          |  17%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ordinary text without R code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |................                                                      |  22%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> label: param</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |...................                                                   |  28%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ordinary text without R code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |.......................                                               |  33%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> label: misssum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |...........................                                           |  39%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ordinary text without R code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |...............................                                       |  44%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> label: vmt1a (with options) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ echo: logi FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |...................................                                   |  50%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ordinary text without R code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |.......................................                               |  56%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> label: vmt2b (with options) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ echo: logi FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |...........................................                           |  61%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ordinary text without R code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |...............................................                       |  67%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> label: vmt3c (with options) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ echo: logi FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |...................................................                   |  72%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ordinary text without R code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |......................................................                |  78%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> label: vmt4d (with options) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ echo: logi FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |..........................................................            |  83%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ordinary text without R code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |..............................................................        |  89%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> label: vmt4e (with options) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ echo: logi FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |..................................................................    |  94%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ordinary text without R code</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |......................................................................| 100%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> label: sess_inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> output file: dbGaP_awareness_report.knit.md</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/pandoc +RTS -K512m -RTS dbGaP_awareness_report.knit.md --to html4 --from markdown+autolink_bare_uris+tex_math_single_backslash --output /var/folders/y1/p2tdt78d16b191mrhv6hsm0c0000gq/T//RtmpoasBO4/AwarenessReport-20221116_062055.html --lua-filter /Users/law145/Library/R/arm64/4.2/library/rmarkdown/rmarkdown/lua/pagebreak.lua --lua-filter /Users/law145/Library/R/arm64/4.2/library/rmarkdown/rmarkdown/lua/latex-div.lua --self-contained --variable bs3=TRUE --section-divs --table-of-contents --toc-depth 3 --template /Users/law145/Library/R/arm64/4.2/library/rmarkdown/rmd/h/default.html --no-highlight --variable highlightjs=1 --number-sections --variable theme=bootstrap --mathjax --variable 'mathjax-url=https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' --include-in-header /var/folders/y1/p2tdt78d16b191mrhv6hsm0c0000gq/T//RtmpoasBO4/rmarkdown-str177663684d38d.html </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Output created: /var/folders/y1/p2tdt78d16b191mrhv6hsm0c0000gq/T//RtmpoasBO4/AwarenessReport-20221116_062055.html</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/var/folders/y1/p2tdt78d16b191mrhv6hsm0c0000gq/T//RtmpoasBO4/AwarenessReport-20221116_062055.html"</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
