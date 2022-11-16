@@ -26,6 +26,8 @@ knitr::opts_chunk$set(
 
 The goal of `dbGaPCheckup` is to make your National Library of Medicine database of Genotypes and Phenotypes ([dbGaP](https://www.ncbi.nlm.nih.gov/gap/)) data set submission a tiny bit easier. Specifically, our package implements several check, awareness, utility, and reporting functions designed to help you ensure that your Subject Phenotype data set and data dictionary meet a variety of dbGaP specific [formatting requirements](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/). A list of the functions available can be found below. 
 
+A self-archived version of the submitted (i.e., pre-peer reviewed) manuscript (`dbGaPCheckup_Manuscript_Pre-Review.docx`) has been added to this GitHub repository for accessibility.
+
 ```{r individual_checks, echo=FALSE}
 fn.path <- system.file("extdata", "Functions.xlsx",
    package = "dbGaPCheckup", mustWork=TRUE)

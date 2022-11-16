@@ -21,6 +21,10 @@ of dbGaP specific [formatting
 requirements](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/). A
 list of the functions available can be found below.
 
+A self-archived version of the submitted (i.e., pre-peer reviewed)
+manuscript (`dbGaPCheckup_Manuscript_Pre-Review.docx`) has been added to
+this GitHub repository for accessibility.
+
 | Function_Name           | Function_Type         | Function_Description                                                                                                                                                                                                                                                                                                                  |
 |:------------------------|:----------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | field_check             | check                 | Checks for dbGaP required fields: variable name (VARNAME), variable description (VARDESC), units (UNITS), and variable value and meaning (VALUES).                                                                                                                                                                                    |

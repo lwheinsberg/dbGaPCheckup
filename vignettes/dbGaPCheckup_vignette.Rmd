@@ -36,8 +36,6 @@ License: [GPL-2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
 This document describes our R package, `dbGaPCheckup`, which implements a series of check, awareness, utility, and reporting functions to help you ensure your scientific data set meets [formatting requirements](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/) for submission to the National Library of Medicine's database of Genotypes and Phenotypes ([dbGaP](https://www.ncbi.nlm.nih.gov/gap/)).
 
-[Paper citation to be added upon pre-print or publication].
-
 This vignette was designed to give you a broad overview of the utility of this R package. A complete table of functions and descriptions is shown below. See the Quick Start (`dbGaPCheckup`) vignette for a brief introduction to the package. 
 
 ```{r individual_checks, echo=FALSE}

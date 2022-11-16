@@ -12,3 +12,4 @@ vignettes/dbGaPCheckup_vignette\.md
 ^docs$
 ^pkgdown$
 ^CRAN-SUBMISSION$
+^dbGaPCheckup_Manuscript_Pre-Review\.docx$
