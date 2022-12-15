@@ -518,7 +518,8 @@ library(dplyr)
 non.NA.missing.codes <- c(-4444, -9999)
 dataset.na <- DS.data
 for (value in na.omit(non.NA.missing.codes)) {
-  dataset.na <- dataset.na %>% na_if(value)
+  dataset.na <- dataset.na %>%
+        mutate(across(tidyselect::where(is.numeric), ~na_if(.x, value)))
 }
 ```
 
