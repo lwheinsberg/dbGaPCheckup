@@ -1,7 +1,7 @@
 Package: dbGaPCheckup
 Type: Package
 Title: dbGaP Checkup
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(person(c("Lacey", "W."), "Heinsberg", email = "law145@pitt.edu", role = c("aut", "cre")), 
            person(c("Daniel","E."), "Weeks",    email = "weeks@pitt.edu", role = c("aut")),
            person("","University of Pittsburgh",role=c("cph")))
