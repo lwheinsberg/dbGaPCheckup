@@ -18,7 +18,7 @@
 #' # View out of range values:
 #' details <- minmax_check(DD.dict.A, DS.data.A)$Information
 #' details[[1]]$OutOfRangeValues
-#' # Attempt 2, specifying -9999 and -4444 as missing value 
+#' # Attempt 2, specifying -9999 and -4444 as missing value
 #' # codes so check works correctly
 #' minmax_check(DD.dict.A, DS.data.A, non.NA.missing.codes=c(-9999, -4444))
 #'
@@ -54,12 +54,13 @@ minmax_check <- function(DD.dict, DS.data, verbose=TRUE, non.NA.missing.codes=NA
   } else {
     dataset_na <- DS.data
     for (value in na.omit(non.NA.missing.codes)) {
-      dataset_na <- dataset_na %>% na_if(value)
+      dataset_na <- dataset_na %>% 
+        mutate(across(everything(), ~na_if(.x, value)))
     }
 
     CHECK.combined <- NULL
 
-    for (row in seq_len(nrow(DD.dict))) { 
+    for (row in seq_len(nrow(DD.dict))) {
 
       # Extract the minimum and maximum values for this trait
       range_dictionary <- c(DD.dict$MIN[row],DD.dict$MAX[row])

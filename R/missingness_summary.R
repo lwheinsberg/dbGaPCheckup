@@ -21,7 +21,8 @@ missingness_summary <- function(DS.data, non.NA.missing.codes=NA, threshold=95) 
   # Replace numeric missing codes with NA values
   dataset_na <- DS.data
   for (value in na.omit(non.NA.missing.codes)) {
-    dataset_na <- dataset_na %>% na_if(value)
+    dataset_na <- dataset_na %>% 
+      mutate(across(everything(), ~na_if(.x, value)))
   }
 
   # Calculate missingness summary across variables

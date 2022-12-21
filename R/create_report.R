@@ -9,7 +9,7 @@
 #' @param non.NA.missing.codes A user-defined vector of numerical missing value codes (e.g., -9999).
 #' @param output.path Path to the folder in which to create the HTML report document.
 #' @param open.html If TRUE, open the HTML report document in the web browser.
-#' @param fn.stem File name stem. 
+#' @param fn.stem File name stem.
 #' @return Full path to the HTML report document.
 #' @export
 #' @import pander
@@ -28,7 +28,7 @@
 
 create_report <- function(DD.dict, DS.data, sex.split = FALSE, sex.name = NULL, start = 1, end = 1, non.NA.missing.codes=NA, output.path = tempdir(), open.html = TRUE, fn.stem="Report") {
   
-  # Temporarily remove any entries in the VALUES columns that are "INTEGERS", "DECIMALS", OR "STRINGS" 
+  # Temporarily remove any entries in the VALUES columns that are "INTEGERS", "DECIMALS", OR "STRINGS"
   col <- which(names(DD.dict)=="VALUES")
   for (i in col:ncol(DD.dict)){
     DD.dict[i][DD.dict[,i]=="INTEGERS" | DD.dict[,i]=="DECIMALS" | DD.dict[,i]=="STRINGS" ] <- NA
@@ -53,7 +53,8 @@ create_report <- function(DD.dict, DS.data, sex.split = FALSE, sex.name = NULL, 
   # Create a temporary data set based on the specification of non-NA missing value codes
     dataset_na <- DS.data
     for (value in na.omit(non.NA.missing.codes)) {
-      dataset_na <- dataset_na %>% na_if(value)
+      dataset_na <- dataset_na %>% 
+        mutate(across(everything(), ~na_if(.x, value)))
     }
 
   Rmd.file <- system.file("rmd","dbGaP_check_report.Rmd", package="dbGaPCheckup", mustWork = TRUE)
