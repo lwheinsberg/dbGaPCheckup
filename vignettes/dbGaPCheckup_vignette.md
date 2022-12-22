@@ -2,7 +2,7 @@ dbGaPCheckup Vignette
 ================
 Lacey W. Heinsberg and Daniel E. Weeks
 
-November 16, 2022
+December 22, 2022
 
 -   <a href="#1-copyright-information" id="toc-1-copyright-information">1
     Copyright information</a>
@@ -329,23 +329,23 @@ data set.
 ``` r
 e1_report <- check_report(DD.dict.D, DS.data.D, non.NA.missing.codes=c(-4444, -9999))
 #> # A tibble: 15 × 3
-#>    Function            Status        Message                                                           
-#>    <chr>               <chr>         <chr>                                                             
-#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES prese…
-#>  2 pkg_field_check     Failed        ERROR: not all package-level required fields are present in the d…
-#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary an…
-#>  4 name_check          Passed        Passed: the variable names match between the data dictionary and …
-#>  5 id_check            Passed        Passed: All ID variable checks passed.                            
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                      
-#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                 
-#>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fiel…
-#>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                      
-#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                 
-#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                 
-#> 12 misc_format_check   Passed        Passed: no check-specific formatting issues identified.           
-#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionar…
-#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check failed.                 
-#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check failed.                 
+#>    Function            Status        Message                                                                                                                                     
+#>    <chr>               <chr>         <chr>                                                                                                                                       
+#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.                                                 
+#>  2 pkg_field_check     Failed        ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fields function to auto fil…
+#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.                                                                
+#>  4 name_check          Passed        Passed: the variable names match between the data dictionary and the data.                                                                  
+#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                                                                      
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                                                                                
+#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                                           
+#>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fields function to autofill TYPE.                                              
+#>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                                                                                                
+#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                                           
+#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                                           
+#> 12 misc_format_check   Passed        Passed: no check-specific formatting issues identified.                                                                                     
+#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                                                                         
+#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                                           
+#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                                           
 #> --------------------
 #> pkg_field_check: Failed 
 #> ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fields function to auto fill these fields. 
@@ -411,23 +411,23 @@ Don’t forget to call in the updated version of the data dictionary here!
 ``` r
 e1_report.v2 <- check_report(DD.dict_updated, DS.data.D, non.NA.missing.codes=c(-4444, -9999)) # Note! Don't forget to call in the updated version of the data dictionary here! 
 #> # A tibble: 15 × 3
-#>    Function            Status Message                                                                  
-#>    <chr>               <chr>  <chr>                                                                    
-#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in t…
-#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the …
-#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the d…
-#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the dat…
-#>  5 id_check            Passed Passed: All ID variable checks passed.                                   
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                             
-#>  7 NA_check            Passed Passed: no NA values detected in data set.                               
-#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission inst…
-#>  9 values_check        Passed Passed: all four VALUES checks look good.                                
-#> 10 integer_check       Passed Passed: all variables listed as TYPE integer appear to be integers.      
-#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appear to be decimals.      
-#> 12 misc_format_check   Passed Passed: no check-specific formatting issues identified.                  
-#> 13 description_check   Failed ERROR: missing and duplicate descriptions found in data dictionary.      
-#> 14 minmax_check        Passed Passed: when provided, all variables are within the MIN to MAX range.    
-#> 15 missing_value_check Failed ERROR: some variables have non-encoded missing value codes.              
+#>    Function            Status Message                                                                                    
+#>    <chr>               <chr>  <chr>                                                                                      
+#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.
+#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.   
+#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.               
+#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                 
+#>  5 id_check            Passed Passed: All ID variable checks passed.                                                     
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                               
+#>  7 NA_check            Passed Passed: no NA values detected in data set.                                                 
+#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
+#>  9 values_check        Passed Passed: all four VALUES checks look good.                                                  
+#> 10 integer_check       Passed Passed: all variables listed as TYPE integer appear to be integers.                        
+#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appear to be decimals.                        
+#> 12 misc_format_check   Passed Passed: no check-specific formatting issues identified.                                    
+#> 13 description_check   Failed ERROR: missing and duplicate descriptions found in data dictionary.                        
+#> 14 minmax_check        Passed Passed: when provided, all variables are within the MIN to MAX range.                      
+#> 15 missing_value_check Failed ERROR: some variables have non-encoded missing value codes.                                
 #> --------------------
 #> description_check: Failed 
 #> ERROR: missing and duplicate descriptions found in data dictionary. 
@@ -473,23 +473,23 @@ data(ExampleL)
 ``` r
 e2_report <- check_report(DD.dict.L, DS.data.L) 
 #> # A tibble: 15 × 3
-#>    Function            Status        Message                                                           
-#>    <chr>               <chr>         <chr>                                                             
-#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES prese…
-#>  2 pkg_field_check     Passed        Passed: package-level required fields TYPE, MIN, and MAX present …
-#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary an…
-#>  4 name_check          Failed        ERROR: the variable names DO NOT match between the data dictionar…
-#>  5 id_check            Passed        Passed: All ID variable checks passed.                            
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                      
-#>  7 NA_check            Not attempted ERROR: Required pre-check name_check failed.                      
-#>  8 type_check          Passed        Passed: All TYPE entries found are accepted by dbGaP per submissi…
-#>  9 values_check        Failed        ERROR: at least one VALUES check flagged potentials issues. See I…
-#> 10 integer_check       Not attempted ERROR: Required pre-check name_check failed.                      
-#> 11 decimal_check       Not attempted ERROR: Required pre-check name_check failed.                      
-#> 12 misc_format_check   Failed        ERROR: at least one check failed.                                 
-#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionar…
-#> 14 minmax_check        Not attempted ERROR: Required pre-check name_check failed.                      
-#> 15 missing_value_check Not attempted ERROR: Required pre-check name_check failed.                      
+#>    Function            Status        Message                                                                                                                                     
+#>    <chr>               <chr>         <chr>                                                                                                                                       
+#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.                                                 
+#>  2 pkg_field_check     Passed        Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.                                                    
+#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.                                                                
+#>  4 name_check          Failed        ERROR: the variable names DO NOT match between the data dictionary and the data. If the intention behind the variable names is correct, con…
+#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                                                                      
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                                                                                
+#>  7 NA_check            Not attempted ERROR: Required pre-check name_check failed.                                                                                                
+#>  8 type_check          Passed        Passed: All TYPE entries found are accepted by dbGaP per submission instructions.                                                           
+#>  9 values_check        Failed        ERROR: at least one VALUES check flagged potentials issues. See Information for more details.                                               
+#> 10 integer_check       Not attempted ERROR: Required pre-check name_check failed.                                                                                                
+#> 11 decimal_check       Not attempted ERROR: Required pre-check name_check failed.                                                                                                
+#> 12 misc_format_check   Failed        ERROR: at least one check failed.                                                                                                           
+#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                                                                         
+#> 14 minmax_check        Not attempted ERROR: Required pre-check name_check failed.                                                                                                
+#> 15 missing_value_check Not attempted ERROR: Required pre-check name_check failed.                                                                                                
 #> --------------------
 #> name_check: Failed 
 #> ERROR: the variable names DO NOT match between the data dictionary and the data. If the intention behind the variable names is correct, consider using the name_correct function to automatically rename variables to match. 
@@ -504,26 +504,16 @@ e2_report <- check_report(DD.dict.L, DS.data.L)
 #> values_check: Failed 
 #> ERROR: at least one VALUES check flagged potentials issues. See Information for more details. 
 #> $values_check.Info
-#>    column_name values.check            vname                   type
-#> 4      VALUES3        FALSE         CUFFSIZE integer, encoded value
-#> 6       VALUES        FALSE              HTN integer, encoded value
-#> 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value
-#> 9      VALUES5        FALSE               28 integer, encoded value
-#> 10     VALUES4        FALSE               28 integer, encoded value
-#> 12     VALUES2        FALSE               16 integer, encoded value
-#> 14      VALUES        FALSE           RESIST integer, encoded value
-#> 15      VALUES        FALSE        SAMPLE_ID                integer
-#> 16      VALUES        FALSE              SEX                integer
-#>                                                   problematic_description
-#> 4                                                           2 means large
-#> 6                                                          0 indicates no
-#> 7  Between 1 and 10 with higher values indicating better perceived health
-#> 9                                                        5 = a great deal
-#> 10                                                        4 = quite a bit
-#> 12                                                              1 =medium
-#> 14                                                                   <NA>
-#> 15                                                    -9999=missing value
-#> 16                                                                 0=male
+#>    column_name values.check            vname                   type                                                problematic_description
+#> 4      VALUES3        FALSE         CUFFSIZE integer, encoded value                                                          2 means large
+#> 6       VALUES        FALSE              HTN integer, encoded value                                                         0 indicates no
+#> 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value Between 1 and 10 with higher values indicating better perceived health
+#> 9      VALUES5        FALSE               28 integer, encoded value                                                       5 = a great deal
+#> 10     VALUES4        FALSE               28 integer, encoded value                                                        4 = quite a bit
+#> 12     VALUES2        FALSE               16 integer, encoded value                                                              1 =medium
+#> 14      VALUES        FALSE           RESIST integer, encoded value                                                                   <NA>
+#> 15      VALUES        FALSE        SAMPLE_ID                integer                                                    -9999=missing value
+#> 16      VALUES        FALSE              SEX                integer                                                                 0=male
 #>                                                                         check
 #> 4                  Check 1: Is an equals sign present for all values columns?
 #> 6                  Check 1: Is an equals sign present for all values columns?
@@ -637,47 +627,37 @@ e2_report.v2 <- check_report(DD.dict.L, DS.data_updated, non.NA.missing.codes=c(
 #> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [1].
 #> Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [1].
 #> # A tibble: 15 × 3
-#>    Function            Status Message                                                                  
-#>    <chr>               <chr>  <chr>                                                                    
-#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in t…
-#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the …
-#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the d…
-#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the dat…
-#>  5 id_check            Passed Passed: All ID variable checks passed.                                   
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                             
-#>  7 NA_check            Passed Passed: no NA values detected in data set.                               
-#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission inst…
-#>  9 values_check        Failed ERROR: at least one VALUES check flagged potentials issues. See Informat…
-#> 10 integer_check       Failed ERROR: some variables listed as TYPE integer do not appear to be integer…
-#> 11 decimal_check       Failed ERROR: some variables listed as TYPE decimal do not appear to be decimal…
-#> 12 misc_format_check   Failed ERROR: at least one check failed.                                        
-#> 13 description_check   Failed ERROR: missing and duplicate descriptions found in data dictionary.      
-#> 14 minmax_check        Failed ERROR: some variables have values outside of the MIN to MAX range.       
-#> 15 missing_value_check Failed ERROR: some variables have non-encoded missing value codes.              
+#>    Function            Status Message                                                                                      
+#>    <chr>               <chr>  <chr>                                                                                        
+#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.  
+#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.     
+#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.                 
+#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                   
+#>  5 id_check            Passed Passed: All ID variable checks passed.                                                       
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                                 
+#>  7 NA_check            Passed Passed: no NA values detected in data set.                                                   
+#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.            
+#>  9 values_check        Failed ERROR: at least one VALUES check flagged potentials issues. See Information for more details.
+#> 10 integer_check       Failed ERROR: some variables listed as TYPE integer do not appear to be integers.                   
+#> 11 decimal_check       Failed ERROR: some variables listed as TYPE decimal do not appear to be decimals.                   
+#> 12 misc_format_check   Failed ERROR: at least one check failed.                                                            
+#> 13 description_check   Failed ERROR: missing and duplicate descriptions found in data dictionary.                          
+#> 14 minmax_check        Failed ERROR: some variables have values outside of the MIN to MAX range.                           
+#> 15 missing_value_check Failed ERROR: some variables have non-encoded missing value codes.                                  
 #> --------------------
 #> values_check: Failed 
 #> ERROR: at least one VALUES check flagged potentials issues. See Information for more details. 
 #> $values_check.Info
-#>    column_name values.check            vname                   type
-#> 4      VALUES3        FALSE         CUFFSIZE integer, encoded value
-#> 6       VALUES        FALSE              HTN integer, encoded value
-#> 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value
-#> 9      VALUES5        FALSE               28 integer, encoded value
-#> 10     VALUES4        FALSE               28 integer, encoded value
-#> 12     VALUES2        FALSE               16 integer, encoded value
-#> 14      VALUES        FALSE           RESIST integer, encoded value
-#> 15      VALUES        FALSE        SAMPLE_ID                integer
-#> 16      VALUES        FALSE              SEX                integer
-#>                                                   problematic_description
-#> 4                                                           2 means large
-#> 6                                                          0 indicates no
-#> 7  Between 1 and 10 with higher values indicating better perceived health
-#> 9                                                        5 = a great deal
-#> 10                                                        4 = quite a bit
-#> 12                                                              1 =medium
-#> 14                                                                   <NA>
-#> 15                                                    -9999=missing value
-#> 16                                                                 0=male
+#>    column_name values.check            vname                   type                                                problematic_description
+#> 4      VALUES3        FALSE         CUFFSIZE integer, encoded value                                                          2 means large
+#> 6       VALUES        FALSE              HTN integer, encoded value                                                         0 indicates no
+#> 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value Between 1 and 10 with higher values indicating better perceived health
+#> 9      VALUES5        FALSE               28 integer, encoded value                                                       5 = a great deal
+#> 10     VALUES4        FALSE               28 integer, encoded value                                                        4 = quite a bit
+#> 12     VALUES2        FALSE               16 integer, encoded value                                                              1 =medium
+#> 14      VALUES        FALSE           RESIST integer, encoded value                                                                   <NA>
+#> 15      VALUES        FALSE        SAMPLE_ID                integer                                                    -9999=missing value
+#> 16      VALUES        FALSE              SEX                integer                                                                 0=male
 #>                                                                         check
 #> 4                  Check 1: Is an equals sign present for all values columns?
 #> 6                  Check 1: Is an equals sign present for all values columns?
@@ -768,23 +748,23 @@ Again, we will start with the `check_report` function.
 ``` r
 e3_report <- check_report(DD.dict.B, DS.data.B)
 #> # A tibble: 15 × 3
-#>    Function            Status Message                                                                  
-#>    <chr>               <chr>  <chr>                                                                    
-#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in t…
-#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the …
-#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the d…
-#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the dat…
-#>  5 id_check            Passed Passed: All ID variable checks passed.                                   
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                             
-#>  7 NA_check            Passed Passed: no NA values detected in data set.                               
-#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission inst…
-#>  9 values_check        Passed Passed: all four VALUES checks look good.                                
-#> 10 integer_check       Passed Passed: all variables listed as TYPE integer appear to be integers.      
-#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appear to be decimals.      
-#> 12 misc_format_check   Passed Passed: no check-specific formatting issues identified.                  
-#> 13 description_check   Passed Passed: unique description present for all variables in the data diction…
-#> 14 minmax_check        Passed Passed: when provided, all variables are within the MIN to MAX range.    
-#> 15 missing_value_check Passed Passed: all missing value codes have a corresponding VALUES entry.       
+#>    Function            Status Message                                                                                    
+#>    <chr>               <chr>  <chr>                                                                                      
+#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.
+#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.   
+#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.               
+#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                 
+#>  5 id_check            Passed Passed: All ID variable checks passed.                                                     
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                               
+#>  7 NA_check            Passed Passed: no NA values detected in data set.                                                 
+#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
+#>  9 values_check        Passed Passed: all four VALUES checks look good.                                                  
+#> 10 integer_check       Passed Passed: all variables listed as TYPE integer appear to be integers.                        
+#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appear to be decimals.                        
+#> 12 misc_format_check   Passed Passed: no check-specific formatting issues identified.                                    
+#> 13 description_check   Passed Passed: unique description present for all variables in the data dictionary.               
+#> 14 minmax_check        Passed Passed: when provided, all variables are within the MIN to MAX range.                      
+#> 15 missing_value_check Passed Passed: all missing value codes have a corresponding VALUES entry.                         
 #> [1] "All 15 checks passed."
 ```
 
@@ -797,23 +777,23 @@ missing value codes.
 ``` r
 e3_report.v2 <- check_report(DD.dict.B, DS.data.B, non.NA.missing.codes=c(-9999))
 #> # A tibble: 15 × 3
-#>    Function            Status Message                                                                  
-#>    <chr>               <chr>  <chr>                                                                    
-#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in t…
-#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the …
-#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the d…
-#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the dat…
-#>  5 id_check            Passed Passed: All ID variable checks passed.                                   
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                             
-#>  7 NA_check            Passed Passed: no NA values detected in data set.                               
-#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission inst…
-#>  9 values_check        Passed Passed: all four VALUES checks look good.                                
-#> 10 integer_check       Passed Passed: all variables listed as TYPE integer appear to be integers.      
-#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appear to be decimals.      
-#> 12 misc_format_check   Passed Passed: no check-specific formatting issues identified.                  
-#> 13 description_check   Passed Passed: unique description present for all variables in the data diction…
-#> 14 minmax_check        Passed Passed: when provided, all variables are within the MIN to MAX range.    
-#> 15 missing_value_check Failed ERROR: some variables have non-encoded missing value codes.              
+#>    Function            Status Message                                                                                    
+#>    <chr>               <chr>  <chr>                                                                                      
+#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.
+#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.   
+#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.               
+#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                 
+#>  5 id_check            Passed Passed: All ID variable checks passed.                                                     
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                               
+#>  7 NA_check            Passed Passed: no NA values detected in data set.                                                 
+#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
+#>  9 values_check        Passed Passed: all four VALUES checks look good.                                                  
+#> 10 integer_check       Passed Passed: all variables listed as TYPE integer appear to be integers.                        
+#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appear to be decimals.                        
+#> 12 misc_format_check   Passed Passed: no check-specific formatting issues identified.                                    
+#> 13 description_check   Passed Passed: unique description present for all variables in the data dictionary.               
+#> 14 minmax_check        Passed Passed: when provided, all variables are within the MIN to MAX range.                      
+#> 15 missing_value_check Failed ERROR: some variables have non-encoded missing value codes.                                
 #> --------------------
 #> missing_value_check: Failed 
 #> ERROR: some variables have non-encoded missing value codes. 
@@ -896,23 +876,23 @@ data(ExampleH)
 ``` r
 e4_report <- check_report(DD.dict.H, DS.data.H, non.NA.missing.codes=c(-4444, -9999))
 #> # A tibble: 15 × 3
-#>    Function            Status Message                                                                  
-#>    <chr>               <chr>  <chr>                                                                    
-#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in t…
-#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the …
-#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the d…
-#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the dat…
-#>  5 id_check            Passed Passed: All ID variable checks passed.                                   
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                             
-#>  7 NA_check            Passed Passed: no NA values detected in data set.                               
-#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission inst…
-#>  9 values_check        Passed Passed: all four VALUES checks look good.                                
-#> 10 integer_check       Failed ERROR: some variables listed as TYPE integer do not appear to be integer…
-#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appear to be decimals.      
-#> 12 misc_format_check   Passed Passed: no check-specific formatting issues identified.                  
-#> 13 description_check   Passed Passed: unique description present for all variables in the data diction…
-#> 14 minmax_check        Passed Passed: when provided, all variables are within the MIN to MAX range.    
-#> 15 missing_value_check Passed Passed: all missing value codes have a corresponding VALUES entry.       
+#>    Function            Status Message                                                                                    
+#>    <chr>               <chr>  <chr>                                                                                      
+#>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.
+#>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.   
+#>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.               
+#>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                 
+#>  5 id_check            Passed Passed: All ID variable checks passed.                                                     
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                               
+#>  7 NA_check            Passed Passed: no NA values detected in data set.                                                 
+#>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
+#>  9 values_check        Passed Passed: all four VALUES checks look good.                                                  
+#> 10 integer_check       Failed ERROR: some variables listed as TYPE integer do not appear to be integers.                 
+#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appear to be decimals.                        
+#> 12 misc_format_check   Passed Passed: no check-specific formatting issues identified.                                    
+#> 13 description_check   Passed Passed: unique description present for all variables in the data dictionary.               
+#> 14 minmax_check        Passed Passed: when provided, all variables are within the MIN to MAX range.                      
+#> 15 missing_value_check Passed Passed: all missing value codes have a corresponding VALUES entry.                         
 #> --------------------
 #> integer_check: Failed 
 #> ERROR: some variables listed as TYPE integer do not appear to be integers. 
@@ -931,12 +911,10 @@ this variable name in the dictionary
 ``` r
 dictionary_search(DD.dict.H, search.term=c("SUP_SKF"), search.column=c("VARNAME"))
 #> # A tibble: 1 × 22
-#>   VARNAME VARDESC       DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶
-#>   <chr>   <chr>         <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>  
-#> 1 SUP_SKF Suprailiac s… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA     
-#> # … with 9 more variables: UNIQUEKEY <lgl>, COLLINTERVAL <lgl>, ORDER <lgl>, VALUES <chr>,
-#> #   ...18 <chr>, ...19 <chr>, ...20 <chr>, ...21 <chr>, ...22 <chr>, and abbreviated variable names
-#> #   ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING
+#>   VARNAME VARDESC                      DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES ...18 ...19 ...20 ...21 ...22
+#>   <chr>   <chr>                        <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr>  <chr> <chr> <chr> <chr> <chr>
+#> 1 SUP_SKF Suprailiac skinfold thickne… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999… <NA>  <NA>  <NA>  <NA>  <NA> 
+#> # … with abbreviated variable names ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY, ⁸​COLLINTERVAL
 ```
 
 We can also look at the values in the data set to see that, in fact,
@@ -946,10 +924,10 @@ suggests).
 ``` r
 table(DS.data.H$SUP_SKF)
 #> 
-#>  -9999     12     22 23.888     24     25     26     27     28 28.254     29     34     35     36 
-#>      3      2      4      1      4     11      4      6      2      1      1      4      7      3 
-#>     37     38     39  39.12     40     42     44     45     46     48     51     52 
-#>      2      3      6      1      9      2      6      3      4      3      2      6
+#>  -9999     12     22 23.888     24     25     26     27     28 28.254     29     34     35     36     37     38     39  39.12     40     42     44     45     46     48     51 
+#>      3      2      4      1      4     11      4      6      2      1      1      4      7      3      2      3      6      1      9      2      6      3      4      3      2 
+#>     52 
+#>      6
 ```
 
 We can also use this awareness function to grep any variables that are
@@ -959,13 +937,11 @@ variables.
 ``` r
 dictionary_search(DD.dict.H, search.term=c("skinfold"))
 #> # A tibble: 2 × 22
-#>   VARNAME VARDESC       DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶
-#>   <chr>   <chr>         <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>  
-#> 1 ABD_SKF Abdominal sk… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA     
-#> 2 SUP_SKF Suprailiac s… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA     
-#> # … with 9 more variables: UNIQUEKEY <lgl>, COLLINTERVAL <lgl>, ORDER <lgl>, VALUES <chr>,
-#> #   ...18 <chr>, ...19 <chr>, ...20 <chr>, ...21 <chr>, ...22 <chr>, and abbreviated variable names
-#> #   ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING
+#>   VARNAME VARDESC                      DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES ...18 ...19 ...20 ...21 ...22
+#>   <chr>   <chr>                        <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr>  <chr> <chr> <chr> <chr> <chr>
+#> 1 ABD_SKF Abdominal skinfold thickness NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999… <NA>  <NA>  <NA>  <NA>  <NA> 
+#> 2 SUP_SKF Suprailiac skinfold thickne… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999… <NA>  <NA>  <NA>  <NA>  <NA> 
+#> # … with abbreviated variable names ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY, ⁸​COLLINTERVAL
 ```
 
 Above we see that both abdominal and suprailiac skinfold thickness are
@@ -975,10 +951,8 @@ measured to the nearest mm.
 ``` r
 table(DS.data.H$ABD_SKF)
 #> 
-#> -9999    14    18    21    22    23    24    25    26    27    28    29    30    31    32    34    35 
-#>     3     1     2     2     1     4    11    22     4     1     6     4     2     3     2     5     4 
-#>    36    38    39    40    41    42    45    51    54    61    65    68 
-#>     5     6     2     1     1     1     1     1     1     2     1     1
+#> -9999    14    18    21    22    23    24    25    26    27    28    29    30    31    32    34    35    36    38    39    40    41    42    45    51    54    61    65    68 
+#>     3     1     2     2     1     4    11    22     4     1     6     4     2     3     2     5     4     5     6     2     1     1     1     1     1     1     2     1     1
 ```
 
 While `ABD_SKF` appears to be a true integer, `SUP_SKF` appears to have
@@ -1005,12 +979,12 @@ id_check(DS.data.A)
 #> 
 #> $Information
 #> # A tibble: 4 × 4
-#>   check.name check.description                                 check.status details                    
-#>   <chr>      <chr>                                             <chr>        <chr>                      
-#> 1 Check 1    Column 1 is labeled as 'SUBJECT_ID'.              Passed       The first column name is S…
-#> 2 Check 2    'SUBJECT_ID' is a column name in the data set.    Passed       'SUBJECT_ID' is the name o…
-#> 3 Check 3    'SUBJECT_ID' is a column name in the data set.    Passed       No illegal characters dete…
-#> 4 Check 4    No leading zeros detected in 'SUBJECT_ID' column. Passed       No leading zeros detected …
+#>   check.name check.description                                 check.status details                                        
+#>   <chr>      <chr>                                             <chr>        <chr>                                          
+#> 1 Check 1    Column 1 is labeled as 'SUBJECT_ID'.              Passed       The first column name is SUBJECT_ID.           
+#> 2 Check 2    'SUBJECT_ID' is a column name in the data set.    Passed       'SUBJECT_ID' is the name of column 1.          
+#> 3 Check 3    'SUBJECT_ID' is a column name in the data set.    Passed       No illegal characters detected in 'SUBJECT_ID'.
+#> 4 Check 4    No leading zeros detected in 'SUBJECT_ID' column. Passed       No leading zeros detected in 'SUBJECT_ID'.
 ```
 
 ``` r
@@ -1247,16 +1221,15 @@ results.list <- value_missing_table(DD.dict.B, DS.data.B, non.NA.missing.codes =
 #> 
 #> $Information
 #> # A tibble: 7 × 4
-#>   check.name                     check.description                                     check…¹ details 
-#>   <chr>                          <chr>                                                 <chr>   <named >
-#> 1 Check A: In M, Not in D        "All missing value codes are in the data"             Flag    <tibble>
-#> 2 Check B: In V, Not in D        "All value codes are in the data"                     Flag    <tibble>
-#> 3 Check C: In M, Not in V        "All missing value codes are in the VALUES"           Flag    <tibble>
-#> 4 Check D: In M & in D, not in V "All missing value codes are in the data and in valu… Flag    <tibble>
-#> 5 Check E: V NOT in M, NOT in D  "All value codes no defined as a missing value code … Passed  <chr>   
-#> 6 Awareness: NsetD vs. NsetV     "Size of Set D vs size of set V"                      Info    <tibble>
-#> 7 Awareness: N_DnotM vs. N_VnotM "Size of Set D\\M vs size of set V\\M"                Info    <tibble>
-#> # … with abbreviated variable name ¹​check.status
+#>   check.name                     check.description                                                    check.status details          
+#>   <chr>                          <chr>                                                                <chr>        <named list>     
+#> 1 Check A: In M, Not in D        "All missing value codes are in the data"                            Flag         <tibble [6 × 7]> 
+#> 2 Check B: In V, Not in D        "All value codes are in the data"                                    Flag         <tibble [2 × 6]> 
+#> 3 Check C: In M, Not in V        "All missing value codes are in the VALUES"                          Flag         <tibble [5 × 6]> 
+#> 4 Check D: In M & in D, not in V "All missing value codes are in the data and in values"              Flag         <tibble [1 × 3]> 
+#> 5 Check E: V NOT in M, NOT in D  "All value codes no defined as a missing value code are in the data" Passed       <chr [1]>        
+#> 6 Awareness: NsetD vs. NsetV     "Size of Set D vs size of set V"                                     Info         <tibble [18 × 5]>
+#> 7 Awareness: N_DnotM vs. N_VnotM "Size of Set D\\M vs size of set V\\M"                               Info         <tibble [17 × 6]>
 results <- results.list$report
 ```
 
@@ -1346,28 +1319,22 @@ table(DS.data.B$LENGTH_SMOKING_YEARS)
 #>    84     1     1     1     1     1     3     2     2     1     2     1
 dictionary_search(DD.dict.B, search.term=c("LENGTH_SMOKING_YEARS"), search.column=c("VARNAME"))
 #> # A tibble: 1 × 21
-#>   VARNAME       VARDESC DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶
-#>   <chr>         <chr>   <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>  
-#> 1 LENGTH_SMOKI… How ma… NA      deci… years    NA    NA NA      NA      NA      NA      NA      NA     
-#> # … with 8 more variables: UNIQUEKEY <lgl>, COLLINTERVAL <lgl>, ORDER <lgl>, VALUES <chr>,
-#> #   ...18 <chr>, ...19 <chr>, ...20 <chr>, ...21 <chr>, and abbreviated variable names ¹​RESOLUTION,
-#> #   ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING
+#>   VARNAME              VARDESC               DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES ...18 ...19 ...20 ...21
+#>   <chr>                <chr>                 <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr>  <chr> <chr> <chr> <chr>
+#> 1 LENGTH_SMOKING_YEARS How many years has t… NA      deci… years    NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999… -444… <NA>  <NA>  <NA> 
+#> # … with abbreviated variable names ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY, ⁸​COLLINTERVAL
 
 # Heart rate 
 table(DS.data.B$HEART_RATE)
 #> 
-#>  38  45  46  47  48  49  50  52  54  55  56  57  58  59  60  64  65  67  68  72  73  74  75  76  78 
-#>   1   5   1   1   2   1   1   2   2   1   3   1   5   1   1   1   8   1   2   2   1   1   9   3   1 
-#>  79  82  83  85  86  90  91  95  96  98 100 105 107 110 113 114 115 125 135 
-#>   1   1   1   9   2   2   1  13   1   1   1   1   1   3   1   1   1   1   1
+#>  38  45  46  47  48  49  50  52  54  55  56  57  58  59  60  64  65  67  68  72  73  74  75  76  78  79  82  83  85  86  90  91  95  96  98 100 105 107 110 113 114 115 125 135 
+#>   1   5   1   1   2   1   1   2   2   1   3   1   5   1   1   1   8   1   2   2   1   1   9   3   1   1   1   1   9   2   2   1  13   1   1   1   1   1   3   1   1   1   1   1
 dictionary_search(DD.dict.B, search.term=c("HEART_RATE"), search.column=c("VARNAME"))
 #> # A tibble: 1 × 21
-#>   VARNAME    VARDESC    DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶
-#>   <chr>      <chr>      <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>  
-#> 1 HEART_RATE Heart rat… NA      inte… beat…    NA    NA NA      NA      NA      NA      NA      NA     
-#> # … with 8 more variables: UNIQUEKEY <lgl>, COLLINTERVAL <lgl>, ORDER <lgl>, VALUES <chr>,
-#> #   ...18 <chr>, ...19 <chr>, ...20 <chr>, ...21 <chr>, and abbreviated variable names ¹​RESOLUTION,
-#> #   ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING
+#>   VARNAME    VARDESC                         DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES ...18 ...19 ...20 ...21
+#>   <chr>      <chr>                           <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr>  <chr> <chr> <chr> <chr>
+#> 1 HEART_RATE Heart rate measured during blo… NA      inte… beat…    NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999… <NA>  <NA>  <NA>  <NA> 
+#> # … with abbreviated variable names ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY, ⁸​COLLINTERVAL
 ```
 
 Looking at this more closely, we see a missing value code of -4444, not
@@ -1500,19 +1467,19 @@ Check passed: SEX is integer TYPE and all integers
 
 #### 6.3.1.3 HEIGHT - decimal, encoded value
 
-    #> Warning: Removed 2 rows containing non-finite values (stat_count).
+    #> Warning: Removed 2 rows containing non-finite values (`stat_count()`).
 
 ![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-6.png)<!-- -->
 
-    #> Warning: Removed 2 rows containing non-finite values (stat_density).
+    #> Warning: Removed 2 rows containing non-finite values (`stat_density()`).
 
 ![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-7.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-8.png)<!-- -->
 
-    #> Warning: Removed 2 rows containing non-finite values (stat_count).
+    #> Warning: Removed 2 rows containing non-finite values (`stat_count()`).
 
 ![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-9.png)<!-- -->
 
-    #> Warning: Removed 2 rows containing non-finite values (stat_density).
+    #> Warning: Removed 2 rows containing non-finite values (`stat_density()`).
 
 ![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-10.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-11.png)<!-- -->
 
@@ -1523,26 +1490,26 @@ Check passed: SEX is integer TYPE and all integers
 
 #### 6.3.1.4 WEIGHT - decimal, encoded value
 
-    #> Warning: Removed 3 rows containing non-finite values (stat_count).
+    #> Warning: Removed 3 rows containing non-finite values (`stat_count()`).
 
 ![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-12.png)<!-- -->
 
-    #> Warning: Removed 3 rows containing non-finite values (stat_density).
+    #> Warning: Removed 3 rows containing non-finite values (`stat_density()`).
 
 ![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-13.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-14.png)<!-- -->
 
-    #> Warning: Removed 3 rows containing non-finite values (stat_count).
+    #> Warning: Removed 3 rows containing non-finite values (`stat_count()`).
 
 ![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-15.png)<!-- -->
 
-    #> Warning: Removed 3 rows containing non-finite values (stat_density).
+    #> Warning: Removed 3 rows containing non-finite values (`stat_density()`).
 
 ![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-16.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-17.png)<!-- -->
 
 -   WEIGHT has no missing values.
 
 -   There are 2 missing values for WEIGHT after mapping missing codes to
-    NA. NULL
+    NA.
 
 Above we see a full report for variables `AGE`, `SEX`, `HEIGHT`, and
 `WEIGHT` as well as `AGE`, `HEIGHT`, and `WEIGHT` split by sex. Given
