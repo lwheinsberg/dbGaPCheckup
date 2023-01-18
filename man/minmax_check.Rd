@@ -30,7 +30,7 @@ minmax_check(DD.dict.A, DS.data.A)
 # View out of range values:
 details <- minmax_check(DD.dict.A, DS.data.A)$Information
 details[[1]]$OutOfRangeValues
-# Attempt 2, specifying -9999 and -4444 as missing value 
+# Attempt 2, specifying -9999 and -4444 as missing value
 # codes so check works correctly
 minmax_check(DD.dict.A, DS.data.A, non.NA.missing.codes=c(-9999, -4444))
 
