@@ -1090,8 +1090,18 @@ DD.dict_updated <- reorder_dictionary(DD.dict.N, DS.data.N)
 #> 10 Data: PHYSICAL_ACTIVITY    Dict: BP_DIASTOLIC         Data: PHYSICAL_ACTIVITY
 ```
 
-Above, we see that `name_check` now passes, and we can return to our
-`check_report` workflow to search for other potential issues.
+``` r
+name_check(DD.dict_updated, DS.data.N)
+#> $Message
+#> [1] "Passed: the variable names match between the data dictionary and the data."
+#> 
+#> $Information
+#> [1] "Variable names matched"
+```
+
+Above, we see that `name_check` now passes! Moving forward, we could
+simply return to our `check_report` workflow to search for other
+potential issues.
 
 ### 5.1.6 Example 6
 

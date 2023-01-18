@@ -298,7 +298,10 @@ In this example, dbGaPCheckup informs us several issues --- let's focus first on
 DD.dict_updated <- reorder_dictionary(DD.dict.N, DS.data.N)
 ```
 
-Above, we see that `name_check` now passes, and we can return to our `check_report` workflow to search for other potential issues. 
+```{r nc}
+name_check(DD.dict_updated, DS.data.N)
+```
+Above, we see that `name_check` now passes! Moving forward, we could simply return to our `check_report` workflow to search for other potential issues.
 
 ### Example 6 
 
