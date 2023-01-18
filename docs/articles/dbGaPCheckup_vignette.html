@@ -1623,13 +1623,156 @@ recording error.</p>
 <span class="header-section-number">5.1.5</span> Example 5<a class="anchor" aria-label="anchor" href="#example-5"></a>
 </h4>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ExampleN</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/check_report.html">check_report</a></span><span class="op">(</span><span class="va">DD.dict.N</span>, <span class="va">DS.data.N</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 3</span></span></span>
+<span><span class="co">#&gt;    Function            Status        Message                                    </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> field_check         Passed        Passed: required fields VARNAME, VARDESC, …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> pkg_field_check     Passed        Passed: package-level required fields TYPE…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> dimension_check     Passed        Passed: the variable count matches between…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> name_check          Failed        ERROR: the variable names match between th…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed        Passed: All ID variable checks passed.     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> row_check           Passed        Passed: no blank or duplicate rows detecte…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> NA_check            Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> type_check          Passed        Passed: All TYPE entries found are accepte…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Failed        ERROR: at least one VALUES check flagged p…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Failed        ERROR: at least one check failed.          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Failed        ERROR: missing and duplicate descriptions …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; --------------------</span></span>
+<span><span class="co">#&gt; name_check: Failed </span></span>
+<span><span class="co">#&gt; ERROR: the variable names match between the data dictionary and the data, but they are in the wrong order. Consider using reorder_dictionary function to automatically reorder the dictionary so that you can continue working through the checks. </span></span>
+<span><span class="co">#&gt; $name_check.Info</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 2</span></span></span>
+<span><span class="co">#&gt;    Data                       Dict                      </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Data: ABD_CIRC             Dict: HIP_CIRC            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Data: HIP_CIRC             Dict: ABD_SKF             </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Data: ABD_SKF              Dict: SUP_SKF             </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Data: SUP_SKF              Dict: ABD_CIRC            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Data: BP_DIASTOLIC         Dict: HTN                 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Data: HTN                  Dict: SMOKING_HX          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Data: SMOKING_HX           Dict: LENGTH_SMOKING_YEARS</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Data: LENGTH_SMOKING_YEARS Dict: HEART_RATE          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Data: HEART_RATE           Dict: PHYSICAL_ACTIVITY   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Data: PHYSICAL_ACTIVITY    Dict: BP_DIASTOLIC        </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; --------------------</span></span>
+<span><span class="co">#&gt; values_check: Failed </span></span>
+<span><span class="co">#&gt; ERROR: at least one VALUES check flagged potentials issues. See Information for more details. </span></span>
+<span><span class="co">#&gt; $values_check.Info</span></span>
+<span><span class="co">#&gt;    column_name values.check            vname                   type</span></span>
+<span><span class="co">#&gt; 4      VALUES3        FALSE         CUFFSIZE integer, encoded value</span></span>
+<span><span class="co">#&gt; 6       VALUES        FALSE              HTN integer, encoded value</span></span>
+<span><span class="co">#&gt; 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value</span></span>
+<span><span class="co">#&gt; 9      VALUES5        FALSE               28 integer, encoded value</span></span>
+<span><span class="co">#&gt; 10     VALUES4        FALSE               28 integer, encoded value</span></span>
+<span><span class="co">#&gt; 12     VALUES2        FALSE               16 integer, encoded value</span></span>
+<span><span class="co">#&gt; 14      VALUES        FALSE           RESIST integer, encoded value</span></span>
+<span><span class="co">#&gt; 15      VALUES        FALSE        SAMPLE_ID                integer</span></span>
+<span><span class="co">#&gt; 16      VALUES        FALSE              SEX                integer</span></span>
+<span><span class="co">#&gt;                                                   problematic_description</span></span>
+<span><span class="co">#&gt; 4                                                           2 means large</span></span>
+<span><span class="co">#&gt; 6                                                          0 indicates no</span></span>
+<span><span class="co">#&gt; 7  Between 1 and 10 with higher values indicating better perceived health</span></span>
+<span><span class="co">#&gt; 9                                                        5 = a great deal</span></span>
+<span><span class="co">#&gt; 10                                                        4 = quite a bit</span></span>
+<span><span class="co">#&gt; 12                                                              1 =medium</span></span>
+<span><span class="co">#&gt; 14                                                                   &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 15                                                    -9999=missing value</span></span>
+<span><span class="co">#&gt; 16                                                                 0=male</span></span>
+<span><span class="co">#&gt;                                                                         check</span></span>
+<span><span class="co">#&gt; 4                  Check 1: Is an equals sign present for all values columns?</span></span>
+<span><span class="co">#&gt; 6                  Check 1: Is an equals sign present for all values columns?</span></span>
+<span><span class="co">#&gt; 7                  Check 1: Is an equals sign present for all values columns?</span></span>
+<span><span class="co">#&gt; 9  Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
+<span><span class="co">#&gt; 10 Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
+<span><span class="co">#&gt; 12 Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
+<span><span class="co">#&gt; 14  Check 3: Do all variables of TYPE encoded have at least one VALUES entry?</span></span>
+<span><span class="co">#&gt; 15            Check 4: Are all variables with VALUES entries of TYPE encoded?</span></span>
+<span><span class="co">#&gt; 16            Check 4: Are all variables with VALUES entries of TYPE encoded?</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; --------------------</span></span>
+<span><span class="co">#&gt; misc_format_check: Failed </span></span>
+<span><span class="co">#&gt; ERROR: at least one check failed. </span></span>
+<span><span class="co">#&gt; $misc_formatting_check.Info</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 6</span></span></span>
+<span><span class="co">#&gt;   check.name check.description                   check…¹ details col.n…² correct</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Duplicate variable name check       Passed  <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Check for use of `dbgap` in variab… Passed  <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 4    Column names after `VALUES` should… Failed  <span style="color: #BB0000;">NA</span>      VALUES2 FALSE  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Column names after `VALUES` should… Failed  <span style="color: #BB0000;">NA</span>      VALUES3 FALSE  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 4    Column names after `VALUES` should… Failed  <span style="color: #BB0000;">NA</span>      VALUES4 FALSE  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Check 4    Column names after `VALUES` should… Failed  <span style="color: #BB0000;">NA</span>      VALUES5 FALSE  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> Check 4    Column names after `VALUES` should… Failed  <span style="color: #BB0000;">NA</span>      VALUES6 FALSE  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​check.status, ²​col.name</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; --------------------</span></span>
+<span><span class="co">#&gt; description_check: Failed </span></span>
+<span><span class="co">#&gt; ERROR: missing and duplicate descriptions found in data dictionary. </span></span>
+<span><span class="co">#&gt; $description_check.Info</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
+<span><span class="co">#&gt;   VARNAME  VARDESC</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> PREGNANT <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> REACT    <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; --------------------</span></span></code></pre></div>
+<p>In this example, dbGaPCheckup informs us several issues — let’s focus
+first on the <code>name_check</code> results. While the variable names
+match between the data dictionary and the data, they are in the wrong
+order. Instead of fixing this issue manually outside of R, we can simply
+call the <code>reoder_dictionary</code> function as a “quick fix” and
+run the <code>name_report</code> function to confirm our update
+works!</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">DD.dict_updated</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reorder_dictionary.html">reorder_dictionary</a></span><span class="op">(</span><span class="va">DD.dict.N</span>, <span class="va">DS.data.N</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $Message</span></span>
+<span><span class="co">#&gt; [1] "CORRECTED ERROR: the variable names match between the data dictionary and the data, but they were in the wrong order. ***ALERT**** this function has temporarily reordered the dictionary to match the data so that you can continue working through the checks."</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Information</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 3</span></span></span>
+<span><span class="co">#&gt;    Data                       Dict                       New.Dict               </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Data: ABD_CIRC             Dict: HIP_CIRC             Data: ABD_CIRC         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Data: HIP_CIRC             Dict: ABD_SKF              Data: HIP_CIRC         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Data: ABD_SKF              Dict: SUP_SKF              Data: ABD_SKF          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Data: SUP_SKF              Dict: ABD_CIRC             Data: SUP_SKF          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Data: BP_DIASTOLIC         Dict: HTN                  Data: BP_DIASTOLIC     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Data: HTN                  Dict: SMOKING_HX           Data: HTN              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Data: SMOKING_HX           Dict: LENGTH_SMOKING_YEARS Data: SMOKING_HX       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Data: LENGTH_SMOKING_YEARS Dict: HEART_RATE           Data: LENGTH_SMOKING_Y…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Data: HEART_RATE           Dict: PHYSICAL_ACTIVITY    Data: HEART_RATE       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Data: PHYSICAL_ACTIVITY    Dict: BP_DIASTOLIC         Data: PHYSICAL_ACTIVITY</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/name_check.html">name_check</a></span><span class="op">(</span><span class="va">DD.dict_updated</span>, <span class="va">DS.data.N</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $Message</span></span>
+<span><span class="co">#&gt; [1] "Passed: the variable names match between the data dictionary and the data."</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $Information</span></span>
+<span><span class="co">#&gt; [1] "Variable names matched"</span></span></code></pre></div>
+<p>Above, we see that <code>name_check</code> now passes! Moving
+forward, we could simply return to our <code>check_report</code>
+workflow to search for other potential issues.</p>
+</div>
+<div class="section level4" number="5.1.6">
+<h4 id="example-6">
+<span class="header-section-number">5.1.6</span> Example 6<a class="anchor" aria-label="anchor" href="#example-6"></a>
+</h4>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ExampleA</span><span class="op">)</span></span></code></pre></div>
 <p>As mentioned above, if you prefer, you can also simply run the
 individual checks that you are interested in rather than taking the
 complete workflow approach. Note that several package-specific
 pre-checks are embedded in many of the functions (e.g.,
 <code>integer_check</code>).</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/id_check.html">id_check</a></span><span class="op">(</span><span class="va">DS.data.A</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Message</span></span>
 <span><span class="co">#&gt; [1] "Passed: All ID variable checks passed."</span></span>
@@ -1643,7 +1786,7 @@ pre-checks are embedded in many of the functions (e.g.,
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    'SUBJECT_ID' is a column name in the data set.    Passed    No ill…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    No leading zeros detected in 'SUBJECT_ID' column. Passed    No lea…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable name ¹​check.status</span></span></span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/misc_format_check.html">misc_format_check</a></span><span class="op">(</span><span class="va">DD.dict.A</span>, <span class="va">DS.data.A</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; $Message</span></span>
 <span><span class="co">#&gt; [1] "Passed: no check-specific formatting issues identified."</span></span>
@@ -1655,15 +1798,15 @@ pre-checks are embedded in many of the functions (e.g.,
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Duplicate variable name check               Passed       <span style="color: #BB0000;">NA</span>     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Check for use of `dbgap` in variable names  Passed       <span style="color: #BB0000;">NA</span>     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 4    Column names after `VALUES` should be empty Passed       <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/row_check.html">row_check</a></span><span class="op">(</span><span class="va">DS.data.A</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Message</span></span>
 <span><span class="co">#&gt; [1] "Passed: no blank or duplicate rows detected."</span></span></code></pre></div>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/NA_check.html">NA_check</a></span><span class="op">(</span><span class="va">DD.dict.A</span>, <span class="va">DS.data.A</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Message</span></span>
 <span><span class="co">#&gt; [1] "Passed: no NA values detected in data set."</span></span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/minmax_check.html">minmax_check</a></span><span class="op">(</span><span class="va">DD.dict.A</span>, <span class="va">DS.data.A</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Message</span></span>
 <span><span class="co">#&gt; [1] "ERROR: some variables have values outside of the MIN to MAX range."</span></span>
@@ -1677,7 +1820,7 @@ pre-checks are embedded in many of the functions (e.g.,
 <code>minmax_check</code>. Let’s investigate this further. The approach
 to view the “out of range values” is a bit cryptic, but it can be done
 with the following code.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/minmax_check.html">minmax_check</a></span><span class="op">(</span><span class="va">DD.dict.A</span>, <span class="va">DS.data.A</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Message</span></span>
 <span><span class="co">#&gt; [1] "ERROR: some variables have values outside of the MIN to MAX range."</span></span>
@@ -1694,7 +1837,7 @@ with the following code.</p>
 ran <code>minmax_check</code>, so they are being flagged as errors.
 Let’s rerun the command specifying -4444 and -9999 as missing value
 codes.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/minmax_check.html">minmax_check</a></span><span class="op">(</span><span class="va">DD.dict.A</span>, <span class="va">DS.data.A</span>, non.NA.missing.codes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4444</span>, <span class="op">-</span><span class="fl">9999</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Message</span></span>
 <span><span class="co">#&gt; [1] "Passed: when provided, all variables are within the MIN to MAX range."</span></span></code></pre></div>
@@ -1740,7 +1883,7 @@ data to labelled data, essentially embedding the data dictionary into
 the data for future use! This function uses Haven labelled data with
 SPSS style missing data codes to add non-missing information from the
 data dictionary as attributes to the data.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">DS_labelled_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/label_data.html">label_data</a></span><span class="op">(</span><span class="va">DD.dict.A</span>, <span class="va">DS.data.A</span>, non.NA.missing.codes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">9999</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="http://larmarange.github.io/labelled/reference/var_label.html" class="external-link">var_label</a></span><span class="op">(</span><span class="va">DS_labelled_data</span><span class="op">$</span><span class="va">SEX</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Sex assigned at birth"</span></span>
@@ -1780,7 +1923,7 @@ functions<a class="anchor" aria-label="anchor" href="#appendix-reporting-functio
 functions that are not built into the complete workflow approach. The
 purpose of this appendix is to highlight some of these features using
 the following example data.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ExampleB</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3" number="6.1">
 <h3 id="appendix-a-awareness-report">
@@ -1803,7 +1946,7 @@ Summary<a class="anchor" aria-label="anchor" href="#missingness-summary"></a>
 </h4>
 <p>This awareness function summarizes the amount of missingness in the
 data set.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/missingness_summary.html">missingness_summary</a></span><span class="op">(</span><span class="va">DS.data.B</span>, non.NA.missing.codes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">9999</span><span class="op">)</span>, threshold <span class="op">=</span> <span class="fl">95</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dbGaPCheckup_vignette_files/figure-html/misssum-1.png"><!-- --></p>
 <pre><code><span><span class="co">#&gt; $Message</span></span>
@@ -1868,7 +2011,7 @@ of the data dictionary; and<br>
 </ol>
 <p>This function examines various intersections of these three sets,
 providing awareness checks about possible issues of concern.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/value_missing_table.html">value_missing_table</a></span><span class="op">(</span><span class="va">DD.dict.B</span>, <span class="va">DS.data.B</span>, non.NA.missing.codes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">9999</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Message</span></span>
 <span><span class="co">#&gt; [1] "Flag: at least one check flagged."</span></span>
@@ -2064,7 +2207,7 @@ detected in the data).<br>
 Specifically, -9999 is defined as a missing value code for
 <code>LENGTH_SMOKING_YEARS</code> and <code>HEART_RATE</code>, but this
 code is not detected in the data itself.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Smoking </span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">DS.data.B</span><span class="op">$</span><span class="va">LENGTH_SMOKING_YEARS</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -2289,7 +2432,7 @@ plots<a class="anchor" aria-label="anchor" href="#summary-and-plots"></a>
 <span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span></code></pre>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dat_function_selected.html">dat_function_selected</a></span><span class="op">(</span><span class="va">DS.data.B</span>, <span class="va">DD.dict.B</span>, sex.split <span class="op">=</span> <span class="cn">TRUE</span>, sex.name <span class="op">=</span> <span class="st">"SEX"</span>, start <span class="op">=</span> <span class="fl">3</span>, end <span class="op">=</span> <span class="fl">6</span>, dataset.na<span class="op">=</span><span class="va">dataset.na</span>, h.level<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
 <div class="section level5" number="6.3.1.1">
 <h5 id="age---integer">
