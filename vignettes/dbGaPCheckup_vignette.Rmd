@@ -292,15 +292,13 @@ data(ExampleN)
 check_report(DD.dict.N, DS.data.N)
 ```
 
-In this example, dbGaPCheckup informs us that while the variable names match between the data dictionary and the data, they are in the wrong order. Instead of fixing this issue manually, we can simply call the `reoder_dictionary` function as a "quick fix" and run the `name_report` function to confirm! 
+In this example, dbGaPCheckup informs us several issues --- let's focus first on the `name_check` results. While the variable names match between the data dictionary and the data, they are in the wrong order. Instead of fixing this issue manually outside of R, we can simply call the `reoder_dictionary` function as a "quick fix" and run the `name_report` function to confirm our update works! 
 
 ```{r reorder_dict}
 DD.dict_updated <- reorder_dictionary(DD.dict.N, DS.data.N)
 ```
 
-```{r cr9}
-name_check(DD.dict_updated, DS.data.N)
-```
+Above, we see that `name_check` now passes, and we can return to our `check_report` workflow to search for other potential issues. 
 
 ### Example 6 
 

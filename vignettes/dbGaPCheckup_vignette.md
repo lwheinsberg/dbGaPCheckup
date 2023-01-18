@@ -1062,11 +1062,12 @@ check_report(DD.dict.N, DS.data.N)
 #> --------------------
 ```
 
-In this example, dbGaPCheckup informs us that while the variable names
-match between the data dictionary and the data, they are in the wrong
-order. Instead of fixing this issue manually, we can simply call the
-`reoder_dictionary` function as a “quick fix” and run the `name_report`
-function to confirm!
+In this example, dbGaPCheckup informs us several issues — let’s focus
+first on the `name_check` results. While the variable names match
+between the data dictionary and the data, they are in the wrong order.
+Instead of fixing this issue manually outside of R, we can simply call
+the `reoder_dictionary` function as a “quick fix” and run the
+`name_report` function to confirm our update works!
 
 ``` r
 DD.dict_updated <- reorder_dictionary(DD.dict.N, DS.data.N)
@@ -1089,14 +1090,8 @@ DD.dict_updated <- reorder_dictionary(DD.dict.N, DS.data.N)
 #> 10 Data: PHYSICAL_ACTIVITY    Dict: BP_DIASTOLIC         Data: PHYSICAL_ACTIVITY
 ```
 
-``` r
-name_check(DD.dict_updated, DS.data.N)
-#> $Message
-#> [1] "Passed: the variable names match between the data dictionary and the data."
-#> 
-#> $Information
-#> [1] "Variable names matched"
-```
+Above, we see that `name_check` now passes, and we can return to our
+`check_report` workflow to search for other potential issues.
 
 ### 5.1.6 Example 6
 
