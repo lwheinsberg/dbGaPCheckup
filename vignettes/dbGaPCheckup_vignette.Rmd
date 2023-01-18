@@ -282,9 +282,29 @@ table(DS.data.H$ABD_SKF)
 
 While `ABD_SKF` appears to be a true integer, `SUP_SKF` appears to have some decimal places. This error could be corrected either by listing `SUP_SKF` as `TYPE` decimal, or by investigating if the data set has a recording error.
 
-### Example 5 
+### Example 5
 
 ```{r data5, message=FALSE}
+data(ExampleN)
+```
+
+```{r cr8}
+check_report(DD.dict.N, DS.data.N)
+```
+
+In this example, dbGaPCheckup informs us that while the variable names match between the data dictionary and the data, they are in the wrong order. Instead of fixing this issue manually, we can simply call the `reoder_dictionary` function as a "quick fix" and run the `name_report` function to confirm! 
+
+```{r reorder_dict}
+DD.dict_updated <- reorder_dictionary(DD.dict.N, DS.data.N)
+```
+
+```{r cr9}
+name_check(DD.dict_updated, DS.data.N)
+```
+
+### Example 6 
+
+```{r data6, message=FALSE}
 data(ExampleA)
 ```
 
