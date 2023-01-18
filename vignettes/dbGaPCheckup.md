@@ -2,33 +2,39 @@ dbGaPCheckup Quick Start
 ================
 Lacey W. Heinsberg and Daniel E. Weeks
 
-December 22, 2022
+January 18, 2023
 
--   <a href="#1-copyright-information" id="toc-1-copyright-information">1
-    Copyright information</a>
--   <a href="#2-installation" id="toc-2-installation">2 Installation</a>
--   <a href="#3-quick-start" id="toc-3-quick-start">3 Quick start</a>
--   <a href="#4-usage" id="toc-4-usage">4 Usage</a>
--   <a href="#5-example-usage" id="toc-5-example-usage">5 Example usage</a>
-    -   <a href="#51-load-the-dbgapcheckup-r-package"
-        id="toc-51-load-the-dbgapcheckup-r-package">5.1 Load the
-        <code>dbGaPCheckup</code> R package</a>
-    -   <a href="#52-read-in-your-subject-phenotype-data-into-dsdata"
-        id="toc-52-read-in-your-subject-phenotype-data-into-dsdata">5.2 Read in
-        your Subject Phenotype data into <code>DS.data</code>.</a>
-    -   <a href="#53-read-in-your-subject-phenotype-data-dictionary-into-dddict"
-        id="toc-53-read-in-your-subject-phenotype-data-dictionary-into-dddict">5.3
-        Read in your Subject Phenotype data dictionary into
-        <code>DD.dict</code>.</a>
-    -   <a href="#54-run-the-function-check_report"
-        id="toc-54-run-the-function-check_report">5.4 Run the function
-        <code>check_report</code>.</a>
-    -   <a href="#55-reporting" id="toc-55-reporting">5.5 Reporting</a>
--   <a href="#6-labelled-data" id="toc-6-labelled-data">6 Labelled data</a>
--   <a href="#7-contact-information" id="toc-7-contact-information">7
-    Contact information</a>
--   <a href="#8-acknowledgments" id="toc-8-acknowledgments">8
-    Acknowledgments</a>
+- <a href="#1-copyright-information" id="toc-1-copyright-information">1
+  Copyright information</a>
+- <a href="#2-installation" id="toc-2-installation">2 Installation</a>
+- <a href="#3-quick-start" id="toc-3-quick-start">3 Quick start</a>
+- <a href="#4-usage" id="toc-4-usage">4 Usage</a>
+- <a href="#5-example-usage" id="toc-5-example-usage">5 Example usage</a>
+  - <a href="#51-load-the-dbgapcheckup-r-package"
+    id="toc-51-load-the-dbgapcheckup-r-package">5.1 Load the
+    <code>dbGaPCheckup</code> R package</a>
+  - <a href="#52-read-in-your-subject-phenotype-data-into-dsdata"
+    id="toc-52-read-in-your-subject-phenotype-data-into-dsdata">5.2 Read in
+    your Subject Phenotype data into <code>DS.data</code>.</a>
+  - <a href="#53-read-in-your-subject-phenotype-data-dictionary-into-dddict"
+    id="toc-53-read-in-your-subject-phenotype-data-dictionary-into-dddict">5.3
+    Read in your Subject Phenotype data dictionary into
+    <code>DD.dict</code>.</a>
+  - <a href="#54-run-the-function-check_report"
+    id="toc-54-run-the-function-check_report">5.4 Run the function
+    <code>check_report</code>.</a>
+    - <a
+      href="#541-if-needed-run-the-function-add_missing_fields-and-repeat-check_report"
+      id="toc-541-if-needed-run-the-function-add_missing_fields-and-repeat-check_report">5.4.1
+      If needed, run the function <code>add_missing_fields</code> and repeat
+      <code>check_report</code></a>
+  - <a href="#55-reporting" id="toc-55-reporting">5.5 Reporting</a>
+  - <a href="#56-labelled-data" id="toc-56-labelled-data">5.6 Labelled
+    data</a>
+- <a href="#6-contact-information" id="toc-6-contact-information">6
+  Contact information</a>
+- <a href="#7-acknowledgments" id="toc-7-acknowledgments">7
+  Acknowledgments</a>
 
 # 1 Copyright information
 
@@ -147,23 +153,23 @@ for accurate results.
 ``` r
 report <- check_report(DD.dict = DD.dict, DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
 #> # A tibble: 15 × 3
-#>    Function            Status        Message                                                                                                                                     
-#>    <chr>               <chr>         <chr>                                                                                                                                       
-#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.                                                 
-#>  2 pkg_field_check     Failed        ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fields function to auto fil…
-#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.                                                                
-#>  4 name_check          Passed        Passed: the variable names match between the data dictionary and the data.                                                                  
-#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                                                                      
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                                                                                
-#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                                           
-#>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fields function to autofill TYPE.                                              
-#>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                                                                                                
-#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                                           
-#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                                           
-#> 12 misc_format_check   Passed        Passed: no check-specific formatting issues identified.                                                                                     
-#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                                                                         
-#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                                           
-#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                                           
+#>    Function            Status        Message                                                                                                              
+#>    <chr>               <chr>         <chr>                                                                                                                
+#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.                          
+#>  2 pkg_field_check     Failed        ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fiel…
+#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.                                         
+#>  4 name_check          Passed        Passed: the variable names match between the data dictionary and the data.                                           
+#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                                               
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                                                         
+#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                    
+#>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fields function to autofill TYPE.                       
+#>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                                                                         
+#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                    
+#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                    
+#> 12 misc_format_check   Passed        Passed: no check-specific formatting issues identified.                                                              
+#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                                                  
+#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                    
+#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                    
 #> --------------------
 #> pkg_field_check: Failed 
 #> ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fields function to auto fill these fields. 
@@ -191,6 +197,8 @@ report <- check_report(DD.dict = DD.dict, DS.data = DS.data, non.NA.missing.code
 #> 
 #> --------------------
 ```
+
+### 5.4.1 If needed, run the function `add_missing_fields` and repeat `check_report`
 
 As described in more detail in the `dbGaPCheckup_vignette` vignette,
 some checks contain embedded “pre-checks” that must be passed before the
@@ -288,7 +296,7 @@ also important for effective plotting.
 More details on execution and interpretation have been provided in the
 `dbGaPCheckup_vignette` vignette.
 
-# 6 Labelled data
+## 5.6 Labelled data
 
 After your data dictionary is fully consistent with your data, you can
 use the `label_data` function to convert your data to labelled data,
@@ -319,7 +327,7 @@ labelled::na_values(DS_labelled_data$HX_DEPRESSION)
 #>         -9999
 ```
 
-# 7 Contact information
+# 6 Contact information
 
 If you have any questions or comments, please feel free to contact us!
 
@@ -328,7 +336,7 @@ Daniel E. Weeks: <weeks@pitt.edu>
 
 Bug reports: <https://github.com/lwheinsberg/dbGaPCheckup/issues>
 
-# 8 Acknowledgments
+# 7 Acknowledgments
 
 This package was developed with partial support from the National
 Institutes of Health under award numbers R01HL093093, R01HL133040, and

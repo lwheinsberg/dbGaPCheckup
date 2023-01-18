@@ -104,6 +104,9 @@ With many functions, specification of missing value codes are important for accu
 report <- check_report(DD.dict = DD.dict, DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
 ```
 
+
+### If needed, run the function `add_missing_fields` and repeat `check_report` 
+
 As described in more detail in the `dbGaPCheckup_vignette` vignette, some checks contain embedded "pre-checks" that must be passed before the check can be run. For example,  As mentioned above, this package requires `MIN`, `MAX`, and `TYPE` fields in the data dictionary. We have created a function to auto fill these fields that can be used to get further along in the checks. 
 
 ```{r add_missing}
@@ -137,7 +140,7 @@ create_report(DD.dict.updated, DS.data, sex.split=TRUE, sex.name= "SEX",
 
 More details on execution and interpretation have been provided in the `dbGaPCheckup_vignette` vignette. 
 
-# Labelled data
+## Labelled data
 
 After your data dictionary is fully consistent with your data, you can use the `label_data` function to convert your data to labelled data, essentially embedding the data dictionary into the data for future use!  
 
