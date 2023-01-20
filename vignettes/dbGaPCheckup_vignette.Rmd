@@ -94,18 +94,18 @@ This package focuses on two required files: the Subject Phenotype data set (DS) 
 
 Checks that are NOT currently embedded into this package that we want to draw special attention to include: 
 
-(1) You may ONLY submit tab-delimited .txt and .xlsx files.
---> Tab-delimited txt files are preferable for the data set. 
---> Excel (.xlsx) format is preferable for the data dictionary. 
+(1) You may ONLY submit tab-delimited .txt and .xlsx files.                  
+--> Tab-delimited txt files are preferable for the data set.                  
+--> Excel (.xlsx) format is preferable for the data dictionary.                  
 
-(2) File names should NOT contain special characters, spaces, hyphens, brackets, periods, or forward (/) or backward slashes ().
---> For example, 'data.set.txt', 'data-set.txt', 'data set.txt' are all illegal names, but 'data_set.txt' would be OK. 
+(2) File names should NOT contain special characters, spaces, hyphens, brackets, periods, or forward (/) or backward slashes ().               
+--> For example, 'data.set.txt', 'data-set.txt', 'data set.txt' are all illegal names, but 'data_set.txt' would be OK.          
 
-(3) Excel files are only allowed to have one sheet (i.e., no multiple tabs/sheets are allowed).
+(3) Excel files are only allowed to have one sheet (i.e., no multiple tabs/sheets are allowed).          
 
 ## Subject Phenotype Data Set (DS)
 
-In brief, the Subject Phenotype data set consists of the study data for participants. In the data set, each row represents a participant, and each column represents a study variable. The first column in the data set needs to be labled `SUBJECT_ID` and contains the unique participant identifier as an integer or string value. Integers should not have zero padding or spaces. Specifically, only the following characters can be included in the ID: English letters, Arabic numerals, period (.), hyphen (-), underscore (_), at symbol (@), and the pound sign (#). Columns falling after `SUBJECT_ID` will be unique to a given study, but include participant factors such as age, sex, etc. Formatting for an example data set is shown below. 
+In brief, the Subject Phenotype data set consists of the study data for participants. In the data set, each row represents a participant, and each column represents a study phenotype variable. The first column in the data set needs to be labeled `SUBJECT_ID` and contains the unique participant identifier as an integer or string value. Integers should not have zero padding or spaces. Specifically, only the following characters can be included in the ID: English letters, Arabic numerals, period (.), hyphen (-), underscore (_), at symbol (@), and the pound sign (#). Columns falling after `SUBJECT_ID` will be unique to a given study, but include participant factors such as age, sex, etc. Formatting for an example data set is shown below. 
 
 ```{r ds, echo=FALSE}
 DS.path <- system.file("extdata", "DS_Example.txt",
@@ -118,7 +118,7 @@ DS.data <- read.table(DS.path, header=TRUE, sep="\t",
 knitr::kable(DS.data[1:6,], caption="First six lines of an example dbGaP data set.") 
 ```
 
-Other example data set provided by dbGaP can be found at the NCBI [submission guide](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/). See "Example of a Subject Phenotypes DS File" and "6a_SampleAttributes_DS.txt". 
+Other example data sets provided by dbGaP can be found at the NCBI [submission guide](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/). See "Example of a Subject Phenotypes DS File" and "6a_SampleAttributes_DS.txt". 
 
 ## Subject Phenotype Data Dictionary (DD)
 
@@ -138,13 +138,13 @@ Two special data dictionary formatting notes:
 
 (1) The final columns of the data dictionary list all unique values/meanings of all encoded values, one value per cell, of which will vary based on the number of VALUE codes for a specific variable. For example, if your data set contains a variable called `SEX` in which 0 indicates female and 1 indicates male, these columns are designed to communicate `value=meaning` (e.g., 0=female). The `VALUES` header must be the last column header and should appear ONLY in the column above the FIRST encoded value that is listed. The remaining value column header cells should be left blank. (Note that when we read in our example data set with blank column names after `VALUES`, R automatically fills in the column names with the column number (e.g., `...18`, `...19`, etc.). This is acceptable for the package level checks, but not allowable for the files that are submitted to dbGaP.)
 
-(2) This package requires several fields beyond those required by the dbGaP [formatting requirements](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/). Specifically, dbGaP requires only that the data dictionary contains the following fields: variable name (`VARNAME`); variable description (`VARDESC`); units (`UNITS`); and variable value and meaning (`VALUE`). Because this package was designed to perform both dbGaP formatting requirement checks, as well as a series of awareness checks to help you ensure data accuracy, this package also requires that the data dictionary contains the following additional fields: minimum (`MIN`) and maximum (`MAX`) values (allowed to be left blank, but column headers are required) and the data type (e.g., integer, decimal, encoded value, string; `TYPE`) fields. If your data dictionary does not include these additional fields already, you can simply use the `add_missing_fields` function to auto fill them (see below). 
+(2) This package requires several fields beyond those required by the dbGaP [formatting requirements](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/) to support additional data integrity checks. Specifically, dbGaP requires only that the data dictionary contains the following fields: variable name (`VARNAME`); variable description (`VARDESC`); units (`UNITS`); and variable value and meaning (`VALUE`). Because this package was designed to perform both dbGaP formatting requirement checks, as well as a series of awareness checks to help you ensure data accuracy, this package also requires that the data dictionary contains the following additional fields: logical minimum (`MIN`) and logical maximum (`MAX`) values (allowed to be left blank, but column headers are required) and the data type (e.g., integer, decimal, encoded value, string; `TYPE`) fields. If your data dictionary does not include these additional fields already, you can simply use the `add_missing_fields` function to auto fill them (see below). 
 
 # Execution with example runs and interpretation  
 
 ## Check, utility, and awareness functions 
 
-Note that all "check" functions included in our package return an invisible tibble that contains (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (More detailed information about the potential errors identified). This was designed to streamline the complete workflow approach and to return a succinct report back to you via `check_report` (see below). Note that there are some dependencies between checks (e.g., name_check `values_check` is dependent upon `field_check`), so there are pre-checks embedded within many checks. 
+Note that all "check" functions included in our package return an invisible tibble that contains (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); and (5) Information (More detailed information about the potential errors identified). This was designed to streamline the complete workflow approach and to return a succinct report back to you via `check_report` (see below). Note that there are some dependencies between checks (e.g., name_check `values_check` is dependent upon `field_check`), so there are pre-checks embedded within many checks. 
 
 ### Example 1
 
@@ -173,10 +173,12 @@ Here, we see that the `TYPE`, `MIN`, and `MAX` columns required for the complete
 DD.dict_updated <- add_missing_fields(DD.dict.D, DS.data.D)
 ```
 
-Now that our error has been corrected, let's return to `check_report`. Don't forget to call in the updated version of the data dictionary here! 
+Now that our error has been corrected, let's return to `check_report` to further investigate. Don't forget to call in the updated version of the data dictionary here! 
 
 ```{r cr2}
-e1_report.v2 <- check_report(DD.dict_updated, DS.data.D, non.NA.missing.codes=c(-4444, -9999)) # Note! Don't forget to call in the updated version of the data dictionary here! 
+# Note! Don't forget to call in the updated version of the data dictionary here! 
+e1_report.v2 <- check_report(DD.dict_updated, DS.data.D, 
+                non.NA.missing.codes=c(-4444, -9999)) 
 ```
 
 As you can see, now 13 out of 15 checks pass, but the workflow fails at `description_check` and `missing_value_check`. Specifically, in `description_check` we see that variables `PREGNANT` and `REACT` were identified as having missing variable descriptions (`VARDESC`), and variables `HEIGHT` and `WEIGHT` incorrectly have identical descriptions. In `missing_value_check`, we see that the variable `CUFFSIZE` contains a `-9999` encoded value that is not specified in a `VALUES` column. While we have included several functions that support "quick fixes" (`add_missing_fields`, `name_correct`, `reorder_dictionary`, `reorder_data`, `id_first_data`, and `id_first_dict`), the issues identified here are a bit more complex and study-specific, so would need to be corrected manually in your data dictionary before moving on. For now, we will leave this example and move on to the next one!
@@ -202,7 +204,7 @@ dimension_check(DD.dict.L, DS.data.L) # pass
 name_check(DD.dict.L, DS.data.L) # failed
 ```
 
-In looking more closely at the `name_check` output, we then see that, while the "intent" between the names match (i.e., "hx" is sometimes used as shorthand for "history"), there are a couple of discrepancies between the data dictionary and data set. Luckily, we have included a "quick fix" for this simple issue as implemented in the `name_correct` function so that you can continue working through the checks. Specifically, `name_correct` updates the names in the DS to match the names listed in the data dictionary. Similarly, if the variable names in the data dictionary and data set matched identically, but were in the wrong order, the `reorder_dictionary` function could be used to create a new version of the data dictionary to match the order presented in the data set! Back to the example at hand, though -- let's give the `name_correct` function a try now! 
+In looking more closely at the `name_check` output, we then see that, while the "intent" between the names match (i.e., "hx" is sometimes used as shorthand for "history"), there are a couple of discrepancies between the data dictionary and data set. Luckily, we have included a "quick fix" for this simple issue as implemented in the `name_correct` function so that you can continue working through the checks. Specifically, `name_correct` updates the names in the data set to match the names listed in the data dictionary. Similarly, if the variable names in the data dictionary and data set matched identically, but were in the wrong order, the `reorder_dictionary` function could be used to create a new version of the data dictionary to match the order presented in the data set (see Example 5)! Back to the example at hand, though -- let's give the `name_correct` function a try now! 
 
 ```{r name_check2}
 DS.data_updated <- name_correct(DD.dict.L, DS.data.L)
@@ -211,7 +213,9 @@ DS.data_updated <- name_correct(DD.dict.L, DS.data.L)
 Now that our error has been corrected, let's return to `check_report`. Similar to above, be sure to call in our updated data set! 
 
 ```{r cr4}
-e2_report.v2 <- check_report(DD.dict.L, DS.data_updated, non.NA.missing.codes=c(-4444, -9999)) # Calling in updated data set
+# Calling in updated data set
+e2_report.v2 <- check_report(DD.dict.L, DS.data_updated,
+              non.NA.missing.codes=c(-4444, -9999)) 
 ```
 
 We now see that `name_check` now passes, along with several other functions in the workflow, but we have failed on `values_check` and several others.  
@@ -230,7 +234,7 @@ Again, we will start with the `check_report` function.
 e3_report <- check_report(DD.dict.B, DS.data.B)
 ```
 
-In the above chunk, `check_report` determines that all 15 checks were passed! But ALERT --- this is misleading!!!!! Rerunning the check with our missing value codes defined, we now see an issue at `missing_value_check`, which underscores the importance of specifying missing value codes.   
+In the above chunk, `check_report` determines that all 15 checks were passed! But ALERT --- this is misleading a we forgot to include an important parameter!!!!! Rerunning the check with our missing value codes defined, we now see an issue at `missing_value_check`, which underscores the importance of specifying missing value codes.   
 
 ```{r cr6}
 e3_report.v2 <- check_report(DD.dict.B, DS.data.B, non.NA.missing.codes=c(-9999))
@@ -256,7 +260,7 @@ e4_report <- check_report(DD.dict.H, DS.data.H, non.NA.missing.codes=c(-4444, -9
 
 Note that in this example, we see an error at `integer_check`. Let's investigate this further. 
 
-Specifically, we can use the awareness function to grep (i.e., search) this variable name in the dictionary
+Specifically, we can use the awareness function to grep (i.e., search) for this variable name in the dictionary.
 
 ```{r exp1}
 dictionary_search(DD.dict.H, search.term=c("SUP_SKF"), search.column=c("VARNAME"))
@@ -280,7 +284,7 @@ Above we see that both abdominal and suprailiac skinfold thickness are listed as
 table(DS.data.H$ABD_SKF)
 ```
 
-While `ABD_SKF` appears to be a true integer, `SUP_SKF` appears to have some decimal places. This error could be corrected either by listing `SUP_SKF` as `TYPE` decimal, or by investigating if the data set has a recording error.
+While `ABD_SKF` appears to be a true integer, `SUP_SKF` appears to have some decimal places. This error could be corrected either by listing `SUP_SKF` as `TYPE` decimal, or by investigating if the data set has a measurement/recording error.
 
 ### Example 5
 
@@ -289,19 +293,20 @@ data(ExampleN)
 ```
 
 ```{r cr8}
-check_report(DD.dict.N, DS.data.N)
+d5_report <- check_report(DD.dict.N, DS.data.N)
 ```
 
-In this example, dbGaPCheckup informs us several issues --- let's focus first on the `name_check` results. While the variable names match between the data dictionary and the data, they are in the wrong order. Instead of fixing this issue manually outside of R, we can simply call the `reoder_dictionary` function as a "quick fix" and run the `name_report` function to confirm our update works! 
+In this example, dbGaPCheckup informs us several issues --- let's focus first on the `name_check` results. While the variable names match between the data dictionary and the data (in contrast to Example 2), they are in the wrong order. Instead of fixing this issue manually outside of R, we can simply call the `reoder_dictionary` function as a "quick fix" and run the `name_report` function to confirm our update works! 
 
 ```{r reorder_dict}
 DD.dict_updated <- reorder_dictionary(DD.dict.N, DS.data.N)
 ```
 
 ```{r nc}
+# Remember to call in the updated data dictionary!
 name_check(DD.dict_updated, DS.data.N)
 ```
-Above, we see that `name_check` now passes! Moving forward, we could simply return to our `check_report` workflow to search for other potential issues.
+Above, we see that `name_check` now passes! Moving forward, we could simply return to our `check_report` workflow to search for other potential issues in finalizing our files for dbGaP submission.
 
 ### Example 6 
 
@@ -428,7 +433,7 @@ knitr::kable(results$Information$details$CheckA.AllMInD,
       in the data.") 
 ```
 
-The above table lists the variables for which the user-defined missing value code of `-9999` is not present in the data. These are not necessarily errors, however, as `dbGaPCheckup` reads `non.NA.missing.codes` as "global" missing value codes, even if a specific variable does not contain the code. For example, in the example data set, the SEX variable is complete, containing no missing value codes and only containing encoded values of 0=male, and 1=female, but `SEX` is flagged in the above variable list since it does not contain a `-9999` value. In other words, this variable's presence in the above list is NOT an issue that we should be concerned about. This function is attended only to bring awareness to potential errors in your data (e.g., perhaps you knew that the sex variable was missing for 5 participants for your specific study.)
+The above table lists the variables for which the user-defined missing value code of `-9999` is not present in the data. These are not necessarily errors, however, as `dbGaPCheckup` reads `non.NA.missing.codes` as "global" missing value codes, even if a specific variable does not contain the code. For example, in the example data set, the SEX variable is complete, containing no missing value codes and only containing encoded values of 0=male, and 1=female, but `SEX` is flagged in the above variable list since it does not contain a `-9999` value. In other words, this variable's presence in the above list is NOT an issue that we should be concerned about. This function is intended only to bring awareness to potential errors in your data (e.g., perhaps you knew that the sex variable was missing for 5 participants for your specific study.)
 
 Interpretation of table column names:        
 --> `AllMInD`: Variable-specific check result communicating if user-defined missing value code(s) are detected in the data set (FALSE=no).        
@@ -500,9 +505,9 @@ Interpretation of table column names:
 --> `All_MInSetD_InSetV`: Variable-specific check result communicating if user-defined missing value code(s) are detected in the data for a given variable, but that variable does not have a corresponding VALUES entry (FALSE=no).       
 --> `setMInDNotInV`: Encoded value codes detected in the data but not in a corresponding VALUES entry.        
 
-Note that this check identified a true error! Specifically `CUFFSIZE` has a missing value code in the data, -9999, that has not been defined as an encoded value in the `VALUES` columns.     
+Note that this check identified a true error! Specifically `CUFFSIZE` has a missing value code in the data, -9999, that has not been defined as an encoded value in the `VALUES` columns. (Funny enough, this was NOT intentional on our part when creating this synthetic data set! Thank you dbGaPCheckup!)          
 
-## Check E: If a VALUES entry is NOT defined as a missing value code AND is NOT identified in the data. ((Set V values that are NOT in Set M) that are NOT in Set D).
+#### Check E: If a VALUES entry is NOT defined as a missing value code AND is NOT identified in the data. ((Set V values that are NOT in Set M) that are NOT in Set D).
 
 ```{r vmt4e, echo=FALSE}
 knitr::kable(results$Information$details$CheckE.All_VNotInM_NotInD, 
@@ -511,22 +516,22 @@ knitr::kable(results$Information$details$CheckE.All_VNotInM_NotInD,
       AND is NOT identified in the data") 
 ```
 
-Interpretation of table column names:          
+In our example here, all VALUES entries that are NOT defined as missing values codes are listed in the data - so our check passes. 
+
+However, if there were issues, interpretation of table column names would be as follows:          
 --> `All_VNotInM_NotInD`: Variable-specific check result communicating if encoded values that are NOT defined as a missing value code are detected in the data (FALSE=no).         
 --> `setVNotInM_NotInD`: Encoded value codes detected as a VALUES entry but NOT listed as a missing value code and NOT detected in the data. 
 
-In our example here, all VALUES entries that are NOT defined as missing values codes are listed in the data - so our check passes. 
-
 ## Appendix B: Data Report 
 
-Next we can run `create_report`, which generates a textual and graphical report of the selected variables in HTML format which will optionally open the report in a web browser. This awareness report is designed to help you catch other potential errors in your data set. Note that the report generated is quite long however, so we recommend that you only submit subsets of variables at a time. In the example below, for speed of rendering, we create the report for variables only in columns 3 through 7. Note that there is an option to plot/report the data split by sex if desired. Specification of missing value codes are also important for effective plotting. 
+Next we can run `create_report`, which generates a textual and graphical report of the selected variables in HTML format which will optionally open the report in a web browser. This awareness report is designed to help you catch other potential errors in your data set. Note that the report generated is quite long however, so we recommend that you only submit subsets of variables at a time. In the example below, for speed of rendering, we create the report for variables only in columns 3 through 6. Note that there is an option to plot/report the data split by sex if desired. Specification of missing value codes are also important for effective plotting. 
 
 Again, the code below generates a nearly identical output to the `create_report` function, with some additional annotation added here for the purposes of this vignette and ease of interpretation. 
 
 ```
 # Not run as works best when run interactively
 create_report(DD.dict, DS.data, sex.split=TRUE, sex.name= "SEX",
-   start = 3, end = 7, non.NA.missing.codes=c(-9999,-4444),
+   start = 3, end = 6, non.NA.missing.codes=c(-9999,-4444),
    output.path= tempdir(), open.html=TRUE)
 ```
 
