@@ -2,7 +2,7 @@
 #' @description This utility function updates the data set so variable names match those listed in the data dictionary.
 #' @param DD.dict Data dictionary.
 #' @param DS.data Data set.
-#' @return Updated data set with variables reordered to match the data dictionary. 
+#' @return Updated data set with variables renamed to match the data dictionary. 
 #' @export
 #' @details Recommend use with caution; perform name_check first. 
 #' @examples

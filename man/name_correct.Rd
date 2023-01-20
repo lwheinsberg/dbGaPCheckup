@@ -12,7 +12,7 @@ name_correct(DD.dict, DS.data)
 \item{DS.data}{Data set.}
 }
 \value{
-Updated data set with variables reordered to match the data dictionary.
+Updated data set with variables renamed to match the data dictionary.
 }
 \description{
 This utility function updates the data set so variable names match those listed in the data dictionary.
