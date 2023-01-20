@@ -549,7 +549,7 @@ for (value in na.omit(non.NA.missing.codes)) {
 }
 ```
 
-```{r applyfun, results="asis"}
+```{r applyfun, results="asis", warning=FALSE}
 dat_function_selected(DS.data.B, DD.dict.B, sex.split = TRUE, sex.name = "SEX", start = 3, end = 6, dataset.na=dataset.na, h.level=4)
 ```
 

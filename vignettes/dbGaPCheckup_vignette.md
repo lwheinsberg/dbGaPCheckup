@@ -4596,21 +4596,7 @@ Check passed: SEX is integer TYPE and all integers
 
 #### 6.2.1.3 HEIGHT - decimal, encoded value
 
-    #> Warning: Removed 2 rows containing non-finite values (`stat_count()`).
-
-![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-6.png)<!-- -->
-
-    #> Warning: Removed 2 rows containing non-finite values (`stat_density()`).
-
-![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-7.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-8.png)<!-- -->
-
-    #> Warning: Removed 2 rows containing non-finite values (`stat_count()`).
-
-![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-9.png)<!-- -->
-
-    #> Warning: Removed 2 rows containing non-finite values (`stat_density()`).
-
-![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-10.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-11.png)<!-- -->
+![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-6.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-7.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-8.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-9.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-10.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-11.png)<!-- -->
 
 - HEIGHT has no missing values.
 
@@ -4619,21 +4605,7 @@ Check passed: SEX is integer TYPE and all integers
 
 #### 6.2.1.4 WEIGHT - decimal, encoded value
 
-    #> Warning: Removed 3 rows containing non-finite values (`stat_count()`).
-
-![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-12.png)<!-- -->
-
-    #> Warning: Removed 3 rows containing non-finite values (`stat_density()`).
-
-![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-13.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-14.png)<!-- -->
-
-    #> Warning: Removed 3 rows containing non-finite values (`stat_count()`).
-
-![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-15.png)<!-- -->
-
-    #> Warning: Removed 3 rows containing non-finite values (`stat_density()`).
-
-![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-16.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-17.png)<!-- -->
+![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-12.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-13.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-14.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-15.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-16.png)<!-- -->![](dbGaPCheckup_vignette_files/figure-gfm/applyfun-17.png)<!-- -->
 
 - WEIGHT has no missing values.
 
