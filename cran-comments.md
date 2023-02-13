@@ -8,7 +8,7 @@ We checked our package 'as-cran' using the following versions of R:
 and 
 
 * platform: x86_64-w64-mingw32 (64-bit)
-* R Under development (unstable) (2022-12-20 r83482 ucrt)
+* R Under development (unstable) (2023-02-13 r83816 ucrt)
 
 0 ERRORs | 0 WARNINGs | 0 NOTEs
 
