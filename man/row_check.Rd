@@ -4,9 +4,11 @@
 \alias{row_check}
 \title{Row Check}
 \usage{
-row_check(DS.data, verbose = TRUE)
+row_check(DD.dict, DS.data, verbose = TRUE)
 }
 \arguments{
+\item{DD.dict}{Data dictionary.}
+
 \item{DS.data}{Data set.}
 
 \item{verbose}{When TRUE, the function prints the Message out, as well as the row numbers of any problematic rows.}
@@ -15,16 +17,16 @@ row_check(DS.data, verbose = TRUE)
 Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (A list of problematic row and participant ID numbers).
 }
 \description{
-This function checks for empty or duplicate rows in the data set.
+This function checks for empty or duplicate rows in the data set and data dictionary.
 }
 \examples{
 # Example 1: Fail check
 data(ExampleK)
-row_check(DS.data.K)
-print(row_check(DS.data.K, verbose=FALSE))
+row_check(DD.dict.K, DS.data.K)
+print(row_check(DD.dict.K, DS.data.K, verbose=FALSE))
 
 # Example 2: Pass check
 data(ExampleC)
-row_check(DS.data.C)
-print(row_check(DS.data.C, verbose=FALSE))
+row_check(DD.dict.C, DS.data.C)
+print(row_check(DD.dict.C, DS.data.C, verbose=FALSE))
 }

@@ -116,7 +116,7 @@ introduction to the package.
 | pkg_field_check         | check                 | Checks for package-level required fields: variable type (TYPE), minimum value (MIN), and maximum value (MAX).                                                                                                                                                                                                                         |
 | dimension_check         | check                 | Checks that the number of variables match between the data set and data dictionary.                                                                                                                                                                                                                                                   |
 | name_check              | check                 | Checks that variable names match between the data set and data dictionary.                                                                                                                                                                                                                                                            |
-| id_check                | check                 | Checks that the first column of the data set is the primary ID for each participant labeled as SUBJECT_ID and that the values contain no spaces, padded zeros, or other illegal characters.                                                                                                                                           |
+| id_check                | check                 | Checks that the first column of the data set is the primary ID for each participant labeled as SUBJECT_ID, that values contain no illegal characters or padded zeros, and that each participant has an ID.                                                                                                                            |
 | row_check               | check                 | Checks for empty or duplicate rows in the data set.                                                                                                                                                                                                                                                                                   |
 | NA_check                | check                 | Checks for NA values in the data set and, if NA values are present, also checks for an encoded NA value=meaning description.                                                                                                                                                                                                          |
 | type_check              | check                 | If a TYPE field exists, this function checks for any TYPE entries that aren’t allowable per dbGaP instructions.                                                                                                                                                                                                                       |
@@ -338,7 +338,7 @@ e1_report <- check_report(DD.dict.D, DS.data.D, non.NA.missing.codes=c(-4444, -9
 #>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.               
 #>  4 name_check          Passed        Passed: the variable names match between the data dictionary and the data.                 
 #>  5 id_check            Passed        Passed: All ID variable checks passed.                                                     
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                               
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected in data set or data dictionary.                
 #>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
 #>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fields function to autofill T…
 #>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                                               
@@ -423,7 +423,7 @@ e1_report.v2 <- check_report(DD.dict_updated, DS.data.D,
 #>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.               
 #>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                 
 #>  5 id_check            Passed Passed: All ID variable checks passed.                                                     
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                               
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected in data set or data dictionary.                
 #>  7 NA_check            Passed Passed: no NA values detected in data set.                                                 
 #>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
 #>  9 values_check        Passed Passed: all four VALUES checks look good.                                                  
@@ -485,7 +485,7 @@ e2_report <- check_report(DD.dict.L, DS.data.L)
 #>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.               
 #>  4 name_check          Failed        ERROR: the variable names DO NOT match between the data dictionary and the data. If the in…
 #>  5 id_check            Passed        Passed: All ID variable checks passed.                                                     
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                               
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected in data set or data dictionary.                
 #>  7 NA_check            Not attempted ERROR: Required pre-check name_check failed.                                               
 #>  8 type_check          Passed        Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
 #>  9 values_check        Failed        ERROR: at least one VALUES check flagged potentials issues. See Information for more detai…
@@ -651,7 +651,7 @@ e2_report.v2 <- check_report(DD.dict.L, DS.data_updated,
 #>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.                 
 #>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                   
 #>  5 id_check            Passed Passed: All ID variable checks passed.                                                       
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                                 
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected in data set or data dictionary.                  
 #>  7 NA_check            Passed Passed: no NA values detected in data set.                                                   
 #>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.            
 #>  9 values_check        Failed ERROR: at least one VALUES check flagged potentials issues. See Information for more details.
@@ -782,7 +782,7 @@ e3_report <- check_report(DD.dict.B, DS.data.B)
 #>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.               
 #>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                 
 #>  5 id_check            Passed Passed: All ID variable checks passed.                                                     
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                               
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected in data set or data dictionary.                
 #>  7 NA_check            Passed Passed: no NA values detected in data set.                                                 
 #>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
 #>  9 values_check        Passed Passed: all four VALUES checks look good.                                                  
@@ -811,7 +811,7 @@ e3_report.v2 <- check_report(DD.dict.B, DS.data.B, non.NA.missing.codes=c(-9999)
 #>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.               
 #>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                 
 #>  5 id_check            Passed Passed: All ID variable checks passed.                                                     
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                               
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected in data set or data dictionary.                
 #>  7 NA_check            Passed Passed: no NA values detected in data set.                                                 
 #>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
 #>  9 values_check        Passed Passed: all four VALUES checks look good.                                                  
@@ -910,7 +910,7 @@ e4_report <- check_report(DD.dict.H, DS.data.H, non.NA.missing.codes=c(-4444, -9
 #>  3 dimension_check     Passed Passed: the variable count matches between the data dictionary and the data.               
 #>  4 name_check          Passed Passed: the variable names match between the data dictionary and the data.                 
 #>  5 id_check            Passed Passed: All ID variable checks passed.                                                     
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected.                                               
+#>  6 row_check           Passed Passed: no blank or duplicate rows detected in data set or data dictionary.                
 #>  7 NA_check            Passed Passed: no NA values detected in data set.                                                 
 #>  8 type_check          Passed Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
 #>  9 values_check        Passed Passed: all four VALUES checks look good.                                                  
@@ -1007,7 +1007,7 @@ d5_report <- check_report(DD.dict.N, DS.data.N)
 #>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.               
 #>  4 name_check          Failed        ERROR: the variable names match between the data dictionary and the data, but they are in …
 #>  5 id_check            Passed        Passed: All ID variable checks passed.                                                     
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                               
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected in data set or data dictionary.                
 #>  7 NA_check            Not attempted ERROR: Required pre-check name_check failed.                                               
 #>  8 type_check          Passed        Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
 #>  9 values_check        Failed        ERROR: at least one VALUES check flagged potentials issues. See Information for more detai…
@@ -1159,13 +1159,14 @@ id_check(DS.data.A)
 #> [1] "Passed: All ID variable checks passed."
 #> 
 #> $Information
-#> # A tibble: 4 × 4
+#> # A tibble: 5 × 4
 #>   check.name check.description                                 check.status details                                        
 #>   <chr>      <chr>                                             <chr>        <chr>                                          
 #> 1 Check 1    Column 1 is labeled as 'SUBJECT_ID'.              Passed       The first column name is SUBJECT_ID.           
 #> 2 Check 2    'SUBJECT_ID' is a column name in the data set.    Passed       'SUBJECT_ID' is the name of column 1.          
 #> 3 Check 3    'SUBJECT_ID' is a column name in the data set.    Passed       No illegal characters detected in 'SUBJECT_ID'.
-#> 4 Check 4    No leading zeros detected in 'SUBJECT_ID' column. Passed       No leading zeros detected in 'SUBJECT_ID'.
+#> 4 Check 4    No leading zeros detected in 'SUBJECT_ID' column. Passed       No leading zeros detected in 'SUBJECT_ID'.     
+#> 5 Check 5    No missing values for 'SUBJECT_ID'.               Passed       No missing values detected for 'SUBJECT_ID'.
 ```
 
 ``` r
@@ -1183,9 +1184,9 @@ misc_format_check(DD.dict.A, DS.data.A)
 ```
 
 ``` r
-row_check(DS.data.A)
+row_check(DD.dict.A, DS.data.A)
 #> $Message
-#> [1] "Passed: no blank or duplicate rows detected."
+#> [1] "Passed: no blank or duplicate rows detected in data set or data dictionary."
 ```
 
 ``` r
@@ -1621,15 +1622,6 @@ the purposes of this vignette and ease of interpretation.
        output.path= tempdir(), open.html=TRUE)
 
 ### 6.2.1 Summary and plots
-
-    #> 
-    #> Attaching package: 'dplyr'
-    #> The following objects are masked from 'package:stats':
-    #> 
-    #>     filter, lag
-    #> The following objects are masked from 'package:base':
-    #> 
-    #>     intersect, setdiff, setequal, union
 
 ``` r
 dat_function_selected(DS.data.B, DD.dict.B, sex.split = TRUE, sex.name = "SEX", start = 3, end = 6, dataset.na=dataset.na, h.level=4)

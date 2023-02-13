@@ -325,7 +325,7 @@ misc_format_check(DD.dict.A, DS.data.A)
 ```
 
 ```{r row_check}
-row_check(DS.data.A)
+row_check(DD.dict.A, DS.data.A)
 ```
 
 ```{r NA_check}

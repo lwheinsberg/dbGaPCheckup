@@ -54,7 +54,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
   report <- bind_rows(report, id_check(DS_data, verbose=FALSE))
 
   # Check 6: row_check
-  report <- bind_rows(report, row_check(DS_data, verbose=FALSE))
+  report <- bind_rows(report, row_check(DD_dict, DS_data, verbose=FALSE))
 
   # Check 7: NA_check
   report <- bind_rows(report, NA_check(DD_dict, DS_data, verbose=FALSE))
