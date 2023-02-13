@@ -2,7 +2,7 @@ dbGaPCheckup Quick Start
 ================
 Lacey W. Heinsberg and Daniel E. Weeks
 
-January 18, 2023
+February 13, 2023
 
 - <a href="#1-copyright-information" id="toc-1-copyright-information">1
   Copyright information</a>
@@ -77,7 +77,7 @@ the `dbGaPCheckUp` R package. Please see the table below and
 | missing_value_check     | check                 | Checks for variables that have non-encoded missing value codes.                                                                                                                                                                                                                                                                       |
 | complete_check          | bulk check            | Runs the entire workflow (field_check, pkg_field_check, dimension_check, name_check, id_check, row_check, NA_check, type_check, values_check, integer_check, decimal_check, misc_format_check, description_check, minmax_check, and missing_value_check).                                                                             |
 | add_missing_fields      | utility               | Adds additional fields required by this package including variable type (‘TYPE’), minimum value (‘MIN’), and maximum value (‘MAX’).                                                                                                                                                                                                   |
-| name_correct            | utility               | Updates the data dictionary so variable names match those listed in the data set.                                                                                                                                                                                                                                                     |
+| name_correct            | utility               | Updates the data set so variable names match those listed in the data dictionary.                                                                                                                                                                                                                                                     |
 | reorder_dictionary      | utility               | Reorders the data dictionary to match the data set.                                                                                                                                                                                                                                                                                   |
 | reorder_data            | utility               | Reorders the data set to match the data dictionary.                                                                                                                                                                                                                                                                                   |
 | id_first_data           | utility               | Reorders the data set so that SUBJECT_ID comes first.                                                                                                                                                                                                                                                                                 |
@@ -134,7 +134,7 @@ DS.data <- read.table(DS.path, header=TRUE, sep="\t", quote="", as.is = TRUE)
 ## 5.3 Read in your Subject Phenotype data dictionary into `DD.dict`.
 
 ``` r
-DD.path <- system.file("extdata", "3b_SSM_DD_Example2f.xlsx",
+DD.path <- system.file("extdata", "DD_Example2f.xlsx",
    package = "dbGaPCheckup", mustWork=TRUE)
 DD.dict <- readxl::read_xlsx(DD.path)
 #> New names:
@@ -153,23 +153,23 @@ for accurate results.
 ``` r
 report <- check_report(DD.dict = DD.dict, DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
 #> # A tibble: 15 × 3
-#>    Function            Status        Message                                                                                                            
-#>    <chr>               <chr>         <chr>                                                                                                              
-#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.                        
-#>  2 pkg_field_check     Failed        ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fi…
-#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.                                       
-#>  4 name_check          Passed        Passed: the variable names match between the data dictionary and the data.                                         
-#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                                             
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                                                       
-#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                  
-#>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fields function to autofill TYPE.                     
-#>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                                                                       
-#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                  
-#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                  
-#> 12 misc_format_check   Passed        Passed: no check-specific formatting issues identified.                                                            
-#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                                                
-#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                  
-#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                  
+#>    Function            Status        Message                                                                                    
+#>    <chr>               <chr>         <chr>                                                                                      
+#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.
+#>  2 pkg_field_check     Failed        ERROR: not all package-level required fields are present in the data dictionary. Consider …
+#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.               
+#>  4 name_check          Passed        Passed: the variable names match between the data dictionary and the data.                 
+#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                     
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                               
+#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
+#>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fields function to autofill T…
+#>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                                               
+#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
+#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
+#> 12 misc_format_check   Passed        Passed: no check-specific formatting issues identified.                                    
+#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                        
+#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
+#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
 #> --------------------
 #> pkg_field_check: Failed 
 #> ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fields function to auto fill these fields. 

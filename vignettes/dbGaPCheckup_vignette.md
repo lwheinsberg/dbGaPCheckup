@@ -2,7 +2,7 @@ dbGaPCheckup Vignette
 ================
 Lacey W. Heinsberg and Daniel E. Weeks
 
-January 20, 2023
+February 13, 2023
 
 - <a href="#1-copyright-information" id="toc-1-copyright-information">1
   Copyright information</a>
@@ -110,573 +110,40 @@ of this R package. A complete table of functions and descriptions is
 shown below. See the Quick Start (`dbGaPCheckup`) vignette for a brief
 introduction to the package.
 
-<table>
-<caption>
+| Function_Name           | Function_Type         | Function_Description                                                                                                                                                                                                                                                                                                                  |
+|:------------------------|:----------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| field_check             | check                 | Checks for dbGaP required fields: variable name (VARNAME), variable description (VARDESC), units (UNITS), and variable value and meaning (VALUES).                                                                                                                                                                                    |
+| pkg_field_check         | check                 | Checks for package-level required fields: variable type (TYPE), minimum value (MIN), and maximum value (MAX).                                                                                                                                                                                                                         |
+| dimension_check         | check                 | Checks that the number of variables match between the data set and data dictionary.                                                                                                                                                                                                                                                   |
+| name_check              | check                 | Checks that variable names match between the data set and data dictionary.                                                                                                                                                                                                                                                            |
+| id_check                | check                 | Checks that the first column of the data set is the primary ID for each participant labeled as SUBJECT_ID and that the values contain no spaces, padded zeros, or other illegal characters.                                                                                                                                           |
+| row_check               | check                 | Checks for empty or duplicate rows in the data set.                                                                                                                                                                                                                                                                                   |
+| NA_check                | check                 | Checks for NA values in the data set and, if NA values are present, also checks for an encoded NA value=meaning description.                                                                                                                                                                                                          |
+| type_check              | check                 | If a TYPE field exists, this function checks for any TYPE entries that aren’t allowable per dbGaP instructions.                                                                                                                                                                                                                       |
+| values_check            | check                 | Checks for potential errors in the VALUES columns by ensuring (1) required format of `VALUE=MEANING` (e.g., 0=No or 1=Yes); (2) no leading/trailing spaces near the equals sign (e.g., 0=No vs. 0 = No); (3) all variables of TYPE encoded have VALUES entries; and (4) all variables with VALUES entries are listed as TYPE encoded. |
+| integer_check           | check                 | Checks for variables that appear to be incorrectly listed as TYPE integer.                                                                                                                                                                                                                                                            |
+| decimal_check           | check                 | Checks for variables that appear to be incorrectly listed as TYPE decimal.                                                                                                                                                                                                                                                            |
+| misc_format_check       | check                 | Checks miscellaneous dbGaP formatting requirements to ensure (1) no duplicate variable names; (2) variable names do not contain “dbgap”; (3) there are no duplicate column names in the dictionary; and (4) column names falling after VALUES column are unnamed.                                                                     |
+| description_check       | check                 | Checks for unique and non-missing descriptions (VARDESC) for every variable in the data dictionary.                                                                                                                                                                                                                                   |
+| minmax_check            | check                 | Checks for variables that have values exceeding the listed MIN or MAX.                                                                                                                                                                                                                                                                |
+| missing_value_check     | check                 | Checks for variables that have non-encoded missing value codes.                                                                                                                                                                                                                                                                       |
+| complete_check          | bulk check            | Runs the entire workflow (field_check, pkg_field_check, dimension_check, name_check, id_check, row_check, NA_check, type_check, values_check, integer_check, decimal_check, misc_format_check, description_check, minmax_check, and missing_value_check).                                                                             |
+| add_missing_fields      | utility               | Adds additional fields required by this package including variable type (‘TYPE’), minimum value (‘MIN’), and maximum value (‘MAX’).                                                                                                                                                                                                   |
+| name_correct            | utility               | Updates the data set so variable names match those listed in the data dictionary.                                                                                                                                                                                                                                                     |
+| reorder_dictionary      | utility               | Reorders the data dictionary to match the data set.                                                                                                                                                                                                                                                                                   |
+| reorder_data            | utility               | Reorders the data set to match the data dictionary.                                                                                                                                                                                                                                                                                   |
+| id_first_data           | utility               | Reorders the data set so that SUBJECT_ID comes first.                                                                                                                                                                                                                                                                                 |
+| id_first_dict           | utility               | Reorders the data dictionary so that SUBJECT_ID comes first.                                                                                                                                                                                                                                                                          |
+| label_data              | utility, awareness    | Adds non-missing information from the data dictionary as attributes to the data.                                                                                                                                                                                                                                                      |
+| value_meaning_table     | utility, awareness    | Generates a value-meaning table by parsing the VALUES fields.                                                                                                                                                                                                                                                                         |
+| missingness_summary     | awareness             | Summarizes the amount of missingness in the data set.                                                                                                                                                                                                                                                                                 |
+| value_missing_table     | awareness             | Checks for consistent usage of encoded values and missing value codes between the data dictionary and the data set.                                                                                                                                                                                                                   |
+| dictionary_search       | awareness             | Facilitates searches of the data dictionary.                                                                                                                                                                                                                                                                                          |
+| check_report            | bulk check, reporting | Generates a user-readable report of the checks run by the complete_check function.                                                                                                                                                                                                                                                    |
+| create_report           | reporting, awareness  | Generates a textual and graphical report of the selected variables in HTML format.                                                                                                                                                                                                                                                    |
+| create_awareness_report | reporting, awareness  | Generates an awareness report, calling missingness_summary and value_missing_table functions.                                                                                                                                                                                                                                         |
 
 List of function names and types.
-
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-
-Function_Name
-
-</th>
-<th style="text-align:left;">
-
-Function_Type
-
-</th>
-<th style="text-align:left;">
-
-Function_Description
-
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-
-field_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks for dbGaP required fields: variable name (VARNAME), variable
-description (VARDESC), units (UNITS), and variable value and meaning
-(VALUES).
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-pkg_field_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks for package-level required fields: variable type (TYPE), minimum
-value (MIN), and maximum value (MAX).
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-dimension_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks that the number of variables match between the data set and data
-dictionary.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-name_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks that variable names match between the data set and data
-dictionary.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-id_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks that the first column of the data set is the primary ID for each
-participant labeled as SUBJECT_ID and that the values contain no spaces,
-padded zeros, or other illegal characters.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-row_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks for empty or duplicate rows in the data set.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-NA_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks for NA values in the data set and, if NA values are present, also
-checks for an encoded NA value=meaning description.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-type_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-If a TYPE field exists, this function checks for any TYPE entries that
-aren’t allowable per dbGaP instructions.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-values_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks for potential errors in the VALUES columns by ensuring (1)
-required format of `VALUE=MEANING` (e.g., 0=No or 1=Yes); (2) no
-leading/trailing spaces near the equals sign (e.g., 0=No vs. 0 = No);
-(3) all variables of TYPE encoded have VALUES entries; and (4) all
-variables with VALUES entries are listed as TYPE encoded.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-integer_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks for variables that appear to be incorrectly listed as TYPE
-integer.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-decimal_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks for variables that appear to be incorrectly listed as TYPE
-decimal.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-misc_format_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks miscellaneous dbGaP formatting requirements to ensure (1) no
-duplicate variable names; (2) variable names do not contain "dbgap"; (3)
-there are no duplicate column names in the dictionary; and (4) column
-names falling after VALUES column are unnamed.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-description_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks for unique and non-missing descriptions (VARDESC) for every
-variable in the data dictionary.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-minmax_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks for variables that have values exceeding the listed MIN or MAX.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-missing_value_check
-
-</td>
-<td style="text-align:left;">
-
-check
-
-</td>
-<td style="text-align:left;">
-
-Checks for variables that have non-encoded missing value codes.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-complete_check
-
-</td>
-<td style="text-align:left;">
-
-bulk check
-
-</td>
-<td style="text-align:left;">
-
-Runs the entire workflow (field_check, pkg_field_check, dimension_check,
-name_check, id_check, row_check, NA_check, type_check, values_check,
-integer_check, decimal_check, misc_format_check, description_check,
-minmax_check, and missing_value_check).
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-add_missing_fields
-
-</td>
-<td style="text-align:left;">
-
-utility
-
-</td>
-<td style="text-align:left;">
-
-Adds additional fields required by this package including variable type
-(‘TYPE’), minimum value (‘MIN’), and maximum value (‘MAX’).
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-name_correct
-
-</td>
-<td style="text-align:left;">
-
-utility
-
-</td>
-<td style="text-align:left;">
-
-Updates the data set so variable names match those listed in the data
-dictionary.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-reorder_dictionary
-
-</td>
-<td style="text-align:left;">
-
-utility
-
-</td>
-<td style="text-align:left;">
-
-Reorders the data dictionary to match the data set.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-reorder_data
-
-</td>
-<td style="text-align:left;">
-
-utility
-
-</td>
-<td style="text-align:left;">
-
-Reorders the data set to match the data dictionary.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-id_first_data
-
-</td>
-<td style="text-align:left;">
-
-utility
-
-</td>
-<td style="text-align:left;">
-
-Reorders the data set so that SUBJECT_ID comes first.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-id_first_dict
-
-</td>
-<td style="text-align:left;">
-
-utility
-
-</td>
-<td style="text-align:left;">
-
-Reorders the data dictionary so that SUBJECT_ID comes first.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-label_data
-
-</td>
-<td style="text-align:left;">
-
-utility, awareness
-
-</td>
-<td style="text-align:left;">
-
-Adds non-missing information from the data dictionary as attributes to
-the data.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-value_meaning_table
-
-</td>
-<td style="text-align:left;">
-
-utility, awareness
-
-</td>
-<td style="text-align:left;">
-
-Generates a value-meaning table by parsing the VALUES fields.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-missingness_summary
-
-</td>
-<td style="text-align:left;">
-
-awareness
-
-</td>
-<td style="text-align:left;">
-
-Summarizes the amount of missingness in the data set.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-value_missing_table
-
-</td>
-<td style="text-align:left;">
-
-awareness
-
-</td>
-<td style="text-align:left;">
-
-Checks for consistent usage of encoded values and missing value codes
-between the data dictionary and the data set.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-dictionary_search
-
-</td>
-<td style="text-align:left;">
-
-awareness
-
-</td>
-<td style="text-align:left;">
-
-Facilitates searches of the data dictionary.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-check_report
-
-</td>
-<td style="text-align:left;">
-
-bulk check, reporting
-
-</td>
-<td style="text-align:left;">
-
-Generates a user-readable report of the checks run by the complete_check
-function.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-create_report
-
-</td>
-<td style="text-align:left;">
-
-reporting, awareness
-
-</td>
-<td style="text-align:left;">
-
-Generates a textual and graphical report of the selected variables in
-HTML format.
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-create_awareness_report
-
-</td>
-<td style="text-align:left;">
-
-reporting, awareness
-
-</td>
-<td style="text-align:left;">
-
-Generates an awareness report, calling missingness_summary and
-value_missing_table functions.
-
-</td>
-</tr>
-</tbody>
-</table>
 
 # 3 Installation
 
@@ -759,1081 +226,16 @@ sign (#). Columns falling after `SUBJECT_ID` will be unique to a given
 study, but include participant factors such as age, sex, etc. Formatting
 for an example data set is shown below.
 
-<table>
-<caption>
+| SUBJECT_ID | SAMPLE_ID | AGE | SEX | PREGNANT |     HEIGHT |  WEIGHT |         BMI | OBESITY |    ABD_CIRC |   HIP_CIRC | ABD_SKF | SUP_SKF | RESIST | REACT | CUFFSIZE | BP_SYSTOLIC | BP_DIASTOLIC | HTN | SMOKING_HX | LENGTH_SMOKING_YEARS | HEART_RATE | PHYSICAL_ACTIVITY | HX_DM | HX_STROKE | HX_ANXIETY | HX_DEPRESSION | SOCIAL_SUPPORT | PERCEIVED_CONFLICT | PERCEIVED_HEALTH |
+|-----------:|----------:|----:|----:|---------:|-----------:|--------:|------------:|--------:|------------:|-----------:|--------:|--------:|-------:|------:|---------:|------------:|-------------:|----:|-----------:|---------------------:|-----------:|------------------:|------:|----------:|-----------:|--------------:|---------------:|-------------------:|-----------------:|
+|          1 |      1001 |  33 |   0 |    -4444 |   163.5000 |    54.4 |    20.34995 |       0 |   116.08677 |   119.2750 |      28 |      23 |    340 |    40 |        0 |         120 |           80 |   0 |          0 |              -4444.0 |         50 |               360 |     0 |         0 |          1 |             1 |              1 |                 25 |               10 |
+|          2 |      1002 |  45 |   1 |        0 |   159.3369 |    93.2 |    36.70990 |       1 |   110.39444 |   115.8551 |      24 |      27 |    354 |    45 |        3 |         110 |           60 |   0 |      -9999 |              -4444.0 |         54 |                 0 |     1 |         0 |          0 |             0 |              5 |                 25 |                4 |
+|          3 |      1003 |  34 |   0 |    -4444 |   185.0000 |    95.0 |    27.75749 |       0 |   104.29832 |   104.4375 |      29 |      25 |    358 |    55 |        1 |         106 |           50 |   0 |          1 |                  1.5 |         75 |               100 | -9999 |         0 |      -9999 |         -9999 |              4 |                 24 |                8 |
+|          4 |     -9999 |  55 |   0 |    -4444 |   171.5000 |    85.7 |    29.13752 |       0 |   121.77705 |   118.4763 |      51 |      44 |    389 |    56 |        1 |         158 |           95 |   1 |          0 |              -4444.0 |         90 |               180 |     1 |         0 |          0 |             0 |              2 |                 10 |                5 |
+|          5 |      1005 |  45 |   0 |    -4444 |   180.0000 |   101.4 |    31.29630 |       1 |    84.14132 |   104.6367 |      42 |      25 |    356 |    64 |        2 |         169 |          100 |   1 |          1 |                 14.0 |         85 |             -9999 |     1 |     -9999 |          0 |             0 |              3 |                  5 |                6 |
+|          6 |      1006 |  46 |   1 |        0 | -9999.0000 | -9999.0 | -9999.00000 |   -9999 | -9999.00000 | -9999.0000 |   -9999 |   -9999 |  -9999 | -9999 |        0 |         105 |           40 |   0 |          1 |                 25.0 |         72 |               180 |     0 |         0 |          0 |             0 |              4 |                  1 |                7 |
 
 First six lines of an example dbGaP data set.
-
-</caption>
-<thead>
-<tr>
-<th style="text-align:right;">
-
-SUBJECT_ID
-
-</th>
-<th style="text-align:right;">
-
-SAMPLE_ID
-
-</th>
-<th style="text-align:right;">
-
-AGE
-
-</th>
-<th style="text-align:right;">
-
-SEX
-
-</th>
-<th style="text-align:right;">
-
-PREGNANT
-
-</th>
-<th style="text-align:right;">
-
-HEIGHT
-
-</th>
-<th style="text-align:right;">
-
-WEIGHT
-
-</th>
-<th style="text-align:right;">
-
-BMI
-
-</th>
-<th style="text-align:right;">
-
-OBESITY
-
-</th>
-<th style="text-align:right;">
-
-ABD_CIRC
-
-</th>
-<th style="text-align:right;">
-
-HIP_CIRC
-
-</th>
-<th style="text-align:right;">
-
-ABD_SKF
-
-</th>
-<th style="text-align:right;">
-
-SUP_SKF
-
-</th>
-<th style="text-align:right;">
-
-RESIST
-
-</th>
-<th style="text-align:right;">
-
-REACT
-
-</th>
-<th style="text-align:right;">
-
-CUFFSIZE
-
-</th>
-<th style="text-align:right;">
-
-BP_SYSTOLIC
-
-</th>
-<th style="text-align:right;">
-
-BP_DIASTOLIC
-
-</th>
-<th style="text-align:right;">
-
-HTN
-
-</th>
-<th style="text-align:right;">
-
-SMOKING_HX
-
-</th>
-<th style="text-align:right;">
-
-LENGTH_SMOKING_YEARS
-
-</th>
-<th style="text-align:right;">
-
-HEART_RATE
-
-</th>
-<th style="text-align:right;">
-
-PHYSICAL_ACTIVITY
-
-</th>
-<th style="text-align:right;">
-
-HX_DM
-
-</th>
-<th style="text-align:right;">
-
-HX_STROKE
-
-</th>
-<th style="text-align:right;">
-
-HX_ANXIETY
-
-</th>
-<th style="text-align:right;">
-
-HX_DEPRESSION
-
-</th>
-<th style="text-align:right;">
-
-SOCIAL_SUPPORT
-
-</th>
-<th style="text-align:right;">
-
-PERCEIVED_CONFLICT
-
-</th>
-<th style="text-align:right;">
-
-PERCEIVED_HEALTH
-
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-1001
-
-</td>
-<td style="text-align:right;">
-
-33
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
--4444
-
-</td>
-<td style="text-align:right;">
-
-163.5000
-
-</td>
-<td style="text-align:right;">
-
-54.4
-
-</td>
-<td style="text-align:right;">
-
-20.34995
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-116.08677
-
-</td>
-<td style="text-align:right;">
-
-119.2750
-
-</td>
-<td style="text-align:right;">
-
-28
-
-</td>
-<td style="text-align:right;">
-
-23
-
-</td>
-<td style="text-align:right;">
-
-340
-
-</td>
-<td style="text-align:right;">
-
-40
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-120
-
-</td>
-<td style="text-align:right;">
-
-80
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
--4444.0
-
-</td>
-<td style="text-align:right;">
-
-50
-
-</td>
-<td style="text-align:right;">
-
-360
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-25
-
-</td>
-<td style="text-align:right;">
-
-10
-
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-1002
-
-</td>
-<td style="text-align:right;">
-
-45
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-159.3369
-
-</td>
-<td style="text-align:right;">
-
-93.2
-
-</td>
-<td style="text-align:right;">
-
-36.70990
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-110.39444
-
-</td>
-<td style="text-align:right;">
-
-115.8551
-
-</td>
-<td style="text-align:right;">
-
-24
-
-</td>
-<td style="text-align:right;">
-
-27
-
-</td>
-<td style="text-align:right;">
-
-354
-
-</td>
-<td style="text-align:right;">
-
-45
-
-</td>
-<td style="text-align:right;">
-
-3
-
-</td>
-<td style="text-align:right;">
-
-110
-
-</td>
-<td style="text-align:right;">
-
-60
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
--4444.0
-
-</td>
-<td style="text-align:right;">
-
-54
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-5
-
-</td>
-<td style="text-align:right;">
-
-25
-
-</td>
-<td style="text-align:right;">
-
-4
-
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-
-3
-
-</td>
-<td style="text-align:right;">
-
-1003
-
-</td>
-<td style="text-align:right;">
-
-34
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
--4444
-
-</td>
-<td style="text-align:right;">
-
-185.0000
-
-</td>
-<td style="text-align:right;">
-
-95.0
-
-</td>
-<td style="text-align:right;">
-
-27.75749
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-104.29832
-
-</td>
-<td style="text-align:right;">
-
-104.4375
-
-</td>
-<td style="text-align:right;">
-
-29
-
-</td>
-<td style="text-align:right;">
-
-25
-
-</td>
-<td style="text-align:right;">
-
-358
-
-</td>
-<td style="text-align:right;">
-
-55
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-106
-
-</td>
-<td style="text-align:right;">
-
-50
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-1.5
-
-</td>
-<td style="text-align:right;">
-
-75
-
-</td>
-<td style="text-align:right;">
-
-100
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
-4
-
-</td>
-<td style="text-align:right;">
-
-24
-
-</td>
-<td style="text-align:right;">
-
-8
-
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-
-4
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
-55
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
--4444
-
-</td>
-<td style="text-align:right;">
-
-171.5000
-
-</td>
-<td style="text-align:right;">
-
-85.7
-
-</td>
-<td style="text-align:right;">
-
-29.13752
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-121.77705
-
-</td>
-<td style="text-align:right;">
-
-118.4763
-
-</td>
-<td style="text-align:right;">
-
-51
-
-</td>
-<td style="text-align:right;">
-
-44
-
-</td>
-<td style="text-align:right;">
-
-389
-
-</td>
-<td style="text-align:right;">
-
-56
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-158
-
-</td>
-<td style="text-align:right;">
-
-95
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
--4444.0
-
-</td>
-<td style="text-align:right;">
-
-90
-
-</td>
-<td style="text-align:right;">
-
-180
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-10
-
-</td>
-<td style="text-align:right;">
-
-5
-
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-
-5
-
-</td>
-<td style="text-align:right;">
-
-1005
-
-</td>
-<td style="text-align:right;">
-
-45
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
--4444
-
-</td>
-<td style="text-align:right;">
-
-180.0000
-
-</td>
-<td style="text-align:right;">
-
-101.4
-
-</td>
-<td style="text-align:right;">
-
-31.29630
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-84.14132
-
-</td>
-<td style="text-align:right;">
-
-104.6367
-
-</td>
-<td style="text-align:right;">
-
-42
-
-</td>
-<td style="text-align:right;">
-
-25
-
-</td>
-<td style="text-align:right;">
-
-356
-
-</td>
-<td style="text-align:right;">
-
-64
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-169
-
-</td>
-<td style="text-align:right;">
-
-100
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-14.0
-
-</td>
-<td style="text-align:right;">
-
-85
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-3
-
-</td>
-<td style="text-align:right;">
-
-5
-
-</td>
-<td style="text-align:right;">
-
-6
-
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-
-6
-
-</td>
-<td style="text-align:right;">
-
-1006
-
-</td>
-<td style="text-align:right;">
-
-46
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
--9999.0000
-
-</td>
-<td style="text-align:right;">
-
--9999.0
-
-</td>
-<td style="text-align:right;">
-
--9999.00000
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
--9999.00000
-
-</td>
-<td style="text-align:right;">
-
--9999.0000
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
--9999
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-105
-
-</td>
-<td style="text-align:right;">
-
-40
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-25.0
-
-</td>
-<td style="text-align:right;">
-
-72
-
-</td>
-<td style="text-align:right;">
-
-180
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-4
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-7
-
-</td>
-</tr>
-</tbody>
-</table>
 
 Other example data sets provided by dbGaP can be found at the NCBI
 [submission
@@ -1854,801 +256,16 @@ Specifications”, which includes a table of required and suggested column
 headers and descriptions, as well as an example file called
 “6b_SampleAttributes_DD.xlsx”.
 
-<table>
-<caption>
+| VARNAME    | VARDESC                        | DOCFILE | TYPE                   | UNITS | MIN | MAX | RESOLUTION | COMMENT1 | COMMENT2 | VARIABLE_SOURCE | SOURCE_VARIABLE_ID | VARIABLE_MAPPING | UNIQUEKEY | COLLINTERVAL | ORDER | VALUES              | …18      | …19                 | …20                                                      | …21 | …22 |
+|:-----------|:-------------------------------|:--------|:-----------------------|:------|----:|----:|:-----------|:---------|:---------|:----------------|:-------------------|:-----------------|:----------|:-------------|:------|:--------------------|:---------|:--------------------|:---------------------------------------------------------|:----|:----|
+| SUBJECT_ID | Participant ID                 | NA      | integer                | NA    |  NA |  NA | NA         | NA       | NA       | NA              | NA                 | NA               | NA        | NA           | NA    | NA                  | NA       | NA                  | NA                                                       | NA  | NA  |
+| SAMPLE_ID  | Sample ID                      | NA      | integer, encoded value | NA    |  NA |  NA | NA         | NA       | NA       | NA              | NA                 | NA               | NA        | NA           | NA    | -9999=missing value | NA       | NA                  | NA                                                       | NA  | NA  |
+| AGE        | Age at enrollment              | NA      | integer                | years |  NA |  NA | NA         | NA       | NA       | NA              | NA                 | NA               | NA        | NA           | NA    | NA                  | NA       | NA                  | NA                                                       | NA  | NA  |
+| SEX        | Sex assigned at birth          | NA      | integer, encoded value | NA    |   0 |   1 | NA         | NA       | NA       | NA              | NA                 | NA               | NA        | NA           | NA    | 0=male              | 1=female | NA                  | NA                                                       | NA  | NA  |
+| PREGNANT   | Pregnancy status at enrollment | NA      | integer, encoded value | NA    |   0 |   1 | NA         | NA       | NA       | NA              | NA                 | NA               | NA        | NA           | NA    | 0=no                | 1=yes    | -9999=missing value | -4444=not applicable, participant assigned male at birth | NA  | NA  |
+| HEIGHT     | Height of participant          | NA      | decimal, encoded value | cm    |  NA |  NA | NA         | NA       | NA       | NA              | NA                 | NA               | NA        | NA           | NA    | -9999=missing value | NA       | NA                  | NA                                                       | NA  | NA  |
 
 First six lines of an example dbGaP data dictionary.
-
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-
-VARNAME
-
-</th>
-<th style="text-align:left;">
-
-VARDESC
-
-</th>
-<th style="text-align:left;">
-
-DOCFILE
-
-</th>
-<th style="text-align:left;">
-
-TYPE
-
-</th>
-<th style="text-align:left;">
-
-UNITS
-
-</th>
-<th style="text-align:right;">
-
-MIN
-
-</th>
-<th style="text-align:right;">
-
-MAX
-
-</th>
-<th style="text-align:left;">
-
-RESOLUTION
-
-</th>
-<th style="text-align:left;">
-
-COMMENT1
-
-</th>
-<th style="text-align:left;">
-
-COMMENT2
-
-</th>
-<th style="text-align:left;">
-
-VARIABLE_SOURCE
-
-</th>
-<th style="text-align:left;">
-
-SOURCE_VARIABLE_ID
-
-</th>
-<th style="text-align:left;">
-
-VARIABLE_MAPPING
-
-</th>
-<th style="text-align:left;">
-
-UNIQUEKEY
-
-</th>
-<th style="text-align:left;">
-
-COLLINTERVAL
-
-</th>
-<th style="text-align:left;">
-
-ORDER
-
-</th>
-<th style="text-align:left;">
-
-VALUES
-
-</th>
-<th style="text-align:left;">
-
-…18
-
-</th>
-<th style="text-align:left;">
-
-…19
-
-</th>
-<th style="text-align:left;">
-
-…20
-
-</th>
-<th style="text-align:left;">
-
-…21
-
-</th>
-<th style="text-align:left;">
-
-…22
-
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-
-SUBJECT_ID
-
-</td>
-<td style="text-align:left;">
-
-Participant ID
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-integer
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-SAMPLE_ID
-
-</td>
-<td style="text-align:left;">
-
-Sample ID
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-integer, encoded value
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
--9999=missing value
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-AGE
-
-</td>
-<td style="text-align:left;">
-
-Age at enrollment
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-integer
-
-</td>
-<td style="text-align:left;">
-
-years
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-SEX
-
-</td>
-<td style="text-align:left;">
-
-Sex assigned at birth
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-integer, encoded value
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-0=male
-
-</td>
-<td style="text-align:left;">
-
-1=female
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-PREGNANT
-
-</td>
-<td style="text-align:left;">
-
-Pregnancy status at enrollment
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-integer, encoded value
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-0=no
-
-</td>
-<td style="text-align:left;">
-
-1=yes
-
-</td>
-<td style="text-align:left;">
-
--9999=missing value
-
-</td>
-<td style="text-align:left;">
-
--4444=not applicable, participant assigned male at birth
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-HEIGHT
-
-</td>
-<td style="text-align:left;">
-
-Height of participant
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-decimal, encoded value
-
-</td>
-<td style="text-align:left;">
-
-cm
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:right;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
--9999=missing value
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-<td style="text-align:left;">
-
-NA
-
-</td>
-</tr>
-</tbody>
-</table>
 
 Two special data dictionary formatting notes:
 
@@ -2714,23 +331,23 @@ data set.
 ``` r
 e1_report <- check_report(DD.dict.D, DS.data.D, non.NA.missing.codes=c(-4444, -9999))
 #> # A tibble: 15 × 3
-#>    Function            Status        Message                                                                                                            
-#>    <chr>               <chr>         <chr>                                                                                                              
-#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.                        
-#>  2 pkg_field_check     Failed        ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fi…
-#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.                                       
-#>  4 name_check          Passed        Passed: the variable names match between the data dictionary and the data.                                         
-#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                                             
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                                                       
-#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                  
-#>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fields function to autofill TYPE.                     
-#>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                                                                       
-#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                  
-#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                  
-#> 12 misc_format_check   Passed        Passed: no check-specific formatting issues identified.                                                            
-#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                                                
-#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                  
-#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check failed.                                                                  
+#>    Function            Status        Message                                                                                    
+#>    <chr>               <chr>         <chr>                                                                                      
+#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.
+#>  2 pkg_field_check     Failed        ERROR: not all package-level required fields are present in the data dictionary. Consider …
+#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.               
+#>  4 name_check          Passed        Passed: the variable names match between the data dictionary and the data.                 
+#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                     
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                               
+#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
+#>  8 type_check          Failed        ERROR: TYPE column not found. Consider using the add_missing_fields function to autofill T…
+#>  9 values_check        Not attempted ERROR: Required pre-check type_check failed.                                               
+#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
+#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
+#> 12 misc_format_check   Passed        Passed: no check-specific formatting issues identified.                                    
+#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                        
+#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
+#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check failed.                                          
 #> --------------------
 #> pkg_field_check: Failed 
 #> ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fields function to auto fill these fields. 
@@ -2861,23 +478,23 @@ data(ExampleL)
 ``` r
 e2_report <- check_report(DD.dict.L, DS.data.L) 
 #> # A tibble: 15 × 3
-#>    Function            Status        Message                                                                                                            
-#>    <chr>               <chr>         <chr>                                                                                                              
-#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.                        
-#>  2 pkg_field_check     Passed        Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.                           
-#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.                                       
-#>  4 name_check          Failed        ERROR: the variable names DO NOT match between the data dictionary and the data. If the intention behind the varia…
-#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                                             
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                                                       
-#>  7 NA_check            Not attempted ERROR: Required pre-check name_check failed.                                                                       
-#>  8 type_check          Passed        Passed: All TYPE entries found are accepted by dbGaP per submission instructions.                                  
-#>  9 values_check        Failed        ERROR: at least one VALUES check flagged potentials issues. See Information for more details.                      
-#> 10 integer_check       Not attempted ERROR: Required pre-check name_check failed.                                                                       
-#> 11 decimal_check       Not attempted ERROR: Required pre-check name_check failed.                                                                       
-#> 12 misc_format_check   Failed        ERROR: at least one check failed.                                                                                  
-#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                                                
-#> 14 minmax_check        Not attempted ERROR: Required pre-check name_check failed.                                                                       
-#> 15 missing_value_check Not attempted ERROR: Required pre-check name_check failed.                                                                       
+#>    Function            Status        Message                                                                                    
+#>    <chr>               <chr>         <chr>                                                                                      
+#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.
+#>  2 pkg_field_check     Passed        Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.   
+#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.               
+#>  4 name_check          Failed        ERROR: the variable names DO NOT match between the data dictionary and the data. If the in…
+#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                     
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                               
+#>  7 NA_check            Not attempted ERROR: Required pre-check name_check failed.                                               
+#>  8 type_check          Passed        Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
+#>  9 values_check        Failed        ERROR: at least one VALUES check flagged potentials issues. See Information for more detai…
+#> 10 integer_check       Not attempted ERROR: Required pre-check name_check failed.                                               
+#> 11 decimal_check       Not attempted ERROR: Required pre-check name_check failed.                                               
+#> 12 misc_format_check   Failed        ERROR: at least one check failed.                                                          
+#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                        
+#> 14 minmax_check        Not attempted ERROR: Required pre-check name_check failed.                                               
+#> 15 missing_value_check Not attempted ERROR: Required pre-check name_check failed.                                               
 #> --------------------
 #> name_check: Failed 
 #> ERROR: the variable names DO NOT match between the data dictionary and the data. If the intention behind the variable names is correct, consider using the name_correct function to automatically rename variables to match. 
@@ -2892,16 +509,26 @@ e2_report <- check_report(DD.dict.L, DS.data.L)
 #> values_check: Failed 
 #> ERROR: at least one VALUES check flagged potentials issues. See Information for more details. 
 #> $values_check.Info
-#>    column_name values.check            vname                   type                                                problematic_description
-#> 4      VALUES3        FALSE         CUFFSIZE integer, encoded value                                                          2 means large
-#> 6       VALUES        FALSE              HTN integer, encoded value                                                         0 indicates no
-#> 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value Between 1 and 10 with higher values indicating better perceived health
-#> 9      VALUES5        FALSE               28 integer, encoded value                                                       5 = a great deal
-#> 10     VALUES4        FALSE               28 integer, encoded value                                                        4 = quite a bit
-#> 12     VALUES2        FALSE               16 integer, encoded value                                                              1 =medium
-#> 14      VALUES        FALSE           RESIST integer, encoded value                                                                   <NA>
-#> 15      VALUES        FALSE        SAMPLE_ID                integer                                                    -9999=missing value
-#> 16      VALUES        FALSE              SEX                integer                                                                 0=male
+#>    column_name values.check            vname                   type
+#> 4      VALUES3        FALSE         CUFFSIZE integer, encoded value
+#> 6       VALUES        FALSE              HTN integer, encoded value
+#> 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value
+#> 9      VALUES5        FALSE               28 integer, encoded value
+#> 10     VALUES4        FALSE               28 integer, encoded value
+#> 12     VALUES2        FALSE               16 integer, encoded value
+#> 14      VALUES        FALSE           RESIST integer, encoded value
+#> 15      VALUES        FALSE        SAMPLE_ID                integer
+#> 16      VALUES        FALSE              SEX                integer
+#>                                                   problematic_description
+#> 4                                                           2 means large
+#> 6                                                          0 indicates no
+#> 7  Between 1 and 10 with higher values indicating better perceived health
+#> 9                                                        5 = a great deal
+#> 10                                                        4 = quite a bit
+#> 12                                                              1 =medium
+#> 14                                                                   <NA>
+#> 15                                                    -9999=missing value
+#> 16                                                                 0=male
 #>                                                                         check
 #> 4                  Check 1: Is an equals sign present for all values columns?
 #> 6                  Check 1: Is an equals sign present for all values columns?
@@ -3038,16 +665,26 @@ e2_report.v2 <- check_report(DD.dict.L, DS.data_updated,
 #> values_check: Failed 
 #> ERROR: at least one VALUES check flagged potentials issues. See Information for more details. 
 #> $values_check.Info
-#>    column_name values.check            vname                   type                                                problematic_description
-#> 4      VALUES3        FALSE         CUFFSIZE integer, encoded value                                                          2 means large
-#> 6       VALUES        FALSE              HTN integer, encoded value                                                         0 indicates no
-#> 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value Between 1 and 10 with higher values indicating better perceived health
-#> 9      VALUES5        FALSE               28 integer, encoded value                                                       5 = a great deal
-#> 10     VALUES4        FALSE               28 integer, encoded value                                                        4 = quite a bit
-#> 12     VALUES2        FALSE               16 integer, encoded value                                                              1 =medium
-#> 14      VALUES        FALSE           RESIST integer, encoded value                                                                   <NA>
-#> 15      VALUES        FALSE        SAMPLE_ID                integer                                                    -9999=missing value
-#> 16      VALUES        FALSE              SEX                integer                                                                 0=male
+#>    column_name values.check            vname                   type
+#> 4      VALUES3        FALSE         CUFFSIZE integer, encoded value
+#> 6       VALUES        FALSE              HTN integer, encoded value
+#> 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value
+#> 9      VALUES5        FALSE               28 integer, encoded value
+#> 10     VALUES4        FALSE               28 integer, encoded value
+#> 12     VALUES2        FALSE               16 integer, encoded value
+#> 14      VALUES        FALSE           RESIST integer, encoded value
+#> 15      VALUES        FALSE        SAMPLE_ID                integer
+#> 16      VALUES        FALSE              SEX                integer
+#>                                                   problematic_description
+#> 4                                                           2 means large
+#> 6                                                          0 indicates no
+#> 7  Between 1 and 10 with higher values indicating better perceived health
+#> 9                                                        5 = a great deal
+#> 10                                                        4 = quite a bit
+#> 12                                                              1 =medium
+#> 14                                                                   <NA>
+#> 15                                                    -9999=missing value
+#> 16                                                                 0=male
 #>                                                                         check
 #> 4                  Check 1: Is an equals sign present for all values columns?
 #> 6                  Check 1: Is an equals sign present for all values columns?
@@ -3301,11 +938,11 @@ for this variable name in the dictionary.
 ``` r
 dictionary_search(DD.dict.H, search.term=c("SUP_SKF"), search.column=c("VARNAME"))
 #> # A tibble: 1 × 22
-#>   VARNAME VARDESC   DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES ...18 ...19 ...20 ...21
-#>   <chr>   <chr>     <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr>  <chr> <chr> <chr> <chr>
-#> 1 SUP_SKF Supraili… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999… <NA>  <NA>  <NA>  <NA> 
-#> # … with 1 more variable: ...22 <chr>, and abbreviated variable names ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID,
-#> #   ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY, ⁸​COLLINTERVAL
+#>   VARNAME VARDESC   DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES
+#>   <chr>   <chr>     <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr> 
+#> 1 SUP_SKF Supraili… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999…
+#> # … with 5 more variables: ...18 <chr>, ...19 <chr>, ...20 <chr>, ...21 <chr>, ...22 <chr>, and abbreviated variable names
+#> #   ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY, ⁸​COLLINTERVAL
 ```
 
 We can also look at the values in the data set to see that, in fact,
@@ -3315,10 +952,10 @@ suggests).
 ``` r
 table(DS.data.H$SUP_SKF)
 #> 
-#>  -9999     12     22 23.888     24     25     26     27     28 28.254     29     34     35     36     37     38     39  39.12     40     42     44 
-#>      3      2      4      1      4     11      4      6      2      1      1      4      7      3      2      3      6      1      9      2      6 
-#>     45     46     48     51     52 
-#>      3      4      3      2      6
+#>  -9999     12     22 23.888     24     25     26     27     28 28.254     29     34     35     36     37     38     39  39.12 
+#>      3      2      4      1      4     11      4      6      2      1      1      4      7      3      2      3      6      1 
+#>     40     42     44     45     46     48     51     52 
+#>      9      2      6      3      4      3      2      6
 ```
 
 We can also use this awareness function to grep any variables that are
@@ -3328,12 +965,12 @@ variables.
 ``` r
 dictionary_search(DD.dict.H, search.term=c("skinfold"))
 #> # A tibble: 2 × 22
-#>   VARNAME VARDESC   DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES ...18 ...19 ...20 ...21
-#>   <chr>   <chr>     <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr>  <chr> <chr> <chr> <chr>
-#> 1 ABD_SKF Abdomina… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999… <NA>  <NA>  <NA>  <NA> 
-#> 2 SUP_SKF Supraili… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999… <NA>  <NA>  <NA>  <NA> 
-#> # … with 1 more variable: ...22 <chr>, and abbreviated variable names ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID,
-#> #   ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY, ⁸​COLLINTERVAL
+#>   VARNAME VARDESC   DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES
+#>   <chr>   <chr>     <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr> 
+#> 1 ABD_SKF Abdomina… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999…
+#> 2 SUP_SKF Supraili… NA      inte… mm       NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999…
+#> # … with 5 more variables: ...18 <chr>, ...19 <chr>, ...20 <chr>, ...21 <chr>, ...22 <chr>, and abbreviated variable names
+#> #   ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY, ⁸​COLLINTERVAL
 ```
 
 Above we see that both abdominal and suprailiac skinfold thickness are
@@ -3343,10 +980,10 @@ measured to the nearest mm.
 ``` r
 table(DS.data.H$ABD_SKF)
 #> 
-#> -9999    14    18    21    22    23    24    25    26    27    28    29    30    31    32    34    35    36    38    39    40    41    42    45    51 
-#>     3     1     2     2     1     4    11    22     4     1     6     4     2     3     2     5     4     5     6     2     1     1     1     1     1 
-#>    54    61    65    68 
-#>     1     2     1     1
+#> -9999    14    18    21    22    23    24    25    26    27    28    29    30    31    32    34    35    36    38    39    40 
+#>     3     1     2     2     1     4    11    22     4     1     6     4     2     3     2     5     4     5     6     2     1 
+#>    41    42    45    51    54    61    65    68 
+#>     1     1     1     1     1     2     1     1
 ```
 
 While `ABD_SKF` appears to be a true integer, `SUP_SKF` appears to have
@@ -3363,23 +1000,23 @@ data(ExampleN)
 ``` r
 d5_report <- check_report(DD.dict.N, DS.data.N)
 #> # A tibble: 15 × 3
-#>    Function            Status        Message                                                                                                            
-#>    <chr>               <chr>         <chr>                                                                                                              
-#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.                        
-#>  2 pkg_field_check     Passed        Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.                           
-#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.                                       
-#>  4 name_check          Failed        ERROR: the variable names match between the data dictionary and the data, but they are in the wrong order. Conside…
-#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                                             
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                                                       
-#>  7 NA_check            Not attempted ERROR: Required pre-check name_check failed.                                                                       
-#>  8 type_check          Passed        Passed: All TYPE entries found are accepted by dbGaP per submission instructions.                                  
-#>  9 values_check        Failed        ERROR: at least one VALUES check flagged potentials issues. See Information for more details.                      
-#> 10 integer_check       Not attempted ERROR: Required pre-check name_check failed.                                                                       
-#> 11 decimal_check       Not attempted ERROR: Required pre-check name_check failed.                                                                       
-#> 12 misc_format_check   Failed        ERROR: at least one check failed.                                                                                  
-#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                                                
-#> 14 minmax_check        Not attempted ERROR: Required pre-check name_check failed.                                                                       
-#> 15 missing_value_check Not attempted ERROR: Required pre-check name_check failed.                                                                       
+#>    Function            Status        Message                                                                                    
+#>    <chr>               <chr>         <chr>                                                                                      
+#>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, UNITS, and VALUES present in the data dictionary.
+#>  2 pkg_field_check     Passed        Passed: package-level required fields TYPE, MIN, and MAX present in the data dictionary.   
+#>  3 dimension_check     Passed        Passed: the variable count matches between the data dictionary and the data.               
+#>  4 name_check          Failed        ERROR: the variable names match between the data dictionary and the data, but they are in …
+#>  5 id_check            Passed        Passed: All ID variable checks passed.                                                     
+#>  6 row_check           Passed        Passed: no blank or duplicate rows detected.                                               
+#>  7 NA_check            Not attempted ERROR: Required pre-check name_check failed.                                               
+#>  8 type_check          Passed        Passed: All TYPE entries found are accepted by dbGaP per submission instructions.          
+#>  9 values_check        Failed        ERROR: at least one VALUES check flagged potentials issues. See Information for more detai…
+#> 10 integer_check       Not attempted ERROR: Required pre-check name_check failed.                                               
+#> 11 decimal_check       Not attempted ERROR: Required pre-check name_check failed.                                               
+#> 12 misc_format_check   Failed        ERROR: at least one check failed.                                                          
+#> 13 description_check   Failed        ERROR: missing and duplicate descriptions found in data dictionary.                        
+#> 14 minmax_check        Not attempted ERROR: Required pre-check name_check failed.                                               
+#> 15 missing_value_check Not attempted ERROR: Required pre-check name_check failed.                                               
 #> --------------------
 #> name_check: Failed 
 #> ERROR: the variable names match between the data dictionary and the data, but they are in the wrong order. Consider using reorder_dictionary function to automatically reorder the dictionary so that you can continue working through the checks. 
@@ -3402,16 +1039,26 @@ d5_report <- check_report(DD.dict.N, DS.data.N)
 #> values_check: Failed 
 #> ERROR: at least one VALUES check flagged potentials issues. See Information for more details. 
 #> $values_check.Info
-#>    column_name values.check            vname                   type                                                problematic_description
-#> 4      VALUES3        FALSE         CUFFSIZE integer, encoded value                                                          2 means large
-#> 6       VALUES        FALSE              HTN integer, encoded value                                                         0 indicates no
-#> 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value Between 1 and 10 with higher values indicating better perceived health
-#> 9      VALUES5        FALSE               28 integer, encoded value                                                       5 = a great deal
-#> 10     VALUES4        FALSE               28 integer, encoded value                                                        4 = quite a bit
-#> 12     VALUES2        FALSE               16 integer, encoded value                                                              1 =medium
-#> 14      VALUES        FALSE           RESIST integer, encoded value                                                                   <NA>
-#> 15      VALUES        FALSE        SAMPLE_ID                integer                                                    -9999=missing value
-#> 16      VALUES        FALSE              SEX                integer                                                                 0=male
+#>    column_name values.check            vname                   type
+#> 4      VALUES3        FALSE         CUFFSIZE integer, encoded value
+#> 6       VALUES        FALSE              HTN integer, encoded value
+#> 7       VALUES        FALSE PERCEIVED_HEALTH integer, encoded value
+#> 9      VALUES5        FALSE               28 integer, encoded value
+#> 10     VALUES4        FALSE               28 integer, encoded value
+#> 12     VALUES2        FALSE               16 integer, encoded value
+#> 14      VALUES        FALSE           RESIST integer, encoded value
+#> 15      VALUES        FALSE        SAMPLE_ID                integer
+#> 16      VALUES        FALSE              SEX                integer
+#>                                                   problematic_description
+#> 4                                                           2 means large
+#> 6                                                          0 indicates no
+#> 7  Between 1 and 10 with higher values indicating better perceived health
+#> 9                                                        5 = a great deal
+#> 10                                                        4 = quite a bit
+#> 12                                                              1 =medium
+#> 14                                                                   <NA>
+#> 15                                                    -9999=missing value
+#> 16                                                                 0=male
 #>                                                                         check
 #> 4                  Check 1: Is an equals sign present for all values columns?
 #> 6                  Check 1: Is an equals sign present for all values columns?
@@ -3755,273 +1402,31 @@ results.list <- value_missing_table(DD.dict.B, DS.data.B, non.NA.missing.codes =
 #> 
 #> $Information
 #> # A tibble: 7 × 4
-#>   check.name                     check.description                                                    check.status details          
-#>   <chr>                          <chr>                                                                <chr>        <named list>     
-#> 1 Check A: In M, Not in D        "All missing value codes are in the data"                            Flag         <tibble [6 × 7]> 
-#> 2 Check B: In V, Not in D        "All value codes are in the data"                                    Flag         <tibble [2 × 6]> 
-#> 3 Check C: In M, Not in V        "All missing value codes are in the VALUES"                          Flag         <tibble [5 × 6]> 
-#> 4 Check D: In M & in D, not in V "All missing value codes are in the data and in values"              Flag         <tibble [1 × 3]> 
-#> 5 Check E: V NOT in M, NOT in D  "All value codes no defined as a missing value code are in the data" Passed       <chr [1]>        
-#> 6 Awareness: NsetD vs. NsetV     "Size of Set D vs size of set V"                                     Info         <tibble [18 × 5]>
-#> 7 Awareness: N_DnotM vs. N_VnotM "Size of Set D\\M vs size of set V\\M"                               Info         <tibble [17 × 6]>
+#>   check.name                     check.description                                                    check.status details     
+#>   <chr>                          <chr>                                                                <chr>        <named list>
+#> 1 Check A: In M, Not in D        "All missing value codes are in the data"                            Flag         <tibble>    
+#> 2 Check B: In V, Not in D        "All value codes are in the data"                                    Flag         <tibble>    
+#> 3 Check C: In M, Not in V        "All missing value codes are in the VALUES"                          Flag         <tibble>    
+#> 4 Check D: In M & in D, not in V "All missing value codes are in the data and in values"              Flag         <tibble>    
+#> 5 Check E: V NOT in M, NOT in D  "All value codes no defined as a missing value code are in the data" Passed       <chr [1]>   
+#> 6 Awareness: NsetD vs. NsetV     "Size of Set D vs size of set V"                                     Info         <tibble>    
+#> 7 Awareness: N_DnotM vs. N_VnotM "Size of Set D\\M vs size of set V\\M"                               Info         <tibble>
 results <- results.list$report
 ```
 
 #### 6.1.2.1 Check A: If the user defines a missing value code that is not present in the data (In Set M and Not in Set D).
 
-<table>
-<caption>
+| VARNAME              | AllMInD | NsetD | NsetM | NsetDAndSetM | MNotInD | MInD |
+|:---------------------|:--------|------:|------:|-------------:|:--------|:-----|
+| SEX                  | FALSE   |     2 |     1 |            0 | -9999   |      |
+| LENGTH_SMOKING_YEARS | FALSE   |    12 |     1 |            0 | -9999   |      |
+| HEART_RATE           | FALSE   |    44 |     1 |            0 | -9999   |      |
+| SOCIAL_SUPPORT       | FALSE   |     5 |     1 |            0 | -9999   |      |
+| PERCEIVED_CONFLICT   | FALSE   |    24 |     1 |            0 | -9999   |      |
+| PERCEIVED_HEALTH     | FALSE   |    10 |     1 |            0 | -9999   |      |
 
 Table Check A: List of variables for which user-defined missing value
 code is not present in the data.
-
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-
-VARNAME
-
-</th>
-<th style="text-align:left;">
-
-AllMInD
-
-</th>
-<th style="text-align:right;">
-
-NsetD
-
-</th>
-<th style="text-align:right;">
-
-NsetM
-
-</th>
-<th style="text-align:right;">
-
-NsetDAndSetM
-
-</th>
-<th style="text-align:left;">
-
-MNotInD
-
-</th>
-<th style="text-align:left;">
-
-MInD
-
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-
-SEX
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-LENGTH_SMOKING_YEARS
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-12
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-HEART_RATE
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-44
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-SOCIAL_SUPPORT
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-5
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-PERCEIVED_CONFLICT
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-24
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-PERCEIVED_HEALTH
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-10
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-</tbody>
-</table>
 
 The above table lists the variables for which the user-defined missing
 value code of `-9999` is not present in the data. These are not
@@ -4056,114 +1461,13 @@ detected in the data (e.g., in this example, 0).
 
 #### 6.1.2.2 Check B: If a VALUES entry defines an encoded code value, but that value is not present in the data (In Set V and Not in Set D).
 
-<table>
-<caption>
+| VARNAME              | AllVsInD | NsetD | NsetV | NsetDAndSetV | VsNotInD |
+|:---------------------|:---------|------:|------:|-------------:|:---------|
+| LENGTH_SMOKING_YEARS | FALSE    |    12 |     2 |            1 | -9999    |
+| HEART_RATE           | FALSE    |    44 |     1 |            0 | -9999    |
 
 Table Check B: List of variables for which a VALUES entry defines an
 encoded code value, but that value is not present in the data.
-
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-
-VARNAME
-
-</th>
-<th style="text-align:left;">
-
-AllVsInD
-
-</th>
-<th style="text-align:right;">
-
-NsetD
-
-</th>
-<th style="text-align:right;">
-
-NsetV
-
-</th>
-<th style="text-align:right;">
-
-NsetDAndSetV
-
-</th>
-<th style="text-align:left;">
-
-VsNotInD
-
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-
-LENGTH_SMOKING_YEARS
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-12
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-HEART_RATE
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-44
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-</tr>
-</tbody>
-</table>
 
 The above table lists variables for which a VALUES entry defines an
 encoded value (i.e., value=meaning; e.g., 0=male), but that value is not
@@ -4196,26 +1500,26 @@ table(DS.data.B$LENGTH_SMOKING_YEARS)
 #>    84     1     1     1     1     1     3     2     2     1     2     1
 dictionary_search(DD.dict.B, search.term=c("LENGTH_SMOKING_YEARS"), search.column=c("VARNAME"))
 #> # A tibble: 1 × 21
-#>   VARNAME   VARDESC DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES ...18 ...19 ...20 ...21
-#>   <chr>     <chr>   <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr>  <chr> <chr> <chr> <chr>
-#> 1 LENGTH_S… How ma… NA      deci… years    NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999… -444… <NA>  <NA>  <NA> 
-#> # … with abbreviated variable names ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY,
-#> #   ⁸​COLLINTERVAL
+#>   VARNAME   VARDESC DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES
+#>   <chr>     <chr>   <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr> 
+#> 1 LENGTH_S… How ma… NA      deci… years    NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999…
+#> # … with 4 more variables: ...18 <chr>, ...19 <chr>, ...20 <chr>, ...21 <chr>, and abbreviated variable names ¹​RESOLUTION,
+#> #   ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY, ⁸​COLLINTERVAL
 
 # Heart rate 
 table(DS.data.B$HEART_RATE)
 #> 
-#>  38  45  46  47  48  49  50  52  54  55  56  57  58  59  60  64  65  67  68  72  73  74  75  76  78  79  82  83  85  86  90  91  95  96  98 100 105 107 
-#>   1   5   1   1   2   1   1   2   2   1   3   1   5   1   1   1   8   1   2   2   1   1   9   3   1   1   1   1   9   2   2   1  13   1   1   1   1   1 
-#> 110 113 114 115 125 135 
-#>   3   1   1   1   1   1
+#>  38  45  46  47  48  49  50  52  54  55  56  57  58  59  60  64  65  67  68  72  73  74  75  76  78  79  82  83  85  86  90  91 
+#>   1   5   1   1   2   1   1   2   2   1   3   1   5   1   1   1   8   1   2   2   1   1   9   3   1   1   1   1   9   2   2   1 
+#>  95  96  98 100 105 107 110 113 114 115 125 135 
+#>  13   1   1   1   1   1   3   1   1   1   1   1
 dictionary_search(DD.dict.B, search.term=c("HEART_RATE"), search.column=c("VARNAME"))
 #> # A tibble: 1 × 21
-#>   VARNAME   VARDESC DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES ...18 ...19 ...20 ...21
-#>   <chr>     <chr>   <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr>  <chr> <chr> <chr> <chr>
-#> 1 HEART_RA… Heart … NA      inte… beat…    NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999… <NA>  <NA>  <NA>  <NA> 
-#> # … with abbreviated variable names ¹​RESOLUTION, ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY,
-#> #   ⁸​COLLINTERVAL
+#>   VARNAME   VARDESC DOCFILE TYPE  UNITS   MIN   MAX RESOL…¹ COMME…² COMME…³ VARIA…⁴ SOURC…⁵ VARIA…⁶ UNIQU…⁷ COLLI…⁸ ORDER VALUES
+#>   <chr>     <chr>   <lgl>   <chr> <chr> <dbl> <dbl> <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl>   <lgl> <chr> 
+#> 1 HEART_RA… Heart … NA      inte… beat…    NA    NA NA      NA      NA      NA      NA      NA      NA      NA      NA    -9999…
+#> # … with 4 more variables: ...18 <chr>, ...19 <chr>, ...20 <chr>, ...21 <chr>, and abbreviated variable names ¹​RESOLUTION,
+#> #   ²​COMMENT1, ³​COMMENT2, ⁴​VARIABLE_SOURCE, ⁵​SOURCE_VARIABLE_ID, ⁶​VARIABLE_MAPPING, ⁷​UNIQUEKEY, ⁸​COLLINTERVAL
 ```
 
 Looking at this more closely, we see a missing value code of -4444, not
@@ -4226,210 +1530,16 @@ complete variable with no missing data. -9999 could be removed as a
 
 #### 6.1.2.3 Check C: If the user defines a missing value code that is not defined in a VALUES entry (In Set M and Not in Set V).
 
-<table>
-<caption>
+| VARNAME            | AllSetMInSetV | NsetV | NsetM | NsetMAndSetV | SetMsNotInSetV |
+|:-------------------|:--------------|------:|------:|-------------:|:---------------|
+| SEX                | FALSE         |     2 |     1 |            0 | -9999          |
+| CUFFSIZE           | FALSE         |     4 |     1 |            0 | -9999          |
+| SOCIAL_SUPPORT     | FALSE         |     5 |     1 |            0 | -9999          |
+| PERCEIVED_CONFLICT | FALSE         |     2 |     1 |            0 | -9999          |
+| PERCEIVED_HEALTH   | FALSE         |     2 |     1 |            0 | -9999          |
 
 Table Check C: List of variables for which user-defined missing value
 code(s) are not defined in a VALUES entry.
-
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-
-VARNAME
-
-</th>
-<th style="text-align:left;">
-
-AllSetMInSetV
-
-</th>
-<th style="text-align:right;">
-
-NsetV
-
-</th>
-<th style="text-align:right;">
-
-NsetM
-
-</th>
-<th style="text-align:right;">
-
-NsetMAndSetV
-
-</th>
-<th style="text-align:left;">
-
-SetMsNotInSetV
-
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-
-SEX
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-CUFFSIZE
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-4
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-SOCIAL_SUPPORT
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-5
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-PERCEIVED_CONFLICT
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-
-PERCEIVED_HEALTH
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:right;">
-
-2
-
-</td>
-<td style="text-align:right;">
-
-1
-
-</td>
-<td style="text-align:right;">
-
-0
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-</tr>
-</tbody>
-</table>
 
 Interpretation of table column names:  
 –\> `AllSetMInSetV`: Variable-specific check result communicating if
@@ -4446,53 +1556,13 @@ in the VALUES entries (e.g., here -9999).
 
 #### 6.1.2.4 Check D: If a user-defined missing value code is present in the data for a given variable, but that variable does not have a corresponding VALUES entry (M in Set D and Not in Set V).
 
-<table>
-<caption>
+| VARNAME  | All_MInSetD_InSetV | setMInDNotInV |
+|:---------|:-------------------|:--------------|
+| CUFFSIZE | FALSE              | -9999         |
 
 Table Check D: List of variables for which a user-defined missing value
 code is present in the data for a given variable, but that variable does
 not have a corresponding VALUES entry.
-
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-
-VARNAME
-
-</th>
-<th style="text-align:left;">
-
-All_MInSetD_InSetV
-
-</th>
-<th style="text-align:left;">
-
-setMInDNotInV
-
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-
-CUFFSIZE
-
-</td>
-<td style="text-align:left;">
-
-FALSE
-
-</td>
-<td style="text-align:left;">
-
--9999
-
-</td>
-</tr>
-</tbody>
-</table>
 
 Interpretation of table column names:  
 –\> `All_MInSetD_InSetV`: Variable-specific check result communicating
@@ -4510,32 +1580,12 @@ dbGaPCheckup!)
 
 #### 6.1.2.5 Check E: If a VALUES entry is NOT defined as a missing value code AND is NOT identified in the data. ((Set V values that are NOT in Set M) that are NOT in Set D).
 
-<table>
-<caption>
+| x      |
+|:-------|
+| Passed |
 
 Table Check E: List of variables for which a VALUES entry is NOT defined
 as a missing value code AND is NOT identified in the data
-
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-
-x
-
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-
-Passed
-
-</td>
-</tr>
-</tbody>
-</table>
 
 In our example here, all VALUES entries that are NOT defined as missing
 values codes are listed in the data - so our check passes.
@@ -4571,6 +1621,15 @@ the purposes of this vignette and ease of interpretation.
        output.path= tempdir(), open.html=TRUE)
 
 ### 6.2.1 Summary and plots
+
+    #> 
+    #> Attaching package: 'dplyr'
+    #> The following objects are masked from 'package:stats':
+    #> 
+    #>     filter, lag
+    #> The following objects are masked from 'package:base':
+    #> 
+    #>     intersect, setdiff, setequal, union
 
 ``` r
 dat_function_selected(DS.data.B, DD.dict.B, sex.split = TRUE, sex.name = "SEX", start = 3, end = 6, dataset.na=dataset.na, h.level=4)

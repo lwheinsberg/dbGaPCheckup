@@ -125,7 +125,7 @@ Other example data sets provided by dbGaP can be found at the NCBI [submission g
 In the Subject Phenotype data dictionary, each row represents a unique variable (that corresponds to columns in the data set), and each column represents information about that variable (see example below). For more detailed data dictionary formatting instructions, visit the NCBI [submission guide](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/) and see heading "APPENDIX for Data Dictionary (DD) File Descriptions and Specifications", which includes a table of required and suggested column headers and descriptions, as well as an example file called "6b_SampleAttributes_DD.xlsx". 
 
 ```{r dd, echo=FALSE, message=FALSE}
-DD.path <- system.file("extdata", "3b_SSM_DD_Example1.xlsx",
+DD.path <- system.file("extdata", "DD_Example1.xlsx",
    package = "dbGaPCheckup", mustWork=TRUE)
 DD.dict <- readxl::read_xlsx(DD.path)
 ```
