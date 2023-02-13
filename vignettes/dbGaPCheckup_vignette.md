@@ -117,13 +117,13 @@ introduction to the package.
 | dimension_check         | check                 | Checks that the number of variables match between the data set and data dictionary.                                                                                                                                                                                                                                                   |
 | name_check              | check                 | Checks that variable names match between the data set and data dictionary.                                                                                                                                                                                                                                                            |
 | id_check                | check                 | Checks that the first column of the data set is the primary ID for each participant labeled as SUBJECT_ID, that values contain no illegal characters or padded zeros, and that each participant has an ID.                                                                                                                            |
-| row_check               | check                 | Checks for empty or duplicate rows in the data set.                                                                                                                                                                                                                                                                                   |
+| row_check               | check                 | Checks for empty or duplicate rows in the data set and data dictionary.                                                                                                                                                                                                                                                               |
 | NA_check                | check                 | Checks for NA values in the data set and, if NA values are present, also checks for an encoded NA value=meaning description.                                                                                                                                                                                                          |
 | type_check              | check                 | If a TYPE field exists, this function checks for any TYPE entries that aren’t allowable per dbGaP instructions.                                                                                                                                                                                                                       |
 | values_check            | check                 | Checks for potential errors in the VALUES columns by ensuring (1) required format of `VALUE=MEANING` (e.g., 0=No or 1=Yes); (2) no leading/trailing spaces near the equals sign (e.g., 0=No vs. 0 = No); (3) all variables of TYPE encoded have VALUES entries; and (4) all variables with VALUES entries are listed as TYPE encoded. |
 | integer_check           | check                 | Checks for variables that appear to be incorrectly listed as TYPE integer.                                                                                                                                                                                                                                                            |
 | decimal_check           | check                 | Checks for variables that appear to be incorrectly listed as TYPE decimal.                                                                                                                                                                                                                                                            |
-| misc_format_check       | check                 | Checks miscellaneous dbGaP formatting requirements to ensure (1) no duplicate variable names; (2) variable names do not contain “dbgap”; (3) there are no duplicate column names in the dictionary; and (4) column names falling after VALUES column are unnamed.                                                                     |
+| misc_format_check       | check                 | Checks miscellaneous dbGaP formatting requirements to ensure (1) no empty variable names; (2) no duplicate variable names; (3) variable names do not contain “dbgap”; (4) there are no duplicate column names in the dictionary; and (5) column names falling after `VALUES` column are unnamed.                                      |
 | description_check       | check                 | Checks for unique and non-missing descriptions (VARDESC) for every variable in the data dictionary.                                                                                                                                                                                                                                   |
 | minmax_check            | check                 | Checks for variables that have values exceeding the listed MIN or MAX.                                                                                                                                                                                                                                                                |
 | missing_value_check     | check                 | Checks for variables that have non-encoded missing value codes.                                                                                                                                                                                                                                                                       |
@@ -544,16 +544,18 @@ e2_report <- check_report(DD.dict.L, DS.data.L)
 #> misc_format_check: Failed 
 #> ERROR: at least one check failed. 
 #> $misc_formatting_check.Info
-#> # A tibble: 7 × 6
+#> # A tibble: 9 × 6
 #>   check.name check.description                           check.status details col.name correct
-#>   <chr>      <chr>                                       <chr>        <chr>   <chr>    <lgl>  
-#> 1 Check 1    Duplicate variable name check               Passed       <NA>    <NA>     NA     
-#> 2 Check 2    Check for use of `dbgap` in variable names  Passed       <NA>    <NA>     NA     
-#> 3 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES2  FALSE  
-#> 4 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES3  FALSE  
-#> 5 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES4  FALSE  
-#> 6 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES5  FALSE  
-#> 7 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES6  FALSE  
+#>   <chr>      <chr>                                       <chr>        <lgl>   <chr>    <lgl>  
+#> 1 Check 1    Empty variable name check                   Passed       NA      <NA>     NA     
+#> 2 Check 2    Duplicate variable name check               Passed       NA      <NA>     NA     
+#> 3 Check 3    Check for use of `dbgap` in variable names  Passed       NA      <NA>     NA     
+#> 4 Check 4    Duplicate dictionary column name check      Passed       NA      <NA>     NA     
+#> 5 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES2  FALSE  
+#> 6 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES3  FALSE  
+#> 7 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES4  FALSE  
+#> 8 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES5  FALSE  
+#> 9 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES6  FALSE  
 #> 
 #> --------------------
 #> description_check: Failed 
@@ -712,16 +714,18 @@ e2_report.v2 <- check_report(DD.dict.L, DS.data_updated,
 #> misc_format_check: Failed 
 #> ERROR: at least one check failed. 
 #> $misc_formatting_check.Info
-#> # A tibble: 7 × 6
+#> # A tibble: 9 × 6
 #>   check.name check.description                           check.status details col.name correct
-#>   <chr>      <chr>                                       <chr>        <chr>   <chr>    <lgl>  
-#> 1 Check 1    Duplicate variable name check               Passed       <NA>    <NA>     NA     
-#> 2 Check 2    Check for use of `dbgap` in variable names  Passed       <NA>    <NA>     NA     
-#> 3 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES2  FALSE  
-#> 4 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES3  FALSE  
-#> 5 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES4  FALSE  
-#> 6 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES5  FALSE  
-#> 7 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES6  FALSE  
+#>   <chr>      <chr>                                       <chr>        <lgl>   <chr>    <lgl>  
+#> 1 Check 1    Empty variable name check                   Passed       NA      <NA>     NA     
+#> 2 Check 2    Duplicate variable name check               Passed       NA      <NA>     NA     
+#> 3 Check 3    Check for use of `dbgap` in variable names  Passed       NA      <NA>     NA     
+#> 4 Check 4    Duplicate dictionary column name check      Passed       NA      <NA>     NA     
+#> 5 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES2  FALSE  
+#> 6 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES3  FALSE  
+#> 7 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES4  FALSE  
+#> 8 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES5  FALSE  
+#> 9 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES6  FALSE  
 #> 
 #> --------------------
 #> description_check: Failed 
@@ -1074,16 +1078,18 @@ d5_report <- check_report(DD.dict.N, DS.data.N)
 #> misc_format_check: Failed 
 #> ERROR: at least one check failed. 
 #> $misc_formatting_check.Info
-#> # A tibble: 7 × 6
+#> # A tibble: 9 × 6
 #>   check.name check.description                           check.status details col.name correct
-#>   <chr>      <chr>                                       <chr>        <chr>   <chr>    <lgl>  
-#> 1 Check 1    Duplicate variable name check               Passed       <NA>    <NA>     NA     
-#> 2 Check 2    Check for use of `dbgap` in variable names  Passed       <NA>    <NA>     NA     
-#> 3 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES2  FALSE  
-#> 4 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES3  FALSE  
-#> 5 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES4  FALSE  
-#> 6 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES5  FALSE  
-#> 7 Check 4    Column names after `VALUES` should be empty Failed       <NA>    VALUES6  FALSE  
+#>   <chr>      <chr>                                       <chr>        <lgl>   <chr>    <lgl>  
+#> 1 Check 1    Empty variable name check                   Passed       NA      <NA>     NA     
+#> 2 Check 2    Duplicate variable name check               Passed       NA      <NA>     NA     
+#> 3 Check 3    Check for use of `dbgap` in variable names  Passed       NA      <NA>     NA     
+#> 4 Check 4    Duplicate dictionary column name check      Passed       NA      <NA>     NA     
+#> 5 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES2  FALSE  
+#> 6 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES3  FALSE  
+#> 7 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES4  FALSE  
+#> 8 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES5  FALSE  
+#> 9 Check 5    Column names after `VALUES` should be empty Failed       NA      VALUES6  FALSE  
 #> 
 #> --------------------
 #> description_check: Failed 
@@ -1175,12 +1181,14 @@ misc_format_check(DD.dict.A, DS.data.A)
 #> [1] "Passed: no check-specific formatting issues identified."
 #> 
 #> $Information
-#> # A tibble: 3 × 4
+#> # A tibble: 5 × 4
 #>   check.name check.description                           check.status details
-#>   <chr>      <chr>                                       <chr>        <chr>  
-#> 1 Check 1    Duplicate variable name check               Passed       <NA>   
-#> 2 Check 2    Check for use of `dbgap` in variable names  Passed       <NA>   
-#> 3 Check 4    Column names after `VALUES` should be empty Passed       <NA>
+#>   <chr>      <chr>                                       <chr>        <lgl>  
+#> 1 Check 1    Empty variable name check                   Passed       NA     
+#> 2 Check 2    Duplicate variable name check               Passed       NA     
+#> 3 Check 3    Check for use of `dbgap` in variable names  Passed       NA     
+#> 4 Check 4    Duplicate dictionary column name check      Passed       NA     
+#> 5 Check 5    Column names after `VALUES` should be empty Passed       NA
 ```
 
 ``` r
@@ -1622,6 +1630,15 @@ the purposes of this vignette and ease of interpretation.
        output.path= tempdir(), open.html=TRUE)
 
 ### 6.2.1 Summary and plots
+
+    #> 
+    #> Attaching package: 'dplyr'
+    #> The following objects are masked from 'package:stats':
+    #> 
+    #>     filter, lag
+    #> The following objects are masked from 'package:base':
+    #> 
+    #>     intersect, setdiff, setequal, union
 
 ``` r
 dat_function_selected(DS.data.B, DD.dict.B, sex.split = TRUE, sex.name = "SEX", start = 3, end = 6, dataset.na=dataset.na, h.level=4)

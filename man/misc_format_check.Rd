@@ -17,7 +17,7 @@ misc_format_check(DD.dict, DS.data, verbose = TRUE)
 Tibble, returned invisibly, containing: (1) Time (time stamp); (2) Name (name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (Names of variables that fail one of these checks).
 }
 \description{
-This function checks miscellaneous dbGaP formatting requirements to ensure (1) no duplicate variable names; (2) variable names do not contain "dbgap"; (3) there are no duplicate column names in the dictionary; and (4) column names falling after \code{VALUES} column are unnamed.
+This function checks miscellaneous dbGaP formatting requirements to ensure (1) no empty variable names; (2) no duplicate variable names; (3) variable names do not contain "dbgap"; (4) there are no duplicate column names in the dictionary; and (5) column names falling after \code{VALUES} column are unnamed.
 }
 \examples{
 # Example 1: Fail check 
