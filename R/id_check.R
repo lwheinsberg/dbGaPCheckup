@@ -1,10 +1,10 @@
 #' @title ID Check
-#' @description This function checks that the first column of the data set is the primary ID for each participant labeled as `SUBJECT_ID` and that values contain no illegal characters or padded zeros.
+#' @description This function checks that the first column of the data set is the primary ID for each participant labeled as `SUBJECT_ID`, that values contain no illegal characters or padded zeros, and that each participant has an ID.
 #' @param DS.data Data set.
 #' @param verbose When TRUE, the function prints the Message out, as well as more detailed diagnostic information.
 #' @return Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (Detailed information about the four ID checks that were performed).
 #' @export
-#' @details  Subject IDs should be an integer or string value. Integers should not have zero padding. IDs should not have spaces. Specifically, only the following characters can be included in the ID: English letters, Arabic numerals, period (.), hyphen (-), underscore (_), at symbol (@), and the pound sign (#). 
+#' @details  Subject IDs should be an integer or string value. Integers should not have zero padding. IDs should not have spaces. Specifically, only the following characters can be included in the ID: English letters, Arabic numerals, period (.), hyphen (-), underscore (_), at symbol (@), and the pound sign (#). All IDs should be filled in (i.e., no misisng IDs are allowed).
 #' @examples
 #' # Example 1: Fail check, 'SUBJECT_ID' not present
 #' data(ExampleO)
@@ -27,12 +27,13 @@ id_check <- function(DS.data, verbose=TRUE){
 
   # Function contains 5 checks to meet dbGaP requirements that "The primary
   # ID in each subject phenotypes file should be the SUBJECT_ID."
-  # 1. Is column 1 SUBJECT_ID
+  # 1. Is column 1 SUBJECT_ID?
   # 2. If not, is SUBJECT_ID in the data set?
   # 3. SUBJECT_ID can contain only the following characters: English letters,
   # Arabic numerals, period (.), hyphen (-), underscore (_), at symbol (@), 
   # and the pound sign (#).
-  # 4. Zero padding is not allowed for SUBJECT_ID 
+  # 4. Zero padding is not allowed for SUBJECT_ID.
+  # 5. All IDs are filled in (missing values not allowed).
   
 
   # Check 1: Column 1 is labeled as 'SUBJECT_ID'
@@ -125,8 +126,29 @@ id_check <- function(DS.data, verbose=TRUE){
   }
   check4.final <- tibble(check.name, check.description, check.status, details)
   
+  # Check 5: If checks 1 or 2 pass, check that all IDs are filled in. 
+  check.name <- "Check 5"
+  check.description <- "No missing values for 'SUBJECT_ID'."
+  if (check1==TRUE | check2==TRUE) {
+    trouble_rows <- which(is.na(DS.data$SUBJECT_ID))
+    if (length(trouble_rows)==0) {
+      check5 <- TRUE
+      check.status <- "Passed"
+      details <- paste0("No missing values detected for 'SUBJECT_ID'.")
+    } else {
+      check5 <- FALSE
+      check.status <- "Failed"
+      details <- paste0("Missing values detected in 'SUBJECT_ID' for ", length(trouble_rows), " row(s).")
+    }
+  } else {
+    check5 <- FALSE
+    check.status <- "Failed"
+    details <- "Checks 1 and 2 failed, so Check 5 was not performed."
+  }
+  check5.final <- tibble(check.name, check.description, check.status, details)
+  
   # Create information summary
-  Information <- bind_rows(check1.final, check2.final, check3.final, check4.final)
+  Information <- bind_rows(check1.final, check2.final, check3.final, check4.final, check5.final)
 
   # Compile report for return to user
   Time <- Sys.time()

@@ -15,10 +15,10 @@ id_check(DS.data, verbose = TRUE)
 Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (Detailed information about the four ID checks that were performed).
 }
 \description{
-This function checks that the first column of the data set is the primary ID for each participant labeled as \code{SUBJECT_ID} and that values contain no illegal characters or padded zeros.
+This function checks that the first column of the data set is the primary ID for each participant labeled as \code{SUBJECT_ID}, that values contain no illegal characters or padded zeros, and that each participant has an ID.
 }
 \details{
-Subject IDs should be an integer or string value. Integers should not have zero padding. IDs should not have spaces. Specifically, only the following characters can be included in the ID: English letters, Arabic numerals, period (.), hyphen (-), underscore (_), at symbol (@), and the pound sign (#).
+Subject IDs should be an integer or string value. Integers should not have zero padding. IDs should not have spaces. Specifically, only the following characters can be included in the ID: English letters, Arabic numerals, period (.), hyphen (-), underscore (_), at symbol (@), and the pound sign (#). All IDs should be filled in (i.e., no misisng IDs are allowed).
 }
 \examples{
 # Example 1: Fail check, 'SUBJECT_ID' not present
