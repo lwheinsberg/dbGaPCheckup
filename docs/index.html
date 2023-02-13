@@ -117,12 +117,12 @@
 <tr class="odd">
 <td align="left">id_check</td>
 <td align="left">check</td>
-<td align="left">Checks that the first column of the data set is the primary ID for each participant labeled as SUBJECT_ID and that the values contain no spaces, padded zeros, or other illegal characters.</td>
+<td align="left">Checks that the first column of the data set is the primary ID for each participant labeled as SUBJECT_ID, that values contain no illegal characters or padded zeros, and that each participant has an ID.</td>
 </tr>
 <tr class="even">
 <td align="left">row_check</td>
 <td align="left">check</td>
-<td align="left">Checks for empty or duplicate rows in the data set.</td>
+<td align="left">Checks for empty or duplicate rows in the data set and data dictionary.</td>
 </tr>
 <tr class="odd">
 <td align="left">NA_check</td>
@@ -152,7 +152,7 @@
 <tr class="even">
 <td align="left">misc_format_check</td>
 <td align="left">check</td>
-<td align="left">Checks miscellaneous dbGaP formatting requirements to ensure (1) no duplicate variable names; (2) variable names do not contain “dbgap”; (3) there are no duplicate column names in the dictionary; and (4) column names falling after VALUES column are unnamed.</td>
+<td align="left">Checks miscellaneous dbGaP formatting requirements to ensure (1) no empty variable names; (2) no duplicate variable names; (3) variable names do not contain “dbgap”; (4) there are no duplicate column names in the dictionary; and (5) column names falling after <code>VALUES</code> column are unnamed.</td>
 </tr>
 <tr class="odd">
 <td align="left">description_check</td>
@@ -182,7 +182,7 @@
 <tr class="even">
 <td align="left">name_correct</td>
 <td align="left">utility</td>
-<td align="left">Updates the data dictionary so variable names match those listed in the data set.</td>
+<td align="left">Updates the data set so variable names match those listed in the data dictionary.</td>
 </tr>
 <tr class="odd">
 <td align="left">reorder_dictionary</td>
@@ -277,7 +277,7 @@
 <span><span class="va">DS.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">DS.path</span>, header<span class="op">=</span><span class="cn">TRUE</span>, sep<span class="op">=</span><span class="st">"\t"</span>, quote<span class="op">=</span><span class="st">""</span>, as.is <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Read in your Subject Phenotype data dictionary into <code>DD.dict</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">DD.path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"3b_SSM_DD_Example2f.xlsx"</span>,</span>
+<code class="sourceCode R"><span><span class="va">DD.path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"DD_Example2f.xlsx"</span>,</span>
 <span>   package <span class="op">=</span> <span class="st">"dbGaPCheckup"</span>, mustWork<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">DD.dict</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_xlsx</a></span><span class="op">(</span><span class="va">DD.path</span><span class="op">)</span></span>
 <span><span class="co">#&gt; New names:</span></span>
@@ -352,7 +352,7 @@
 <span><span class="co">#&gt;  3 dimension_check     Passed Passed: the variable count matches between the da…</span></span>
 <span><span class="co">#&gt;  4 name_check          Passed Passed: the variable names match between the data…</span></span>
 <span><span class="co">#&gt;  5 id_check            Passed Passed: All ID variable checks passed.            </span></span>
-<span><span class="co">#&gt;  6 row_check           Passed Passed: no blank or duplicate rows detected.      </span></span>
+<span><span class="co">#&gt;  6 row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
 <span><span class="co">#&gt;  7 NA_check            Passed Passed: no NA values detected in data set.        </span></span>
 <span><span class="co">#&gt;  8 type_check          Passed Passed: All TYPE entries found are accepted by db…</span></span>
 <span><span class="co">#&gt;  9 values_check        Passed Passed: all four VALUES checks look good.         </span></span>
