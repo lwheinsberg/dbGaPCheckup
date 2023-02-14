@@ -15,22 +15,22 @@ and
 Using check_rhub(), we also checked our package on the following versions of R:
 
 * platform: linux-x86_64-fedora-clang
-* R version 4.2.2 (2022-10-31) -- "Innocent and Trusting"
+* R Under development (unstable) (2023-0213 r83816) -- "Unsuffered Consequences"
 
 and 
 
 * linux-x86_64-ubuntu-gcc
-* R version 4.2.2 (2022-10-31) -- "Innocent and Trusting"
+* R version 4.2.2 Patched (2022-11-10) -- "Innocent and Trusting"
 
 There was one NOTE specific to both linux platforms:
 
-* checking examples ... [28s/108s] NOTE
+* checking examples ... [27s/106s] NOTE
 Examples with CPU (user + system) or elapsed time > 5s
                      user system elapsed
-value_missing_table 5.262  0.004  18.939
-label_data          4.536  0.004  16.756
-complete_check      3.277  0.012  11.960
-check_report        2.375  0.008   8.746
+value_missing_table 5.101  0.007  19.765
+label_data          4.592  0.023  18.206
+complete_check      3.537  0.008  14.074
+check_report        2.507  0.000  10.118
 
   Timing was not an issue on several other test machines. 
   
@@ -39,7 +39,7 @@ And one NOTE specific to only the Fedora linux platform:
 * checking HTML version of manual ... NOTE
 Skipping checking HTML validation: no command 'tidy' found
 
-  As described [here](https://groups.google.com/g/r-sig-mac/c/7u_ivEj4zhM?pli=1), our understanding is that this is an old bug/issue which is located at the testing           environment.
+  As described [here](https://groups.google.com/g/r-sig-mac/c/7u_ivEj4zhM?pli=1), our understanding is that this is an old bug/issue which is located at the testing environment.
 
 ## Downstream dependencies
 
