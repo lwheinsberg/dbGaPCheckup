@@ -21,9 +21,13 @@ of dbGaP specific [formatting
 requirements](https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/). A
 list of the functions available can be found below.
 
-A self-archived version of the submitted (i.e., pre-peer reviewed)
-manuscript (`dbGaPCheckup_Manuscript_Pre-Review.docx`) has been added to
-this GitHub repository for accessibility.
+The software announcement for our package has been published in BMC
+Bioinformatics and is available at
+<https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-023-05200-8>.
+
+Heinsberg, L.W., Weeks, D.E. dbGaPCheckup: pre-submission checks of
+dbGaP-formatted subject phenotype files. BMC Bioinformatics 24, 77
+(2023). <https://doi.org/10.1186/s12859-023-05200-8>
 
 | Function_Name           | Function_Type         | Function_Description                                                                                                                                                                                                                                                                                                                  |
 |:------------------------|:----------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
