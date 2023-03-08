@@ -11,11 +11,13 @@ bibentry(
   year     = "2023",
   volume   = "24",
   number   = "77",
+  pubMed   = "36869285", 
   url      = "https://doi.org/10.1186/s12859-023-05200-8",
   textVersion = paste("Heinsberg LW, Weeks DE (2023).", 
   "dbGaPCheckup: pre-submission checks of dbGaP-formatted subject phenotype files.", 
   "BMC Bioinformatics, 24, 77.",
-      "URL https://doi.org/10.1186/s12859-023-05200-8."
+      "URL https://doi.org/10.1186/s12859-023-05200-8.", 
+   "PubMed PMID: 36869285; PubMed Central PMCID: PMC9985192." 
   )
 )
 
