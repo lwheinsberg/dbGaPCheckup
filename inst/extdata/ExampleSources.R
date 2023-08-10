@@ -204,9 +204,9 @@ DD.dict.R$TYPE[DD.dict.R$VARNAME=="SUBJECT_ID"] <- "string"
 DS.data.R <- DS.data.R %>% mutate(HX_DEPRESSION = recode(HX_DEPRESSION, '0' = 'no','1'='yes','-9999' = '-9999'))
 DD.dict.R$TYPE[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- "string"
 DD.dict.R$VALUES[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- "-9999=missing value"
-# Set the extra VALUES column names to blank
 DD.dict.R$`...18`[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- NA
 DD.dict.R$`...19`[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- NA
+# Set the extra VALUES column names to blank
 nval <- which(names(DD.dict.R) == "VALUES")
 names(DD.dict.R)[(nval + 1):ncol(DD.dict.R)] <- ""
-save(DD.dict.R, DS.data.R, file="data/ExampleR.rda")
+save(DD.dict.R, DS.data.R, file="ExampleR.rda")
