@@ -202,7 +202,7 @@ DS.data.R$SUBJECT_ID <- paste0("A",DS.data.R$SUBJECT_ID)
 DD.dict.R$TYPE[DD.dict.R$VARNAME=="SUBJECT_ID"] <- "string"
 # Change HX_DEPRESSION to a string
 DS.data.R <- DS.data.R %>% mutate(HX_DEPRESSION = recode(HX_DEPRESSION, '0' = 'no','1'='yes','-9999' = '-9999'))
-DD.dict.R$TYPE[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- "string"
+DD.dict.R$TYPE[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- "string, encoded value"
 DD.dict.R$VALUES[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- "-9999=missing value"
 DD.dict.R$`...18`[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- NA
 DD.dict.R$`...19`[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- NA

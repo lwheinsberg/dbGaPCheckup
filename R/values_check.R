@@ -59,6 +59,15 @@ values_check <- function(DD.dict, verbose=TRUE) {
     vcol <- which(names(DD.dict)=="VALUES")
     # Create empty object to store results in
     v.check <- NULL
+    # Create dummy names for blank-named columns beyond `VALUES`
+    DD.dict.orig <- DD.dict
+    i <- 1
+    for (col in vcol:ncol(DD.dict)) {
+      if (names(DD.dict)[col] == "") {
+        names(DD.dict)[col] = paste0("VALUES",i)
+      }
+      i <- i + 1
+    }
     # Loop through all VALUES columns to perform check
     for (col in vcol:ncol(DD.dict)) {
       # If dim=0, TRUE; else, FALSE
@@ -83,6 +92,7 @@ values_check <- function(DD.dict, verbose=TRUE) {
       # Bind each loop into final check
       v.check <- bind_rows(v.check.comb, v.check)
     }
+    DD.dict <- DD.dict.orig
     # Clean up check 1 results
     rownames(v.check) <- 1:nrow(v.check)
     v.check$check <- "Check 1: Is an equals sign present for all values columns?"
