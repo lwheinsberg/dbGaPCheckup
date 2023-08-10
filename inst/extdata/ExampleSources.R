@@ -1,7 +1,7 @@
 #' dbGaPCheckup Bundled Examples
 #' @format A variety of bundled example data sets for illustrating dbGaPCheckup function utility
 
-# Good data set/dictionary, no errors: Example A 
+# Good data set/dictionary, no errors: Examples A and R 
 # Data sets/dictionaries with errors: Examples B-P
 
 # Example A 
@@ -192,3 +192,21 @@ save(DD.dict.Q, DS.data.Q, file = "ExampleQ.rda")
 # Used in: 
 # id_first_data()
 # id_first_dict()
+
+# Example R
+library(tidyverse)
+DD.dict.R <- DD.dict.A
+DS.data.R <- DS.data.A
+# Change SUBJECT_ID to a string
+DS.data.R$SUBJECT_ID <- paste0("A",DS.data.R$SUBJECT_ID)
+DD.dict.R$TYPE[DD.dict.R$VARNAME=="SUBJECT_ID"] <- "string"
+# Change HX_DEPRESSION to a string
+DS.data.R <- DS.data.R %>% mutate(HX_DEPRESSION = recode(HX_DEPRESSION, '0' = 'no','1'='yes','-9999' = '-9999'))
+DD.dict.R$TYPE[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- "string"
+DD.dict.R$VALUES[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- "-9999=missing value"
+# Set the extra VALUES column names to blank
+DD.dict.R$`...18`[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- NA
+DD.dict.R$`...19`[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- NA
+nval <- which(names(DD.dict.R) == "VALUES")
+names(DD.dict.R)[(nval + 1):ncol(DD.dict.R)] <- ""
+save(DD.dict.R, DS.data.R, file="data/ExampleR.rda")
