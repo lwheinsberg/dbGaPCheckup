@@ -59,6 +59,17 @@ misc_format_check <- function (DD.dict, DS.data, verbose=TRUE) {
     check1.final <- tibble(check.name, check.description, check.status, details)
     
     # 2. Check for duplicate names
+    # Create dummy names for blank-named columns beyond `VALUES`
+    DD.dict.orig <- DD.dict
+    # Store number of the first VALUES column
+    vcol <- which(names(DD.dict)=="VALUES")
+    i <- 1
+    for (col in vcol:ncol(DD.dict)) {
+      if (names(DD.dict)[col] == "") {
+        names(DD.dict)[col] = paste0("VALUES",i)
+      }
+      i <- i + 1
+    }
     #if (check1=="Passed") {
     check2 <- all(!isFALSE(duplicated(DD.dict$VARNAME)))
     check2.vnames <- names(duplicated(DD.dict$VARNAME))
@@ -76,6 +87,7 @@ misc_format_check <- function (DD.dict, DS.data, verbose=TRUE) {
     #    details <- "Check 1 failed."
       }
     check2.final <- tibble(check.name, check.description, check.status, details)
+    DD.dict <- DD.dict.orig
 
     # 3. Check that "dbgap" is not used as a variable name
     # Grep dbgap out of data dictionary variable names column
@@ -93,6 +105,17 @@ misc_format_check <- function (DD.dict, DS.data, verbose=TRUE) {
     check3.final <- tibble(check.name, check.description, check.status, details)
     
     # Check 4: Check for duplicate names in DD.dict 
+    # Create dummy names for blank-named columns beyond `VALUES`
+    DD.dict.orig <- DD.dict
+    # Store number of the first VALUES column
+    vcol <- which(names(DD.dict)=="VALUES")
+    i <- 1
+    for (col in vcol:ncol(DD.dict)) {
+      if (names(DD.dict)[col] == "") {
+        names(DD.dict)[col] = paste0("VALUES",i)
+      }
+      i <- i + 1
+    }
     temp <- which(duplicated(names(DD.dict)))
     check4 <- length(temp)==0
     check4.vnames <- names(DD.dict)[duplicated(names(DD.dict))]
@@ -106,6 +129,7 @@ misc_format_check <- function (DD.dict, DS.data, verbose=TRUE) {
       details <- unique(check4.vnames)
     }
     check4.final <- tibble(check.name, check.description, check.status, details)
+    DD.dict <- DD.dict.orig
     
     # 5. Check that column names falling after `VALUES` column are blank
     if (check4.final$check.status=="Passed" & check1.final$check.status=="Passed") {
@@ -115,7 +139,7 @@ misc_format_check <- function (DD.dict, DS.data, verbose=TRUE) {
       CHECK <- NULL
       for (col in vcol:ncol(DD.dict)) {
         col.name <- names(DD.dict)[col]
-        correct <- isTRUE(startsWith(col.name, "..."))
+        correct <- isTRUE(startsWith(col.name, "...")  | (col.name == ""))
         values <- data.frame(col.name, correct)
         CHECK <- bind_rows(CHECK, values)
       }
