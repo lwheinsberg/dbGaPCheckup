@@ -18,6 +18,10 @@
 #' data(ExampleA)
 #' integer_check(DD.dict.A, DS.data.A)
 #' print(integer_check(DD.dict.A, DS.data.A, verbose=FALSE))
+#' 
+#' data(ExampleR)
+#' integer_check(DD.dict.R, DS.data.R)
+#' print(integer_check(DD.dict.R, DS.data.R, verbose=FALSE))
 
 integer_check <- function(DD.dict, DS.data, verbose=TRUE) {
   # Adding in call to required_check

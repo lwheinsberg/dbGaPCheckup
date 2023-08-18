@@ -29,4 +29,8 @@ print(integer_check(DD.dict.H, DS.data.H, verbose=FALSE))
 data(ExampleA)
 integer_check(DD.dict.A, DS.data.A)
 print(integer_check(DD.dict.A, DS.data.A, verbose=FALSE))
+
+data(ExampleR)
+integer_check(DD.dict.R, DS.data.R)
+print(integer_check(DD.dict.R, DS.data.R, verbose=FALSE))
 }
