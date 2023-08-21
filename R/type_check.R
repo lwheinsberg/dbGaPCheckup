@@ -23,7 +23,6 @@ type_check <- function(DD.dict, verbose=TRUE){
     DD.dict$TYPE <- gsub("string", "", DD.dict$TYPE, fixed=TRUE)
     DD.dict$TYPE <- gsub(",", "", DD.dict$TYPE, fixed=TRUE)
     DD.dict$TYPE <- trimws(DD.dict$TYPE)
-    #DD.dict$TYPE <- gsub(" ", NA, DD.dict$TYPE, fixed=TRUE) # This has surprising behavior, see Issue #9
     DD.dict$TYPE[DD.dict$TYPE == ""] <- NA
     chk2 <- all(is.na(DD.dict$TYPE))
   } else {
@@ -44,10 +43,8 @@ type_check <- function(DD.dict, verbose=TRUE){
   if (chk==TRUE & chk2==FALSE) {
     Status <- "Failed"
     Message <- "ERROR: Some TYPE entries are not allowable per dbGaP submission instructions."
-    #Information <- unique(DD.dict$TYPE)
-    Information <- unique(DD.dict$TYPE[!is.na(DD.dict$TYPE)]) # Updated 8-21-2023 to exclude NA
-    #IllegalEntries <- unique(DD.dict$TYPE)
-    IllegalEntries <- unique(DD.dict$TYPE[!is.na(DD.dict$TYPE)]) # Updated 8-21-2023 to exclude NA
+    Information <- unique(DD.dict$TYPE[!is.na(DD.dict$TYPE)])
+    IllegalEntries <- unique(DD.dict$TYPE[!is.na(DD.dict$TYPE)])
     return_to_user <- lst(Message,  IllegalEntries)
   }
   
