@@ -22,7 +22,9 @@ type_check <- function(DD.dict, verbose=TRUE){
     DD.dict$TYPE <- gsub("encoded value", " ", DD.dict$TYPE, fixed=TRUE)
     DD.dict$TYPE <- gsub("string", " ", DD.dict$TYPE, fixed=TRUE)
     DD.dict$TYPE <- gsub(",", " ", DD.dict$TYPE, fixed=TRUE)
-    DD.dict$TYPE <- gsub(" ", NA, DD.dict$TYPE, fixed=TRUE)
+    DD.dict$TYPE <- trimws(DD.dict$TYPE)
+    #DD.dict$TYPE <- gsub(" ", NA, DD.dict$TYPE, fixed=TRUE)
+    DD.dict$TYPE[DD.dict$TYPE == ""] <- NA
     chk2 <- all(is.na(DD.dict$TYPE))
   } else {
     chk2 <- FALSE
