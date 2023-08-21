@@ -186,7 +186,7 @@ save(DS.data.P, file = "ExampleP.rda")
 # Example Q 
 DD.path <- system.file("extdata", "DD_Example5.xlsx", package = "dbGaPCheckup", mustWork=TRUE)
 DD.dict.Q <- readxl::read_xlsx(DD.path)
-DS.path <- system.file("extdata", "DS_Example5.txt", package = "dbGaPCheckup", mustWork=TRUE) ### FIX THIS 
+DS.path <- system.file("extdata", "DS_Example5.txt", package = "dbGaPCheckup", mustWork=TRUE) 
 DS.data.Q <- read.table(DS.path, header=TRUE, sep="\t", quote="", as.is = TRUE)
 save(DD.dict.Q, DS.data.Q, file = "ExampleQ.rda")
 # Used in: 
@@ -210,3 +210,16 @@ DD.dict.R$`...19`[DD.dict.R$VARNAME=="HX_DEPRESSION"] <- NA
 nval <- which(names(DD.dict.R) == "VALUES")
 names(DD.dict.R)[(nval + 1):ncol(DD.dict.R)] <- ""
 save(DD.dict.R, DS.data.R, file="ExampleR.rda")
+# Used in: 
+# integer_check()
+
+# Example S
+DS.path <- system.file("extdata", "DS_Example6.txt", package = "dbGaPCheckup", mustWork=TRUE)  
+DS.data.S <- read.table(DS.path, header=TRUE, sep="\t", quote="")
+DD.path <- system.file("extdata", "DD_Example5b.xlsx", package = "dbGaPCheckup", mustWork=TRUE)
+DD.dict.S1 <- readxl::read_xlsx(DD.path)
+DD.dict.S <- reorder_dictionary(DD.dict.S1, DS.data.S)
+save(DD.dict.S, DS.data.S, file = "ExampleS.rda")
+# Used in: 
+# missing_value_check()
+# NA_check()

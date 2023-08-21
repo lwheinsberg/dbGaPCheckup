@@ -18,6 +18,10 @@
 #' data(ExampleA)
 #' NA_check(DD.dict.A, DS.data.A)
 #' print(NA_check(DD.dict.A, DS.data.A, verbose=FALSE))
+#' 
+#' # Example 3: Pass check (though missing_value_check detects a more specific error)
+#' data(ExampleS)
+#' NA_check(DD.dict.S, DS.data.S)
 
 NA_check <- function(DD.dict, DS.data, verbose=TRUE) {
   
@@ -53,7 +57,8 @@ NA_check <- function(DD.dict, DS.data, verbose=TRUE) {
   if (sum(is.na(DS.data))>0){
     tb <- value_meaning_table(DD.dict)
     non.NA.missing.codes <- NULL
-    if (NA %in% tb$VALUE){
+    #if (NA %in% tb$VALUE){ # Line corrected via Issue 8 
+    if ("NA" %in% tb$VALUE) {
       chk <- TRUE
     } else {
       chk <- FALSE

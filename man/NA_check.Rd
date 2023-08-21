@@ -29,4 +29,8 @@ print(NA_check(DD.dict.K, DS.data.K, verbose=FALSE))
 data(ExampleA)
 NA_check(DD.dict.A, DS.data.A)
 print(NA_check(DD.dict.A, DS.data.A, verbose=FALSE))
+
+# Example 3: Pass check (though missing_value_check detects a more specific error)
+data(ExampleS)
+NA_check(DD.dict.S, DS.data.S)
 }
