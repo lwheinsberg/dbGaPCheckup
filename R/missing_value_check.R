@@ -61,8 +61,13 @@ missing_value_check <- function(DD.dict, DS.data, verbose=TRUE, non.NA.missing.c
       select_if( ~ any(. %in% code)) %>% 
       names()
     # Find columns in the data dictionary that specify a value for the given code
-    DD.cols <- tb %>% 
-      filter(.data$VALUE==code)
+    if (is.na(code)) { # Change to resolve issue #10: make this search conditional upon code being NA or non-NA
+      DD.cols <- tb %>% 
+        filter(.data$VALUE=="NA") 
+    } else {
+      DD.cols <- tb %>% 
+        filter(.data$VALUE==code) 
+    }
     for (var in m.cols) {
       # Check if the current variable is listed in the data dictionary as having this code
       pass <- var %in% DD.cols$VARNAME
