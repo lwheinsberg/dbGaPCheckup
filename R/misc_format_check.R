@@ -5,6 +5,7 @@
 #' @param verbose When TRUE, the function prints the Message out, as well as more detailed information about which formatting checks failed. 
 #' @return Tibble, returned invisibly, containing: (1) Time (time stamp); (2) Name (name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (Names of variables that fail one of these checks).
 #' @export
+#' @details Note that this check will return a WARNING for Check #5 depending on how the data set is read into R. Depending on the method used, R will automatically fill in column names after VALUES with "...col_number". This is allowed by the package, but it is NOT allowed by dbGaP, so please use caution if you write out a data set after making adjustments directly in R.
 #' @examples
 #' # Example 1: Fail check 
 #' data(ExampleJ)
@@ -105,10 +106,22 @@ misc_format_check <- function (DD.dict, DS.data, verbose=TRUE) {
     check3.final <- tibble(check.name, check.description, check.status, details)
     
     # Check 4: Check for duplicate names in DD.dict 
-    # Create dummy names for blank-named columns beyond `VALUES`
-    DD.dict.orig <- DD.dict
     # Store number of the first VALUES column
     vcol <- which(names(DD.dict)=="VALUES")
+    
+    # Create a warning check to alert users if R automatically filled in column names after VALUES
+    # Check if column names after "VALUES" match the pattern "... [col_number]"
+    # Edits made in response to issue #7
+    after_values_columns <- names(DD.dict)[(vcol + 1):length(names(DD.dict))]
+   
+    if (any(startsWith(after_values_columns, "..."))) {
+      warn.check.status <- "Warning"
+    } else {
+      warn.check.status <- "Passed"
+    }
+    
+    # Create dummy names for blank-named columns beyond `VALUES`
+    DD.dict.orig <- DD.dict
     i <- 1
     for (col in vcol:ncol(DD.dict)) {
       if (names(DD.dict)[col] == "") {
@@ -143,13 +156,20 @@ misc_format_check <- function (DD.dict, DS.data, verbose=TRUE) {
         values <- data.frame(col.name, correct)
         CHECK <- bind_rows(CHECK, values)
       }
+      
       check5 <- all(CHECK$correct==TRUE)
       check5.vnames <- subset(CHECK, correct==FALSE)
       
-      if (check5==TRUE) {
+      if (check5==TRUE & warn.check.status=="Passed") {
         check.status <- "Passed"
         details <- NA
-      } else {
+      } 
+      if (check5==TRUE & warn.check.status=="Warning") {
+        check.status <- "Warning"
+        details <- c("ALERT: You read in a data set and R automatically filled in column names after VALUES with ...col_number. This is allowed by the package, but it is NOT allowed by dbGaP, so use caution when writing a new dataset from R and ensure that the column namees after VALUES are blank.")
+      }
+      
+      if (check5==FALSE) {
         check.status <- "Failed"
         details <- check5.vnames
       }
@@ -159,6 +179,7 @@ misc_format_check <- function (DD.dict, DS.data, verbose=TRUE) {
       check.description <- "Column names after `VALUES` should be empty"
       check.status <- "Not attempted"
       details <- "Checks 1 and/or 4 failed so not attempted"
+    
     }
     check5.final <- tibble(check.name, check.description, check.status, details)
     
