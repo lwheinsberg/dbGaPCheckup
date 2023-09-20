@@ -37,52 +37,221 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
   stopifnot("ERROR: DS_data is not a data frame" = inherits(DS_data,"data.frame"))
   stopifnot("ERROR: DD_dict is not a data frame" = inherits(DD_dict,"data.frame"))
   
+  # Initialize the report
+  report <- tibble()
+  
   # Check 1: field_check
   # Run first report
-  report <- field_check(DD_dict, verbose=FALSE)
+  # Note: Edits made in response to issue #6; ChatGPT used for help in creating the structure of the tryCatch solution
+  tryCatch({
+    field_result <- field_check(DD_dict, verbose = FALSE)
+    report <- bind_rows(report, field_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "field_check",
+      Status = "Error",
+      Message = paste("ERROR: field_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
   
   # Check 2: pkg_field_check
-  report <- bind_rows(report, pkg_field_check(DD_dict, DS_data, verbose=FALSE))
+  tryCatch({
+    pkg_field_result <- pkg_field_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, pkg_field_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "pkg_field_check",
+      Status = "Error",
+      Message = paste("ERROR: pkg_field_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
   
   # Check 3: dimension_check
-  report <- bind_rows(report, dimension_check(DD_dict, DS_data, verbose=FALSE))
+  tryCatch({
+    dimension_result <- dimension_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, dimension_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "dimension_check",
+      Status = "Error",
+      Message = paste("ERROR: dimension_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
   
   # Check 4: name_check
-  report <- bind_rows(report, name_check(DD_dict, DS_data, verbose=FALSE))
+  tryCatch({
+    name_result <- name_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, name_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "name_check",
+      Status = "Error",
+      Message = paste("ERROR: name_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
   
   # Check 5: id_check
-  report <- bind_rows(report, id_check(DS_data, verbose=FALSE))
-
+  tryCatch({
+    id_result <- id_check(DS_data, verbose = FALSE)
+    report <- bind_rows(report, id_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "id_check",
+      Status = "Error",
+      Message = paste("ERROR: id_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
   # Check 6: row_check
-  report <- bind_rows(report, row_check(DD_dict, DS_data, verbose=FALSE))
-
+  tryCatch({
+    row_result <- row_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, row_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "row_check",
+      Status = "Error",
+      Message = paste("ERROR: row_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
   # Check 7: NA_check
-  report <- bind_rows(report, NA_check(DD_dict, DS_data, verbose=FALSE))
-
+  tryCatch({
+    NA_result <- NA_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, NA_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "NA_check",
+      Status = "Error",
+      Message = paste("ERROR: NA_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
   # Check 8: type_check
-  report <- bind_rows(report, type_check(DD_dict, verbose=FALSE))
-
+  tryCatch({
+    type_result <- type_check(DD_dict, verbose = FALSE)
+    report <- bind_rows(report, type_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "type_check",
+      Status = "Error",
+      Message = paste("ERROR: type_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
   # Check 9: values_check
-  report <- bind_rows(report, values_check(DD_dict, verbose=FALSE))
-
+  tryCatch({
+    values_result <- values_check(DD_dict, verbose = FALSE)
+    report <- bind_rows(report, values_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "values_check",
+      Status = "Error",
+      Message = paste("ERROR: values_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
   # Check 10: integer_check
-  report <- bind_rows(report, integer_check(DD_dict, DS_data, verbose=FALSE))
-
+  tryCatch({
+    integer_result <- integer_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, integer_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "integer_check",
+      Status = "Error",
+      Message = paste("ERROR: integer_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
   # Check 11: decimal_check
-  report <- bind_rows(report, decimal_check(DD_dict, DS_data, verbose=FALSE))
- 
+  tryCatch({
+    decimal_result <- decimal_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, decimal_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "decimal_check",
+      Status = "Error",
+      Message = paste("ERROR: decimal_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
   # Check 12: misc_format_check
-  report <- bind_rows(report, misc_format_check(DD_dict, DS_data, verbose=FALSE))
+  tryCatch({
+    misc_format_result <- misc_format_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, misc_format_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "misc_format_check",
+      Status = "Error",
+      Message = paste("ERROR: misc_format_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
   
   # Check 13: description_check
-  report <- bind_rows(report, description_check(DD_dict, verbose=FALSE))
+  tryCatch({
+    description_result <- description_check(DD_dict, verbose = FALSE)
+    report <- bind_rows(report, description_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "description_check",
+      Status = "Error",
+      Message = paste("ERROR: description_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
   
   # Check 14: minmax_check
-  report <- bind_rows(report, minmax_check(DD_dict, DS_data, non.NA.missing.codes=non.NA.missing.codes, verbose=FALSE))
- 
+  tryCatch({
+    minmax_result <- minmax_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, minmax_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "minmax_check",
+      Status = "Error",
+      Message = paste("ERROR: minmax_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
   # Check 15: missing_value_check
-  report <- bind_rows(report, missing_value_check(DD_dict, DS_data, verbose=FALSE, non.NA.missing.codes=non.NA.missing.codes))
- 
+  tryCatch({
+    missing_value_result <- missing_value_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, missing_value_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "missing_value_check",
+      Status = "Error",
+      Message = paste("ERROR: missing_value_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
   names(report$Information)[1] <- "field_check.Info"
   names(report$Information)[2] <- "pkg_field_check.Info"
   names(report$Information)[3] <- "dimension_check.Info"
@@ -100,7 +269,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
   names(report$Information)[15] <- "missing_value_check.Info"
   
   # .... Plan to expand as more checks are added .... #
-
+  
   # Return concise report based on what is in the results tibble
   return(report)
 }
