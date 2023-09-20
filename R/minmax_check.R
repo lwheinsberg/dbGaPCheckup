@@ -8,6 +8,8 @@
 #' @export
 #' @importFrom magrittr %>%
 #' @importFrom stats na.omit
+#' @importFrom stats as.formula
+#' @importFrom naniar replace_with_na_all
 #' @import dplyr
 #' @examples
 #' # Example 1
@@ -52,12 +54,14 @@ minmax_check <- function(DD.dict, DS.data, verbose=TRUE, non.NA.missing.codes=NA
           Information = Information)
     chk <- FALSE
   } else {
-    dataset_na <- DS.data
-    for (value in na.omit(non.NA.missing.codes)) {
-      dataset_na <- dataset_na %>% 
-        mutate(across(everything(), ~na_if(.x, value)))
+    naSet <- na.omit(non.NA.missing.codes)
+    conditionFormula <- as.formula(paste0("~.x %in% c(",paste(naSet,collapse=","),")"))
+    if ( length(na.omit(non.NA.missing.codes)) == 0) {
+      dataset_na <- DS.data
+    } else {
+      dataset_na <- replace_with_na_all(DS.data, conditionFormula)
     }
-
+    
     CHECK.combined <- NULL
 
     for (row in seq_len(nrow(DD.dict))) {

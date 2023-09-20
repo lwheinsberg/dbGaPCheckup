@@ -27,6 +27,6 @@ bibentry(bibtype="Manual",
 	 author= c(as.person("Lacey W. Heinsberg"), as.person("Daniel E. Weeks")),
 	 year = 2023,
 	 note = note,
- 	 url="https://cran.r-project.org/web/packages/dbGaPCheckup/index.html",
+ 	 url="https://CRAN.R-project.org/package=dbGaPCheckup",
 	 key= "dbgapcheckup"
 	 )

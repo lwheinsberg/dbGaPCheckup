@@ -1,14 +1,14 @@
 Package: dbGaPCheckup
 Type: Package
 Title: dbGaP Checkup
-Version: 1.0.2
+Version: 1.1.0
 Authors@R: c(person(c("Lacey", "W."), "Heinsberg", email = "law145@pitt.edu", role = c("aut", "cre")), 
            person(c("Daniel","E."), "Weeks",    email = "weeks@pitt.edu", role = c("aut")),
            person("","University of Pittsburgh",role=c("cph")))
 URL: https://lwheinsberg.github.io/dbGaPCheckup/, https://github.com/lwheinsberg/dbGaPCheckup
 Description: Contains functions that check for formatting of the Subject Phenotype data set and data dictionary as specified by the National Center for Biotechnology Information (NCBI) Database of Genotypes and Phenotypes (dbGaP) <https://www.ncbi.nlm.nih.gov/gap/docs/submissionguide/>. 
 Imports: 
-    readxl, tidyr, dplyr, formatR, ggplot2, pander, magrittr, rmarkdown, purrr, questionr, tibble, rlang, labelled, stats, utils, graphics
+    readxl, tidyr, dplyr, formatR, ggplot2, pander, magrittr, rmarkdown, purrr, questionr, tibble, rlang, labelled, stats, utils, graphics, naniar
 License: GPL-2 
 Encoding: UTF-8
 LazyData: true

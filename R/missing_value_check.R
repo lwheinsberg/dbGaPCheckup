@@ -11,6 +11,9 @@
 #' @examples
 #' data(ExampleB)
 #' missing_value_check(DD.dict.B, DS.data.B, non.NA.missing.codes = c(-9999,-4444))
+#' 
+#' data(ExampleS)
+#' missing_value_check(DD.dict.S, DS.data.S, non.NA.missing.codes = c(-9999,-4444))
 
 missing_value_check <- function(DD.dict, DS.data, verbose=TRUE, non.NA.missing.codes=NA){
   
@@ -43,19 +46,28 @@ missing_value_check <- function(DD.dict, DS.data, verbose=TRUE, non.NA.missing.c
   
   # For every variable that contains a specific non NA missing value code,
   # does it have a corresponding VALUES entry like '-9999=missing'?
-  codes <- unique(na.omit(non.NA.missing.codes))
+  codes <- c(NA, unique(na.omit(non.NA.missing.codes))) # Update, automatically including NA
   col <- which(names(DD.dict)=="VALUES")
   tb <- value_meaning_table(DD.dict)
   results <- data.frame(VARNAME=NA, VALUE=NA, MEANING=NA, PASS=NA)
   for (code in codes) {
     # Find columns that actually used the code in the data DS.data
+    #m.cols <- # Update 8-21-2023, before this was excluding NA, now we automatically include it
+    #  DS.data %>% 
+    #  select_if( ~ any(. %in% na.omit(code))) %>% 
+    #  names()
     m.cols <-
       DS.data %>% 
-      select_if( ~ any(. %in% na.omit(code))) %>% 
+      select_if( ~ any(. %in% code)) %>% 
       names()
     # Find columns in the data dictionary that specify a value for the given code
-    DD.cols <- tb %>% 
-      filter(.data$VALUE==code)
+    if (is.na(code)) { # Change to resolve issue #10: make this search conditional upon code being NA or non-NA
+      DD.cols <- tb %>% 
+        filter(.data$VALUE=="NA") 
+    } else {
+      DD.cols <- tb %>% 
+        filter(.data$VALUE==code) 
+    }
     for (var in m.cols) {
       # Check if the current variable is listed in the data dictionary as having this code
       pass <- var %in% DD.cols$VARNAME

@@ -29,4 +29,7 @@ This function flags variables that have non-encoded missing value codes.
 \examples{
 data(ExampleB)
 missing_value_check(DD.dict.B, DS.data.B, non.NA.missing.codes = c(-9999,-4444))
+
+data(ExampleS)
+missing_value_check(DD.dict.S, DS.data.S, non.NA.missing.codes = c(-9999,-4444))
 }

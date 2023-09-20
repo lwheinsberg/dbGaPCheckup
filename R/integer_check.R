@@ -18,6 +18,10 @@
 #' data(ExampleA)
 #' integer_check(DD.dict.A, DS.data.A)
 #' print(integer_check(DD.dict.A, DS.data.A, verbose=FALSE))
+#' 
+#' data(ExampleR)
+#' integer_check(DD.dict.R, DS.data.R)
+#' print(integer_check(DD.dict.R, DS.data.R, verbose=FALSE))
 
 integer_check <- function(DD.dict, DS.data, verbose=TRUE) {
   # Adding in call to required_check
@@ -43,13 +47,34 @@ integer_check <- function(DD.dict, DS.data, verbose=TRUE) {
   } else {
     # Store list of integer variables
     int.vars <- which(grepl("integer", DD.dict$TYPE))
+    
+    # Find non-numeric columns in int.vars NEW 8-21-2023
+    non_numeric_vars <- int.vars[!sapply(DS.data[, int.vars], is.numeric)]
+    
+    # Apply int_function only to numeric columns NEW 8-21-2023
+    int.vars <- int.vars[sapply(DS.data[, int.vars], function(x) is.numeric(x))]
 
-    # Apply int_function
-    chk <-
-      DS.data %>% 
+    # Apply int_function NEW 8-21-2023
+    #chk <-
+    #  DS.data %>% 
+    #    summarize(across(all_of(int.vars), int_check, .names = "{.col}"))
+    #CHECK.integer <- (all(chk == TRUE))
+    #CHECK.VARIABLES <- names(chk)[chk == FALSE]
+    
+    if (length(int.vars) > 0) {
+      chk <-
+        DS.data %>%
         summarize(across(all_of(int.vars), int_check, .names = "{.col}"))
-    CHECK.integer <- (all(chk == TRUE))
-    CHECK.VARIABLES <- names(chk)[chk == FALSE]
+      CHECK.integer <- all(chk == TRUE)
+      CHECK.VARIABLES <- names(chk)[chk == FALSE]
+    } else {
+      CHECK.integer <- TRUE
+      CHECK.VARIABLES <- character(0)  # No integer columns found
+    }
+    
+    # Combine failed integer checks and non-numeric columns
+    other.vars <- names(DS.data[non_numeric_vars])
+    CHECK.VARIABLES <- c(CHECK.VARIABLES, other.vars)
 
     # Compile report information
     Time <- Sys.time()

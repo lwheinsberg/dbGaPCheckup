@@ -19,6 +19,9 @@ Tibble, returned invisibly, containing: (1) Time (time stamp); (2) Name (name of
 \description{
 This function checks miscellaneous dbGaP formatting requirements to ensure (1) no empty variable names; (2) no duplicate variable names; (3) variable names do not contain "dbgap"; (4) there are no duplicate column names in the dictionary; and (5) column names falling after \code{VALUES} column are unnamed.
 }
+\details{
+Note that this check will return a WARNING for Check #5 depending on how the data set is read into R. Depending on the method used, R will automatically fill in column names after VALUES with "...col_number". This is allowed by the package, but it is NOT allowed by dbGaP, so please use caution if you write out a data set after making adjustments directly in R.
+}
 \examples{
 # Example 1: Fail check 
 data(ExampleJ)
