@@ -38,7 +38,7 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
   stopifnot("ERROR: DD_dict is not a data frame" = inherits(DD_dict,"data.frame"))
   
   # Initialize the report
-  report <- NULL
+  report <- tibble()
   
   # Check 1: field_check
   # Run first report
@@ -48,12 +48,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     field_result <- field_check(DD_dict, verbose = FALSE)
     report <- bind_rows(report, field_result)
   }, error = function(e) {
-    message("field_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: field_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "field_check",
+      Function = "field_check",
       Status = "Error",
-      Message = paste("field_check encountered an error:", e$message),
+      Message = paste("ERROR: field_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -64,12 +64,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     pkg_field_result <- pkg_field_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, pkg_field_result)
   }, error = function(e) {
-    message("pkg_field_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: pkg_field_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "pkg_field_check",
+      Function = "pkg_field_check",
       Status = "Error",
-      Message = paste("pkg_field_check encountered an error:", e$message),
+      Message = paste("ERROR: pkg_field_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -80,12 +80,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     dimension_result <- dimension_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, dimension_result)
   }, error = function(e) {
-    message("dimension_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: dimension_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "dimension_check",
+      Function = "dimension_check",
       Status = "Error",
-      Message = paste("dimension_check encountered an error:", e$message),
+      Message = paste("ERROR: dimension_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -96,12 +96,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     name_result <- name_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, name_result)
   }, error = function(e) {
-    message("name_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: name_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "name_check",
+      Function = "name_check",
       Status = "Error",
-      Message = paste("name_check encountered an error:", e$message),
+      Message = paste("ERROR: name_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -112,12 +112,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     id_result <- id_check(DS_data, verbose = FALSE)
     report <- bind_rows(report, id_result)
   }, error = function(e) {
-    message("id_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: id_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "id_check",
+      Function = "id_check",
       Status = "Error",
-      Message = paste("id_check encountered an error:", e$message),
+      Message = paste("ERROR: id_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -128,12 +128,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     row_result <- row_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, row_result)
   }, error = function(e) {
-    message("row_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: row_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "row_check",
+      Function = "row_check",
       Status = "Error",
-      Message = paste("row_check encountered an error:", e$message),
+      Message = paste("ERROR: row_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -144,12 +144,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     NA_result <- NA_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, NA_result)
   }, error = function(e) {
-    message("NA_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: NA_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "NA_check",
+      Function = "NA_check",
       Status = "Error",
-      Message = paste("NA_check encountered an error:", e$message),
+      Message = paste("ERROR: NA_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -160,12 +160,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     type_result <- type_check(DD_dict, verbose = FALSE)
     report <- bind_rows(report, type_result)
   }, error = function(e) {
-    message("type_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: type_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "type_check",
+      Function = "type_check",
       Status = "Error",
-      Message = paste("type_check encountered an error:", e$message),
+      Message = paste("ERROR: type_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -176,12 +176,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     values_result <- values_check(DD_dict, verbose = FALSE)
     report <- bind_rows(report, values_result)
   }, error = function(e) {
-    message("values_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: values_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "values_check",
+      Function = "values_check",
       Status = "Error",
-      Message = paste("values_check encountered an error:", e$message),
+      Message = paste("ERROR: values_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -192,12 +192,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     integer_result <- integer_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, integer_result)
   }, error = function(e) {
-    message("integer_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: integer_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "integer_check",
+      Function = "integer_check",
       Status = "Error",
-      Message = paste("integer_check encountered an error:", e$message),
+      Message = paste("ERROR: integer_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -208,12 +208,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     decimal_result <- decimal_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, decimal_result)
   }, error = function(e) {
-    message("decimal_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: decimal_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "decimal_check",
+      Function = "decimal_check",
       Status = "Error",
-      Message = paste("decimal_check encountered an error:", e$message),
+      Message = paste("ERROR: decimal_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -224,12 +224,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     misc_format_result <- misc_format_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, misc_format_result)
   }, error = function(e) {
-    message("misc_format_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: misc_format_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "misc_format_check",
+      Function = "misc_format_check",
       Status = "Error",
-      Message = paste("misc_format_check encountered an error:", e$message),
+      Message = paste("ERROR: misc_format_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -240,12 +240,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     description_result <- description_check(DD_dict, verbose = FALSE)
     report <- bind_rows(report, description_result)
   }, error = function(e) {
-    message("description_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: description_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "description_check",
+      Function = "description_check",
       Status = "Error",
-      Message = paste("description_check encountered an error:", e$message),
+      Message = paste("ERROR: description_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -256,12 +256,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     minmax_result <- minmax_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, minmax_result)
   }, error = function(e) {
-    message("minmax_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: minmax_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "minmax_check",
+      Function = "minmax_check",
       Status = "Error",
-      Message = paste("minmax_check encountered an error:", e$message),
+      Message = paste("ERROR: minmax_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
@@ -272,12 +272,12 @@ complete_check2 <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.d
     missing_value_result <- missing_value_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, missing_value_result)
   }, error = function(e) {
-    message("missing_value_check encountered an error:", e$message)
-    report <- bind_rows(report, data.frame(
+    #message("ERROR: missing_value_check encountered an error not yet accounted for by the package:", e$message)
+    report <<- bind_rows(report, data.frame(
       Time = Sys.time(),
-      Name = "missing_value_check",
+      Function = "missing_value_check",
       Status = "Error",
-      Message = paste("missing_value_check encountered an error:", e$message),
+      Message = paste("ERROR: missing_value_check encountered an error not yet accounted for by the package:", e$message),
       Information = NA
     ))
   })
