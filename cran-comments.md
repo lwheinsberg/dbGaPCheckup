@@ -5,36 +5,32 @@ We checked our package 'as-cran' using the following versions of R:
 * platform: aarch64-apple-darwin20 (64-bit)
 * R version 4.2.1 (2022-06-23) 
 
+0 ERRORs | 0 WARNINGs | 0 NOTEs
+
 and 
 
 * platform: x86_64-w64-mingw32 (64-bit)
 * R Under development (unstable) (2023-02-13 r83816 ucrt)
 
-0 ERRORs | 0 WARNINGs | 0 NOTEs
+0 ERRORs | 0 WARNINGs | 1 NOTEs
+
+There was one NOTE using the Windows platform:
+
+* R Under development (unstable) (2023-09-19 r85177 ucrt)
+
+
 
 Using check_rhub(), we also checked our package on the following versions of R:
 
 * platform: linux-x86_64-fedora-clang
-* R Under development (unstable) (2023-0213 r83816) -- "Unsuffered Consequences"
+* R Under development (unstable) (2023-06-09 r84528) -- "Unsuffered Consequences"
 
 and 
 
 * linux-x86_64-ubuntu-gcc
-* R version 4.2.2 Patched (2022-11-10) -- "Innocent and Trusting"
+* R version 4.3.0 (2023-04-21) -- "Already Tomorrow"
 
-There was one NOTE specific to both linux platforms:
-
-* checking examples ... [27s/106s] NOTE
-Examples with CPU (user + system) or elapsed time > 5s
-                     user system elapsed
-value_missing_table 5.101  0.007  19.765
-label_data          4.592  0.023  18.206
-complete_check      3.537  0.008  14.074
-check_report        2.507  0.000  10.118
-
-  Timing was not an issue on several other test machines. 
-  
-And one NOTE specific to only the Fedora linux platform:
+0 ERRORs | 0 WARNINGs | 1 NOTEs
 
 * checking HTML version of manual ... NOTE
 Skipping checking HTML validation: no command 'tidy' found
