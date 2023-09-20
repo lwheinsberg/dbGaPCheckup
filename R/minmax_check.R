@@ -8,6 +8,7 @@
 #' @export
 #' @importFrom magrittr %>%
 #' @importFrom stats na.omit
+#' @importFrom stats as.formula
 #' @importFrom naniar replace_with_na_all
 #' @import dplyr
 #' @examples
