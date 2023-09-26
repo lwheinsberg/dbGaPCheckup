@@ -226,7 +226,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
   
   # Check 14: minmax_check
   tryCatch({
-    minmax_result <- minmax_check(DD_dict, DS_data, verbose = FALSE)
+    minmax_result <- minmax_check(DD_dict, DS_data, non.NA.missing.codes = non.NA.missing.codes, verbose = FALSE)
     report <- bind_rows(report, minmax_result)
   }, error = function(e) {
     report <<- bind_rows(report, data.frame(
@@ -240,7 +240,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
   
   # Check 15: missing_value_check
   tryCatch({
-    missing_value_result <- missing_value_check(DD_dict, DS_data, verbose = FALSE)
+    missing_value_result <- missing_value_check(DD_dict, DS_data, non.NA.missing.codes = non.NA.missing.codes, verbose = FALSE)
     report <- bind_rows(report, missing_value_result)
   }, error = function(e) {
     report <<- bind_rows(report, data.frame(
