@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">dbGaPCheckup</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,12 +54,23 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.1.0" id="dbgap-version-110">dbGaP version 1.1.0<a class="anchor" aria-label="anchor" href="#dbgap-version-110"></a></h2>
+<ul><li>added an informative error message when the required VALUES column is missing</li>
+<li>adjusted values_check to temporarily create dummy names for blank-named columns beyond VALUES to prevent function from dying if column names after VALUES are blank strings</li>
+<li>corrected minmax_check and integer_check bugs that occurred when SUBJECT_ID was a character vector</li>
+<li>adjusted misc_format_check to return a WARNING that alerts users if they read in a data set and R automatically fills in column names after VALUES (which is allowed by the package, but not dbGaP itself)</li>
+<li>adjusted NA_check to correctly capture NA=N/A VALUES</li>
+<li>corrected bug in type_check that was allowing some non-allowable TYPE entries to pass</li>
+<li>corrected but in missing_value_check that was flagging some variables even when they had properly encoded NA=N/A VALUES</li>
+<li>made complete_check more robust to errors by wrapping functions in tryCatch</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.2" id="dbgapcheckup-version-102">dbGaPCheckup version 1.0.2<a class="anchor" aria-label="anchor" href="#dbgapcheckup-version-102"></a></h2><p class="text-muted">CRAN release: 2023-02-22</p>
-<ul><li>remove row numbers from data set files</li>
-<li>rename data dictionary files by removing “SSM” acronym (done to avoid confusion as this means “subject sample mapping” and is intended for use with other dbGaP data files)</li>
+<ul><li>removed row numbers from data set files</li>
+<li>renamed data dictionary files by removing “SSM” acronym (done to avoid confusion as this means “subject sample mapping” and is intended for use with other dbGaP data files)</li>
 <li>updated id_check() to include a check for missing SUBJECT_IDs (not allowed by dbGaP)</li>
-<li>update row_check() to check for duplicate and empty rows in the data dictionary (and not just the data set)</li>
-<li>update misc_format_check() to check that there are no missing VARNAME cells</li>
+<li>updated row_check() to check for duplicate and empty rows in the data dictionary (and not just the data set)</li>
+<li>updated misc_format_check() to check that there are no missing VARNAME cells</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.1" id="dbgapcheckup-version-101">dbGaPCheckup version 1.0.1<a class="anchor" aria-label="anchor" href="#dbgapcheckup-version-101"></a></h2><p class="text-muted">CRAN release: 2022-12-22</p>

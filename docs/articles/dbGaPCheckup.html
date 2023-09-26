@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">dbGaPCheckup</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +77,7 @@
 <p>Lacey W.
 Heinsberg and Daniel E. Weeks</p>
             
-            <h4 data-toc-skip class="date">March 03, 2023</h4>
+            <h4 data-toc-skip class="date">September 26, 2023</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/lwheinsberg/dbGaPCheckup/blob/HEAD/vignettes/dbGaPCheckup.Rmd" class="external-link"><code>vignettes/dbGaPCheckup.Rmd</code></a></small>
       <div class="d-none name"><code>dbGaPCheckup.Rmd</code></div>
@@ -403,7 +403,7 @@ important for accurate results.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Not attempted ERROR: Required pre-check type_check faile…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Passed        Passed: no check-specific formatting issue…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Failed        ERROR: at least one check failed.          </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Failed        ERROR: missing and duplicate descriptions …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
@@ -419,6 +419,19 @@ important for accurate results.</p>
 <span><span class="co">#&gt; ERROR: TYPE column not found. Consider using the add_missing_fields function to autofill TYPE. </span></span>
 <span><span class="co">#&gt; $type_check.Info</span></span>
 <span><span class="co">#&gt; [1] "ERROR: TYPE column not found."</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; --------------------</span></span>
+<span><span class="co">#&gt; misc_format_check: Failed </span></span>
+<span><span class="co">#&gt; ERROR: at least one check failed. </span></span>
+<span><span class="co">#&gt; $misc_formatting_check.Info</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
+<span><span class="co">#&gt;   check.name check.description                           check.status details   </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check                   Passed       <span style="color: #BB0000;">NA</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check               Passed       <span style="color: #BB0000;">NA</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in variable names  Passed       <span style="color: #BB0000;">NA</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column name check      Passed       <span style="color: #BB0000;">NA</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` should be empty Warning      ALERT: Yo…</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; description_check: Failed </span></span>
@@ -470,10 +483,23 @@ in the checks.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Passed Passed: all four VALUES checks look good.         </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Passed Passed: all variables listed as TYPE integer appe…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Failed ERROR: at least one check failed.                 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Failed ERROR: missing and duplicate descriptions found i…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Passed Passed: when provided, all variables are within t…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Failed ERROR: some variables have non-encoded missing va…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Passed Passed: all missing value codes have a correspond…</span></span>
+<span><span class="co">#&gt; --------------------</span></span>
+<span><span class="co">#&gt; misc_format_check: Failed </span></span>
+<span><span class="co">#&gt; ERROR: at least one check failed. </span></span>
+<span><span class="co">#&gt; $misc_formatting_check.Info</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
+<span><span class="co">#&gt;   check.name check.description                           check.status details   </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check                   Passed       <span style="color: #BB0000;">NA</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check               Passed       <span style="color: #BB0000;">NA</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in variable names  Passed       <span style="color: #BB0000;">NA</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column name check      Passed       <span style="color: #BB0000;">NA</span>        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` should be empty Warning      ALERT: Yo…</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; description_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: missing and duplicate descriptions found in data dictionary. </span></span>
@@ -485,13 +511,6 @@ in the checks.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> REACT    <span style="color: #BB0000;">NA</span>                   </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> HEIGHT   Height of participant</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> WEIGHT   Height of participant</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; --------------------</span></span>
-<span><span class="co">#&gt; missing_value_check: Failed </span></span>
-<span><span class="co">#&gt; ERROR: some variables have non-encoded missing value codes. </span></span>
-<span><span class="co">#&gt; $missing_value_check.Info</span></span>
-<span><span class="co">#&gt;     VARNAME VALUE MEANING  PASS</span></span>
-<span><span class="co">#&gt; 16 CUFFSIZE -9999    &lt;NA&gt; FALSE</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span></code></pre></div>
 <p>Now we see that 13 out of 15 checks pass, but the workflow fails at
