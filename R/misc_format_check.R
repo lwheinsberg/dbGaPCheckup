@@ -188,7 +188,7 @@ misc_format_check <- function (DD.dict, DS.data, verbose=TRUE) {
     # Compile report
     Time <- Sys.time()
     Function <- "misc_format_check"
-    if (all(Information$check.status=="Passed")){
+    if (all(Information$check.status!="Failed")){
       Status <- "Passed"
       Message <- c("Passed: no check-specific formatting issues identified.")
       return_to_user <- lst(Message, Information)
