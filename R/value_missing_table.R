@@ -26,6 +26,7 @@
 #' 
 #' (E) (Set V values that are not in Set M) that are NOT in Set D = (Set V not in M) not in D: If a VALUES entry is not defined as a missing value code AND is not detected in the data.
 #' @seealso \code{\link{create_awareness_report}}
+#' @seealso \code{\link{value_meaning_table}}
 #' @export
 #' @import dplyr
 #' @importFrom rlang .data

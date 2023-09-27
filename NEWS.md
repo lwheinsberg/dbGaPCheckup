@@ -8,6 +8,7 @@
 - corrected bug in type_check that was allowing some non-allowable TYPE entries to pass 
 - corrected but in missing_value_check that was flagging some variables even when they had properly encoded NA=N/A VALUES
 - made complete_check more robust to errors by wrapping functions in tryCatch
+- used seealso to link utility functions to relevant check functions 
 
 ## dbGaPCheckup version 1.0.2
 

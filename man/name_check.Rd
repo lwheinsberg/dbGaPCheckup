@@ -31,3 +31,10 @@ data(ExampleA)
 name_check(DD.dict.A, DS.data.A)
 print(name_check(DD.dict.A, DS.data.A, verbose=FALSE))
 }
+\seealso{
+\code{\link{name_correct}}
+
+\code{\link{reorder_dictionary}}
+
+\code{\link{reorder_data}}
+}

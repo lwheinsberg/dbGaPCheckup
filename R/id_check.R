@@ -5,6 +5,8 @@
 #' @return Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (Detailed information about the four ID checks that were performed).
 #' @export
 #' @details  Subject IDs should be an integer or string value. Integers should not have zero padding. IDs should not have spaces. Specifically, only the following characters can be included in the ID: English letters, Arabic numerals, period (.), hyphen (-), underscore (_), at symbol (@), and the pound sign (#). All IDs should be filled in (i.e., no misisng IDs are allowed).
+#' @seealso \code{\link{id_first_data}}
+#' @seealso \code{\link{id_first_dict}}
 #' @examples
 #' # Example 1: Fail check, 'SUBJECT_ID' not present
 #' data(ExampleO)

@@ -51,4 +51,6 @@ results$report$Information$details
 }
 \seealso{
 \code{\link{create_awareness_report}}
+
+\code{\link{value_meaning_table}}
 }

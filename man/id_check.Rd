@@ -38,3 +38,8 @@ data(ExampleA)
 id_check(DS.data.A)
 print(id_check(DS.data.A, verbose=FALSE))
 }
+\seealso{
+\code{\link{id_first_data}}
+
+\code{\link{id_first_dict}}
+}

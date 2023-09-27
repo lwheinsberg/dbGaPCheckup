@@ -5,6 +5,9 @@
 #' @param verbose When TRUE, the function prints the Message out, as well as a list of the non-matching variable names.
 #' @return Tibble, returned invisibly, containing: (1) Time (time stamp); (2) Name (name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (Names of variables that mismatch between the data and data dictionary).
 #' @export
+#' @seealso \code{\link{name_correct}}
+#' @seealso \code{\link{reorder_dictionary}}
+#' @seealso \code{\link{reorder_data}}
 #' @examples
 #' # Example 1: Fail check (name mismatch)
 #' data(ExampleM)
