@@ -111,24 +111,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> values_check        Passed Passed: all four VALUES checks look good.         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> integer_check       Passed Passed: all variables listed as TYPE integer appe…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> misc_format_check   Failed ERROR: at least one check failed.                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> description_check   Passed Passed: unique description present for all variab…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> minmax_check        Passed Passed: when provided, all variables are within t…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> missing_value_check Passed Passed: all missing value codes have a correspond…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> misc_format_check: Failed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ERROR: at least one check failed. </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $misc_formatting_check.Info</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   check.name check.description                           check.status details   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check                   Passed       <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check               Passed       <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in variable names  Passed       <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column name check      Passed       <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` should be empty Warning      ALERT: Yo…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "All 15 checks passed."</span>
 <span class="r-in"><span><span class="co"># Addition of missing value codes calls attention to error</span></span></span>
 <span class="r-in"><span><span class="co"># at missing_value_check</span></span></span>
 <span class="r-in"><span><span class="va">report</span> <span class="op">&lt;-</span> <span class="fu">check_report</span><span class="op">(</span><span class="va">DD.dict.B</span>, <span class="va">DS.data.B</span>, non.NA.missing.codes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4444</span>, <span class="op">-</span><span class="fl">9999</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -146,22 +133,16 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> values_check        Passed Passed: all four VALUES checks look good.         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> integer_check       Passed Passed: all variables listed as TYPE integer appe…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> misc_format_check   Failed ERROR: at least one check failed.                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> description_check   Passed Passed: unique description present for all variab…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> minmax_check        Passed Passed: when provided, all variables are within t…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> missing_value_check Passed Passed: all missing value codes have a correspond…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> missing_value_check Failed ERROR: some variables have non-encoded missing va…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> misc_format_check: Failed </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ERROR: at least one check failed. </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $misc_formatting_check.Info</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   check.name check.description                           check.status details   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check                   Passed       <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check               Passed       <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in variable names  Passed       <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column name check      Passed       <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` should be empty Warning      ALERT: Yo…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> missing_value_check: Failed </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ERROR: some variables have non-encoded missing value codes. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $missing_value_check.Info</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     VARNAME VALUE MEANING  PASS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 CUFFSIZE -9999    &lt;NA&gt; FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------</span>
 <span class="r-in"><span></span></span>
