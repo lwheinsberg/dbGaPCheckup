@@ -2,7 +2,7 @@
 % Please edit documentation in R/minmax_check.R
 \name{minmax_check}
 \alias{minmax_check}
-\title{Mimimum and Maximum Values Check}
+\title{Minimum and Maximum Values Check}
 \usage{
 minmax_check(DD.dict, DS.data, verbose = TRUE, non.NA.missing.codes = NA)
 }
@@ -16,7 +16,7 @@ minmax_check(DD.dict, DS.data, verbose = TRUE, non.NA.missing.codes = NA)
 \item{non.NA.missing.codes}{A user-defined vector of numerical missing value codes (e.g., -9999).}
 }
 \value{
-Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (A list of variables that exceed the listed \code{MIN} or \code{MAX} values).
+Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (A sorted list of unique values that are either less than the \code{MIN} value or greater than the \code{MAX} value).
 }
 \description{
 This function flags variables that have values exceeding the \code{MIN} or \code{MAX} listed in the data dictionary.

@@ -1,3 +1,6 @@
+## dbGaP version 1.1.1
+
+- minmax_check: adjusted  to return a sorted list of out of range values and polished documentation to be more informative 
 ## dbGaP version 1.1.0 
 
 - added an informative error message when the required VALUES column is missing

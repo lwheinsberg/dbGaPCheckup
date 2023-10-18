@@ -1,10 +1,10 @@
-#' @title Mimimum and Maximum Values Check
+#' @title Minimum and Maximum Values Check
 #' @description This function flags variables that have values exceeding the `MIN` or `MAX` listed in the data dictionary.
 #' @param DD.dict Data dictionary.
 #' @param DS.data Data set.
 #' @param verbose When TRUE, the function prints the Message out, as well as a list of variables that violate the listed `MIN` or `MAX`.
 #' @param non.NA.missing.codes A user-defined vector of numerical missing value codes (e.g., -9999).
-#' @return Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (A list of variables that exceed the listed `MIN` or `MAX` values).
+#' @return Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (A sorted list of unique values that are either less than the `MIN` value or greater than the `MAX` value).
 #' @export
 #' @importFrom magrittr %>%
 #' @importFrom stats na.omit
@@ -59,7 +59,7 @@ minmax_check <- function(DD.dict, DS.data, verbose=TRUE, non.NA.missing.codes=NA
     if ( length(na.omit(non.NA.missing.codes)) == 0) {
       dataset_na <- DS.data
     } else {
-      dataset_na <- replace_with_na_all(DS.data, conditionFormula)
+      dataset_na <- data.frame(replace_with_na_all(DS.data, conditionFormula))
     }
     
     CHECK.combined <- NULL
@@ -85,7 +85,7 @@ minmax_check <- function(DD.dict, DS.data, verbose=TRUE, non.NA.missing.codes=NA
         row.names(flagged) <- NULL
         if (nrow(flagged) > 0) {
           chk <- FALSE
-          out_of_range <- unique(flagged[, ind])
+          out_of_range <- sort(unique(flagged[, ind]))
         } else {
           chk <- TRUE
           out_of_range <- NA
