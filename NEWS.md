@@ -1,7 +1,8 @@
 ## dbGaP version 1.1.1
 
 - minmax_check: adjusted  to return a sorted list of out of range values and polished documentation to be more informative
-- values_check: corrected bug in code that was not detecting leading/trailing zeros in VALUES columns 
+- values_check: corrected bug in code that was not detecting leading/trailing zeros in VALUES columns
+- name_correct: when a user runs name_correct when it is not needed a new message informing them of no discrepancies detected will print
 
 ## dbGaP version 1.1.0 
 
