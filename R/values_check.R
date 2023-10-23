@@ -124,7 +124,7 @@ values_check <- function(DD.dict, verbose=TRUE) {
       trouble_rows2 <- grep("^\\s+", temp$meaning)
 
       # Step 5: Merge trouble row numbers
-      trouble_rows <- c(unique(trouble_rows1, trouble_rows2))
+      trouble_rows <- unique(c(trouble_rows1, trouble_rows2)) # Corrected via issue #13
 
       # Step 6: Determine pass/fail check
       if (length(trouble_rows) == 0){
