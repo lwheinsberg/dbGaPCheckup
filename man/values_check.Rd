@@ -15,7 +15,7 @@ values_check(DD.dict, verbose = TRUE)
 Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (Details of which checks passed/failed for which value=meaning instances).
 }
 \description{
-This function checks for potential errors in the VALUES columns by ensuring (1) required format of \code{VALUE=MEANING} (e.g., 0=Yes or 1=No); (2) no leading/trailing spaces near the equals sign; (3) all variables of TYPE encoded have VALUES entries; and (4) all variables with VALUES entries are listed as TYPE encoded.
+This function checks for potential errors in the VALUES columns by ensuring (1) required format of \code{VALUE=MEANING} (e.g., 0=Yes or 1=No) AND ensuring there is only one equals sign per cell; (2) no leading/trailing spaces near the equals sign; (3) all variables of TYPE encoded have VALUES entries; and (4) all variables with VALUES entries are listed as TYPE encoded.
 }
 \examples{
 # Example 1: Fail check

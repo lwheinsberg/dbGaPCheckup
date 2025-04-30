@@ -27,7 +27,7 @@ complete_check(
 Tibble containing the following information for each check: (1) Time (time stamp); (2) Name (name of the function); (3) Status (Passed/Failed/Warning); (4) Message (A copy of the message the function printed out); (5) Information (More detailed information about the potential errors identified).
 }
 \description{
-This function runs a full workflow check including \code{field_check}, \code{pkg_field_check}, \code{dimension_check}, \code{name_check}, \code{id_check}, \code{row_check}, \code{NA_check}, \code{type_check}, \code{values_check}, \code{integer_check}, \code{decimal_check}, \code{misc_format_check},  \code{description_check}, \code{minmax_check}, and \code{missing_value_check}.
+This function runs a full workflow check including \code{field_check}, \code{pkg_field_check}, \code{dimension_check}, \code{name_check}, \code{id_check}, \code{duplicated_id_check}, \code{row_check}, \code{NA_check}, \code{type_check}, \code{values_check}, \code{integer_check}, \code{decimal_check}, \code{misc_format_check},  \code{description_check}, \code{minmax_check}, \code{ascii_check}, and \code{missing_value_check}.
 }
 \examples{
 # Example 1

@@ -3,10 +3,10 @@
 #' @param DD.dict Data dictionary.
 #' @param DS.data Data set.
 #' @param non.NA.missing.codes A user-defined vector of numerical missing value codes (e.g., -9999).
-#' @return A list, returned invisibly,with two components:
-#' \itemize{
-#'  \item{"report"}{Tibble containing: (1) Name (Name of the function) and (2) Information (Details of all potential flagged variables).}
-#'  \item{"tb"}{Tibble with detailed information used to construct the Information.}
+#' @return An invisible list with two components:
+#' \describe{
+#'   \item{report}{A tibble with function name and details of flagged variables.}
+#'   \item{tb}{A tibble with all detailed data used in the checks.}
 #' }
 #' @details For each variable, we have three sets of possible values: the set D of all the unique values observed
 #' in the data, the set V of all the values explicitly encoded in the VALUES columns of the data dictionary, and 

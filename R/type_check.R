@@ -35,14 +35,14 @@ type_check <- function(DD.dict, verbose=TRUE){
   
   if (chk==TRUE & chk2==TRUE) {
     Status <- "Passed"
-    Message <- "Passed: All TYPE entries found are accepted by dbGaP per submission instructions."
+    Message <- "Passed: all TYPE entries found are accepted by dbGaP per submission instructions."
     Information <- types
     return_to_user <- lst(Message, Information)
   } 
   
   if (chk==TRUE & chk2==FALSE) {
     Status <- "Failed"
-    Message <- "ERROR: Some TYPE entries are not allowable per dbGaP submission instructions."
+    Message <- "ERROR: some TYPE entries are not allowable per dbGaP submission instructions."
     Information <- unique(DD.dict$TYPE[!is.na(DD.dict$TYPE)])
     IllegalEntries <- unique(DD.dict$TYPE[!is.na(DD.dict$TYPE)])
     return_to_user <- lst(Message,  IllegalEntries)

@@ -1,5 +1,5 @@
 #' @title Values Check
-#' @description This function checks for potential errors in the VALUES columns by ensuring (1) required format of `VALUE=MEANING` (e.g., 0=Yes or 1=No); (2) no leading/trailing spaces near the equals sign; (3) all variables of TYPE encoded have VALUES entries; and (4) all variables with VALUES entries are listed as TYPE encoded.
+#' @description This function checks for potential errors in the VALUES columns by ensuring (1) required format of `VALUE=MEANING` (e.g., 0=Yes or 1=No) AND ensuring there is only one equals sign per cell; (2) no leading/trailing spaces near the equals sign; (3) all variables of TYPE encoded have VALUES entries; and (4) all variables with VALUES entries are listed as TYPE encoded.
 #' @param DD.dict Data dictionary.
 #' @param verbose When TRUE, the function prints the Message out, as well as a list of variables that fail one of the values checks.
 #' @return Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (Details of which checks passed/failed for which value=meaning instances).
@@ -41,7 +41,7 @@ values_check <- function(DD.dict, verbose=TRUE) {
     chk <- dup_values(DD.dict)
     if (chk==TRUE) {
       
-    # Check 1: Is an = present in all values columns (VALUE=MEANING)?  
+    # CHECK 1: Is exactly one '=' present in each VALUES cell (VALUE=MEANING)?
     # Check 2: Are there leading/trailing spaces near the first equal sign?
     # Check 3: Do all variables of TYPE encoded have at least one VALUES entry?
     # Check 4: Are all variables with at least one VALUES entry of TYPE encoded?
@@ -49,7 +49,9 @@ values_check <- function(DD.dict, verbose=TRUE) {
     # Temporarily remove any entries in the VALUES columns that are "INTEGERS", "DECIMALS", OR "STRINGS" 
     col <- which(names(DD.dict)=="VALUES")
     for (i in col:ncol(DD.dict)){
-      DD.dict[i][DD.dict[,i]=="INTEGERS" | DD.dict[,i]=="DECIMALS" | DD.dict[,i]=="STRINGS" ] <- NA
+      #DD.dict[i][DD.dict[,i]=="INTEGERS" | DD.dict[,i]=="DECIMALS" | DD.dict[,i]=="STRINGS" ] <- NA
+      idx <- which(DD.dict[, i] %in% c("INTEGERS", "DECIMALS", "STRINGS"))
+      DD.dict[idx, i] <- NA
     }
 
     # Perform checks 1-2 via loop (as the number of VALUES columns can vary greatly across data sets)
@@ -72,15 +74,19 @@ values_check <- function(DD.dict, verbose=TRUE) {
     for (col in vcol:ncol(DD.dict)) {
       # If dim=0, TRUE; else, FALSE
       # For values columns that are not NA, are there equals signs in them?
-      values.check <- (dim(DD.dict[!is.na(DD.dict[col]) & !grepl("=", unlist(DD.dict[col])), c("VARNAME", names(DD.dict)[col])])[1]==0)
+      #values.check <- (dim(DD.dict[!is.na(DD.dict[col]) & !grepl("=", unlist(DD.dict[col])), c("VARNAME", names(DD.dict)[col])])[1]==0)
+      values.check <- (dim(DD.dict[!is.na(DD.dict[col]) & stringr::str_count(unlist(DD.dict[col]), "=") != 1, c("VARNAME", names(DD.dict)[col])])[1]==0)
       # Store column name
       column_name <- names(DD.dict[,col])
 
       # Store information listed in values column
       if (values.check==FALSE){
-        vname <- unlist(DD.dict[!is.na(DD.dict[col]) & !grepl("=", unlist(DD.dict[col])), c("VARNAME")])
-        type <- unlist(DD.dict[!is.na(DD.dict[col]) & !grepl("=", unlist(DD.dict[col])), c("TYPE")])
-        problematic_description <- unlist(DD.dict[!is.na(DD.dict[col]) & !grepl("=", unlist(DD.dict[col])), c(names(DD.dict)[col])])
+        #vname <- unlist(DD.dict[!is.na(DD.dict[col]) & !grepl("=", unlist(DD.dict[col])), c("VARNAME")])
+        #type <- unlist(DD.dict[!is.na(DD.dict[col]) & !grepl("=", unlist(DD.dict[col])), c("TYPE")])
+        #problematic_description <- unlist(DD.dict[!is.na(DD.dict[col]) & !grepl("=", unlist(DD.dict[col])), c(names(DD.dict)[col])])
+        vname <- unlist(DD.dict[!is.na(DD.dict[col]) & stringr::str_count(unlist(DD.dict[col]), "=") != 1, c("VARNAME")])
+        type <- unlist(DD.dict[!is.na(DD.dict[col]) & stringr::str_count(unlist(DD.dict[col]), "=") != 1, c("TYPE")])
+        problematic_description <- unlist(DD.dict[!is.na(DD.dict[col]) & stringr::str_count(unlist(DD.dict[col]), "=") != 1, c(names(DD.dict)[col])])
       } else {
         vname <- NA
         type <- NA
@@ -95,12 +101,12 @@ values_check <- function(DD.dict, verbose=TRUE) {
     DD.dict <- DD.dict.orig
     # Clean up check 1 results
     rownames(v.check) <- 1:nrow(v.check)
-    v.check$check <- "Check 1: Is an equals sign present for all values columns?"
+    v.check$check <- "Check 1: Does each VALUES cell contain exactly one '='?"
     VALUES.CHECK1 <- (isTRUE(all(v.check$values.check)))
     VALUES.CHECK1.details <- v.check
     if (isTRUE(VALUES.CHECK1)) {
       check.name <- "Check 1"
-      check.description <- "Is an equals sign present for all values columns?"
+      check.description <- "Does each VALUES cell contain exactly one '='?"
       check.status <- "Passed"
       check1.final <- data.frame(check.name, check.description, check.status)
     }

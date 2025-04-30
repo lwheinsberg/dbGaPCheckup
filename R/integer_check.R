@@ -60,7 +60,7 @@ integer_check <- function(DD.dict, DS.data, verbose=TRUE) {
     #    summarize(across(all_of(int.vars), int_check, .names = "{.col}"))
     #CHECK.integer <- (all(chk == TRUE))
     #CHECK.VARIABLES <- names(chk)[chk == FALSE]
-    
+    int.vars <- int.vars[!is.na(int.vars)]
     if (length(int.vars) > 0) {
       chk <-
         DS.data %>%

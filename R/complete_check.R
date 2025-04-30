@@ -1,5 +1,5 @@
 #' @title Complete Check
-#' @description This function runs a full workflow check including `field_check`, `pkg_field_check`, `dimension_check`, `name_check`, `id_check`, `row_check`, `NA_check`, `type_check`, `values_check`, `integer_check`, `decimal_check`, `misc_format_check`,  `description_check`, `minmax_check`, and `missing_value_check`.
+#' @description This function runs a full workflow check including `field_check`, `pkg_field_check`, `dimension_check`, `name_check`, `id_check`, `duplicated_id_check`, `row_check`, `NA_check`, `type_check`, `values_check`, `integer_check`, `decimal_check`, `misc_format_check`,  `description_check`, `minmax_check`, `ascii_check`, and `missing_value_check`.
 #' @param DD_dict Data dictionary.
 #' @param DS_data Data set.
 #' @param non.NA.missing.codes A user-defined vector of encoded, numerical (i.e., non-NA) missing value codes (e.g., -9999).
@@ -112,7 +112,21 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
     ))
   })
   
-  # Check 6: row_check
+  # Check 6: duplicated_id_check
+  tryCatch({
+    dup_id_result <- duplicated_id_check(DS_data, verbose = FALSE)
+    report <- bind_rows(report, dup_id_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = "duplicated_id_check",
+      Status = "Error",
+      Message = paste("ERROR: duplicatedid_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
+  # Check 7: row_check
   tryCatch({
     row_result <- row_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, row_result)
@@ -126,7 +140,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
     ))
   })
   
-  # Check 7: NA_check
+  # Check 8: NA_check
   tryCatch({
     NA_result <- NA_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, NA_result)
@@ -140,7 +154,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
     ))
   })
   
-  # Check 8: type_check
+  # Check 9: type_check
   tryCatch({
     type_result <- type_check(DD_dict, verbose = FALSE)
     report <- bind_rows(report, type_result)
@@ -154,7 +168,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
     ))
   })
   
-  # Check 9: values_check
+  # Check 10: values_check
   tryCatch({
     values_result <- values_check(DD_dict, verbose = FALSE)
     report <- bind_rows(report, values_result)
@@ -168,7 +182,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
     ))
   })
   
-  # Check 10: integer_check
+  # Check 11: integer_check
   tryCatch({
     integer_result <- integer_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, integer_result)
@@ -182,7 +196,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
     ))
   })
   
-  # Check 11: decimal_check
+  # Check 12: decimal_check
   tryCatch({
     decimal_result <- decimal_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, decimal_result)
@@ -196,7 +210,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
     ))
   })
   
-  # Check 12: misc_format_check
+  # Check 13: misc_format_check
   tryCatch({
     misc_format_result <- misc_format_check(DD_dict, DS_data, verbose = FALSE)
     report <- bind_rows(report, misc_format_result)
@@ -210,7 +224,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
     ))
   })
   
-  # Check 13: description_check
+  # Check 14: description_check
   tryCatch({
     description_result <- description_check(DD_dict, verbose = FALSE)
     report <- bind_rows(report, description_result)
@@ -224,7 +238,7 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
     ))
   })
   
-  # Check 14: minmax_check
+  # Check 15: minmax_check
   tryCatch({
     minmax_result <- minmax_check(DD_dict, DS_data, non.NA.missing.codes = non.NA.missing.codes, verbose = FALSE)
     report <- bind_rows(report, minmax_result)
@@ -238,7 +252,21 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
     ))
   })
   
-  # Check 15: missing_value_check
+  # Check 16: ascii_check
+  tryCatch({
+    ascii_result <- ascii_check(DD_dict, DS_data, verbose = FALSE)
+    report <- bind_rows(report, ascii_result)
+  }, error = function(e) {
+    report <<- bind_rows(report, data.frame(
+      Time = Sys.time(),
+      Function = " ascii_check",
+      Status = "Error",
+      Message = paste("ERROR:  ascii_check encountered an error not yet accounted for by the package:", e$message),
+      Information = NA
+    ))
+  })
+  
+  # Check 17: missing_value_check
   tryCatch({
     missing_value_result <- missing_value_check(DD_dict, DS_data, non.NA.missing.codes = non.NA.missing.codes, verbose = FALSE)
     report <- bind_rows(report, missing_value_result)
@@ -257,16 +285,17 @@ complete_check <- function(DD_dict, DS_data, non.NA.missing.codes=NA, reorder.di
   names(report$Information)[3] <- "dimension_check.Info"
   names(report$Information)[4] <- "name_check.Info"
   names(report$Information)[5] <- "id_check.Info"
-  names(report$Information)[6] <- "row_check.Info"
-  names(report$Information)[7] <- "NA_check.Info"
-  names(report$Information)[8] <- "type_check.Info"
-  names(report$Information)[9] <- "values_check.Info"
-  names(report$Information)[10] <- "integer_check.Info"
-  names(report$Information)[11] <- "decimal_check.Info"
-  names(report$Information)[12] <- "misc_formatting_check.Info"
-  names(report$Information)[13] <- "description_check.Info"
-  names(report$Information)[14] <- "minmax_check.Info"
-  names(report$Information)[15] <- "missing_value_check.Info"
+  names(report$Information)[6] <- "dup_id_check.Info"
+  names(report$Information)[7] <- "row_check.Info"
+  names(report$Information)[8] <- "NA_check.Info"
+  names(report$Information)[9] <- "type_check.Info"
+  names(report$Information)[10] <- "values_check.Info"
+  names(report$Information)[11] <- "integer_check.Info"
+  names(report$Information)[12] <- "decimal_check.Info"
+  names(report$Information)[13] <- "misc_formatting_check.Info"
+  names(report$Information)[14] <- "description_check.Info"
+  names(report$Information)[15] <- "minmax_check.Info"
+  names(report$Information)[16] <- "missing_value_check.Info"
   
   # .... Plan to expand as more checks are added .... #
   

@@ -106,6 +106,18 @@ library(dbGaPCheckup)
 
 Read in your Subject Phenotype data into `DS.data`.
 
+A special note: To ensure that checks run properly, it’s important that
+empty cells in your dataset and data dictionary are read into R as NA
+(missing values), not as empty strings (““). This is especially
+important for the VALUES column in your data dictionary. If blank cells
+are accidentally read as empty strings instead of NA, some checks may
+incorrectly flag errors—for example, by expecting encoded values for
+variable types that don’t require them (string, integer, or decimal).
+(See issue \#16). If you are reading in your data ase a csv., we
+recommend using `read.csv("your_file.csv", na.strings = c("", "NA"))`.
+Or for excel files you can use
+`readxl::read_xlsx("your_file.xlsx", na = c("", "NA"))`. Etc.
+
 ``` r
 DS.path <- system.file("extdata", "DS_Example.txt",
    package = "dbGaPCheckup", mustWork=TRUE)

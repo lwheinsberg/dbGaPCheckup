@@ -157,7 +157,7 @@ id_check <- function(DS.data, verbose=TRUE){
   Function <- "id_check"
   if (all(Information$check.status=="Passed")) {
     Status <- "Passed"
-    Message <- c("Passed: All ID variable checks passed.")
+    Message <- c("Passed: all ID variable checks passed.")
     return_to_user <- lst(Message, Information)
   } else {
     Status <- "Failed"
