@@ -4,7 +4,7 @@
 - New function `ascii_check()` scans both the data dictionary and data set for (1) non-ASCII characters (e.g., é, ñ) and (2) newline (\n) and carriage return (\r) characters
 - New helper ascii_cleaner() cleans a data frame by (1) converting smart quotes to straight quotes, replacing accented characters with ASCII equivalents, removing newline and carriage return characters
 - complete_check(): updated to include both duplicated_id_check() and ascii_check()
-- values_check(): updated Check 1 to require each VALUES cell contain exactly one equals sign (=) (e.g., 1=Yes vs. 1=Yes; 0=No), in alignment with dbGaP formatting requirements
+- values_check(): updated Check 1 to require each VALUES cell contain exactly one equals sign (=) (e.g., 1=Yes vs. 1=Yes; 0=No), in alignment with dbGaP formatting requirements; added new Check 5 to detect duplicated MEANINGs in VALUES=MEANING entries. 
 - misc_format_check(): now prevents errors when the VALUES column is the last column in the data dictionary (i.e., no columns follow) - this does return a WARNING, however, as this structure is valid but expected to be uncommon
 - integer_check(): resolved a rare error when the TYPE column contains malformed or unexpected values
 - Documentation: Updated to emphasize the importance of reading CSVs using readr::read_csv(..., na = c("", "NA")) or read.csv(..., na.strings = c("", "NA")) to correctly interpret missing cells, particularly in the VALUES column. (See GitHub Issue #16 for discussion)
