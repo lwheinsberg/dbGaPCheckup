@@ -1,5 +1,5 @@
 #' @title Values Check
-#' @description This function checks for potential errors in the VALUES columns by ensuring (1) required format of `VALUE=MEANING` (e.g., 0=Yes or 1=No) AND ensuring there is only one equals sign per cell; (2) no leading/trailing spaces near the equals sign; (3) all variables of TYPE encoded have VALUES entries; and (4) all variables with VALUES entries are listed as TYPE encoded.
+#' @description This function checks for potential errors in the VALUES columns by ensuring (1) required format of `VALUE=MEANING` (e.g., 0=Yes or 1=No) AND ensuring there is only one equals sign per cell; (2) no leading/trailing spaces near the equals sign; (3) all variables of TYPE encoded have VALUES entries; (4) all variables with VALUES entries are listed as TYPE encoded; and (5) there are no duplicated MEANINGs (e.g., 1=Yes; 2=Yes) within the same variable.
 #' @param DD.dict Data dictionary.
 #' @param verbose When TRUE, the function prints the Message out, as well as a list of variables that fail one of the values checks.
 #' @return Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Failed); (4) Message (A copy of the message the function printed out); (5) Information (Details of which checks passed/failed for which value=meaning instances).
@@ -227,21 +227,69 @@ values_check <- function(DD.dict, verbose=TRUE) {
       check4.final <- data.frame(check.name, check.description, check.status)
     }
     
+    ##### Check 5: Do any encoded values share the same meaning within a variable? #####
+    v.check <- NULL
+    vcol <- which(names(DD.dict)=="VALUES")
+    
+    for (row in 1:nrow(DD.dict)) {
+      row_vals <- unlist(DD.dict[row, vcol:ncol(DD.dict)])
+      row_vals <- row_vals[!is.na(row_vals)]
+      
+      # Extract meanings
+      meanings <- stringr::str_trim(stringr::str_replace(row_vals, "^.*?=", ""))  # everything after the first '='
+      
+      if (length(meanings) != length(unique(meanings))) {
+        values.check <- FALSE
+        dups <- meanings[duplicated(meanings)]
+      } else {
+        values.check <- TRUE
+        dups <- NA
+      }
+      
+      column_name <- "VALUES"
+      vname <- DD.dict$VARNAME[row]
+      type <- DD.dict$TYPE[row]
+      problematic_description <- paste(row_vals, collapse = "; ")
+      
+      v.check.comb <- data.frame(
+        column_name,
+        values.check,
+        vname,
+        type,
+        problematic_description,
+        duplicated_meanings = paste(dups, collapse = ", ")
+      )
+      
+      v.check <- bind_rows(v.check, v.check.comb)
+    }
+    
+    rownames(v.check) <- 1:nrow(v.check)
+    v.check$check <- "Check 5: Do any encoded values share the same meaning within a variable?"
+    VALUES.CHECK5 <- isTRUE(all(v.check$values.check))
+    VALUES.CHECK5.details <- v.check
+    
+    if (isTRUE(VALUES.CHECK5)) {
+      check.name <- "Check 5"
+      check.description <- "Do any encoded values share the same meaning within a variable?"
+      check.status <- "Passed"
+      check5.final <- data.frame(check.name, check.description, check.status)
+    }
+    
     # Compile report
     Time <- Sys.time()
     Function <- "values_check"
-    VALUES.CHECK <- unlist(lst(VALUES.CHECK1, VALUES.CHECK2, VALUES.CHECK3, VALUES.CHECK4))
+    VALUES.CHECK <- unlist(lst(VALUES.CHECK1, VALUES.CHECK2, VALUES.CHECK3, VALUES.CHECK4, VALUES.CHECK5))
 
     if (all(VALUES.CHECK==TRUE)) {
       Status <- "Passed"
       Message <- c("Passed: all four VALUES checks look good.")
-      Information <- bind_rows(check1.final, check2.final, check3.final, check4.final)
+      Information <- bind_rows(check1.final, check2.final, check3.final, check4.final, check5.final)
       #Information <- VALUES.CHECK
       return_to_user <- lst(Message, Information)
     } else {
       Status <- "Failed"
       Message <- c("ERROR: at least one VALUES check flagged potentials issues. See Information for more details.")
-      Information2 <-  bind_rows(VALUES.CHECK1.details, VALUES.CHECK2.details, VALUES.CHECK3.details, VALUES.CHECK4.details)
+      Information2 <-  bind_rows(VALUES.CHECK1.details, VALUES.CHECK2.details, VALUES.CHECK3.details, VALUES.CHECK4.details, VALUES.CHECK5.details)
       Information <- subset(Information2, values.check==FALSE)
       #Problem_Variables <- Information %>% select(column_name, vname, type, problematic_description, check)
       return_to_user <- lst(Message, Information)
