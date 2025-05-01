@@ -5,79 +5,62 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="dbGaPCheckup">
 <title>dbGaPCheckup Vignette • dbGaPCheckup</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="dbGaPCheckup Vignette">
-<meta property="og:description" content="dbGaPCheckup">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="dbGaPCheckup Vignette">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">dbGaPCheckup</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../articles/dbGaPCheckup.html">Get started</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../articles/dbGaPCheckup.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/dbGaPCheckup_vignette.html">dbGaPCheckup Vignette</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/dbGaPCheckup_vignette.html">dbGaPCheckup Vignette</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/lwheinsberg/dbGaPCheckup/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/lwheinsberg/dbGaPCheckup/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>dbGaPCheckup Vignette</h1>
+
+      <h1>dbGaPCheckup Vignette</h1>
                         <h4 data-toc-skip class="author"></h4>
 <p>Lacey W.
 Heinsberg and Daniel E. Weeks</p>
             
-            <h4 data-toc-skip class="date">September 27, 2023</h4>
+            <h4 data-toc-skip class="date">May 01, 2025</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/lwheinsberg/dbGaPCheckup/blob/HEAD/vignettes/dbGaPCheckup_vignette.Rmd" class="external-link"><code>vignettes/dbGaPCheckup_vignette.Rmd</code></a></small>
       <div class="d-none name"><code>dbGaPCheckup_vignette.Rmd</code></div>
@@ -110,9 +93,9 @@ package.</p>
 <table class="table">
 <caption>List of function names and types.</caption>
 <colgroup>
-<col width="6%">
-<col width="5%">
-<col width="87%">
+<col width="4%">
+<col width="4%">
+<col width="90%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">Function_Name</th>
@@ -154,47 +137,55 @@ contain no illegal characters or padded zeros, and that each participant
 has an ID.</td>
 </tr>
 <tr class="even">
+<td align="left">duplicate_id_check</td>
+<td align="left">check</td>
+<td align="left">Checks for duplicated SUBJECT_ID values are present in
+the dataset (while expected/allowable in longitudinal data, it may
+indicate an error in cross-sectional submissions)</td>
+</tr>
+<tr class="odd">
 <td align="left">row_check</td>
 <td align="left">check</td>
 <td align="left">Checks for empty or duplicate rows in the data set and
 data dictionary.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">NA_check</td>
 <td align="left">check</td>
 <td align="left">Checks for NA values in the data set and, if NA values
 are present, also checks for an encoded NA value=meaning
 description.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">type_check</td>
 <td align="left">check</td>
 <td align="left">If a TYPE field exists, this function checks for any
 TYPE entries that aren’t allowable per dbGaP instructions.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">values_check</td>
 <td align="left">check</td>
 <td align="left">Checks for potential errors in the VALUES columns by
-ensuring (1) required format of <code>VALUE=MEANING</code> (e.g., 0=No
-or 1=Yes); (2) no leading/trailing spaces near the equals sign (e.g.,
-0=No vs. 0 = No); (3) all variables of TYPE encoded have VALUES entries;
-and (4) all variables with VALUES entries are listed as TYPE
-encoded.</td>
+ensuring (1) required format of <code>VALUE=MEANING</code> (e.g., 0=Yes
+or 1=No) AND ensuring there is only one equals sign per cell; (2) no
+leading/trailing spaces near the equals sign; (3) all variables of TYPE
+encoded have VALUES entries; (4) all variables with VALUES entries are
+listed as TYPE encoded; and (5) there are no duplicated MEANINGs (e.g.,
+1=Yes; 2=Yes) within the same variable</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">integer_check</td>
 <td align="left">check</td>
 <td align="left">Checks for variables that appear to be incorrectly
 listed as TYPE integer.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">decimal_check</td>
 <td align="left">check</td>
 <td align="left">Checks for variables that appear to be incorrectly
 listed as TYPE decimal.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">misc_format_check</td>
 <td align="left">check</td>
 <td align="left">Checks miscellaneous dbGaP formatting requirements to
@@ -203,17 +194,23 @@ variable names do not contain “dbgap”; (4) there are no duplicate column
 names in the dictionary; and (5) column names falling after
 <code>VALUES</code> column are unnamed.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">description_check</td>
 <td align="left">check</td>
 <td align="left">Checks for unique and non-missing descriptions
 (VARDESC) for every variable in the data dictionary.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">minmax_check</td>
 <td align="left">check</td>
 <td align="left">Checks for variables that have values exceeding the
 listed MIN or MAX.</td>
+</tr>
+<tr class="even">
+<td align="left">ascii_check</td>
+<td align="left">check</td>
+<td align="left">Scans for non-ASCII characters (e.g., with accents) and
+newline and carriage return characters (e.g., line breaks)</td>
 </tr>
 <tr class="odd">
 <td align="left">missing_value_check</td>
@@ -267,47 +264,56 @@ first.</td>
 first.</td>
 </tr>
 <tr class="odd">
+<td align="left">ascii_cleaner</td>
+<td align="left">utility</td>
+<td align="left">Scans a data frame for common problematic characters
+and returns a cleaned version by: converting smart quotes (e.g., curved)
+to ASCII quotes (e.g., ” and ’); replacing accented characters with
+ASCII equivalents (e.g., e, n); removing newline and carriage return
+characters (that create line breaks)</td>
+</tr>
+<tr class="even">
 <td align="left">label_data</td>
 <td align="left">utility, awareness</td>
 <td align="left">Adds non-missing information from the data dictionary
 as attributes to the data.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">value_meaning_table</td>
 <td align="left">utility, awareness</td>
 <td align="left">Generates a value-meaning table by parsing the VALUES
 fields.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">missingness_summary</td>
 <td align="left">awareness</td>
 <td align="left">Summarizes the amount of missingness in the data
 set.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">value_missing_table</td>
 <td align="left">awareness</td>
 <td align="left">Checks for consistent usage of encoded values and
 missing value codes between the data dictionary and the data set.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">dictionary_search</td>
 <td align="left">awareness</td>
 <td align="left">Facilitates searches of the data dictionary.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">check_report</td>
 <td align="left">bulk check, reporting</td>
 <td align="left">Generates a user-readable report of the checks run by
 the complete_check function.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">create_report</td>
 <td align="left">reporting, awareness</td>
 <td align="left">Generates a textual and graphical report of the
 selected variables in HTML format.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">create_awareness_report</td>
 <td align="left">reporting, awareness</td>
 <td align="left">Generates an awareness report, calling
@@ -937,24 +943,26 @@ to first specify the name of the data dictionary, followed by the name
 of the data set.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">e1_report</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_report.html">check_report</a></span><span class="op">(</span><span class="va">DD.dict.D</span>, <span class="va">DS.data.D</span>, non.NA.missing.codes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4444</span>, <span class="op">-</span><span class="fl">9999</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 3</span></span></span>
 <span><span class="co">#&gt;    Function            Status        Message                                    </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> field_check         Passed        Passed: required fields VARNAME, VARDESC, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> pkg_field_check     Failed        ERROR: not all package-level required fiel…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> dimension_check     Passed        Passed: the variable count matches between…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> name_check          Passed        Passed: the variable names match between t…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed        Passed: All ID variable checks passed.     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> row_check           Passed        Passed: no blank or duplicate rows detecte…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> NA_check            Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> type_check          Failed        ERROR: TYPE column not found. Consider usi…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Not attempted ERROR: Required pre-check type_check faile…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Passed        Passed: no check-specific formatting issue…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Failed        ERROR: missing and duplicate descriptions …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed        Passed: all ID variable checks passed.     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> duplicated_id_check Passed        Passed: no duplicated SUBJECT_ID values fo…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> row_check           Passed        Passed: no blank or duplicate rows detecte…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> NA_check            Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> type_check          Failed        ERROR: TYPE column not found. Consider usi…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> values_check        Not attempted ERROR: Required pre-check type_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> integer_check       Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> decimal_check       Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> misc_format_check   Passed        Passed: no check-specific formatting issue…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> description_check   Failed        ERROR: missing and duplicate descriptions …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> minmax_check        Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> ascii_check         Passed        Passed: no non-ASCII characters detected i…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> missing_value_check Not attempted ERROR: Required pre-check pkg_field_check …</span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; pkg_field_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fields function to auto fill these fields. </span></span>
@@ -1013,24 +1021,26 @@ in the updated version of the data dictionary here!</p>
 <code class="sourceCode R"><span><span class="co"># Note! Don't forget to call in the updated version of the data dictionary here! </span></span>
 <span><span class="va">e1_report.v2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_report.html">check_report</a></span><span class="op">(</span><span class="va">DD.dict_updated</span>, <span class="va">DS.data.D</span>, </span>
 <span>                non.NA.missing.codes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4444</span>, <span class="op">-</span><span class="fl">9999</span><span class="op">)</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 3</span></span></span>
 <span><span class="co">#&gt;    Function            Status Message                                           </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                             </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> dimension_check     Passed Passed: the variable count matches between the da…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> name_check          Passed Passed: the variable names match between the data…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed Passed: All ID variable checks passed.            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> NA_check            Passed Passed: no NA values detected in data set.        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> type_check          Passed Passed: All TYPE entries found are accepted by db…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Passed Passed: all four VALUES checks look good.         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Passed Passed: all variables listed as TYPE integer appe…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Failed ERROR: missing and duplicate descriptions found i…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Passed Passed: when provided, all variables are within t…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Failed ERROR: some variables have non-encoded missing va…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed Passed: all ID variable checks passed.            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> duplicated_id_check Passed Passed: no duplicated SUBJECT_ID values found.    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> NA_check            Passed Passed: no NA values detected in data set.        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> type_check          Passed Passed: all TYPE entries found are accepted by db…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> values_check        Passed Passed: all four VALUES checks look good.         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> integer_check       Passed Passed: all variables listed as TYPE integer appe…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> description_check   Failed ERROR: missing and duplicate descriptions found i…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> minmax_check        Passed Passed: when provided, all variables are within t…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> ascii_check         Passed Passed: no non-ASCII characters detected in data …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> missing_value_check Failed ERROR: some variables have non-encoded missing va…</span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; description_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: missing and duplicate descriptions found in data dictionary. </span></span>
@@ -1046,7 +1056,7 @@ in the updated version of the data dictionary here!</p>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; missing_value_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: some variables have non-encoded missing value codes. </span></span>
-<span><span class="co">#&gt; $missing_value_check.Info</span></span>
+<span><span class="co">#&gt; $Information</span></span>
 <span><span class="co">#&gt;     VARNAME VALUE MEANING  PASS</span></span>
 <span><span class="co">#&gt; 16 CUFFSIZE -9999    &lt;NA&gt; FALSE</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -1076,24 +1086,26 @@ now, we will leave this example and move on to the next one!</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ExampleL</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">e2_report</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_report.html">check_report</a></span><span class="op">(</span><span class="va">DD.dict.L</span>, <span class="va">DS.data.L</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 3</span></span></span>
 <span><span class="co">#&gt;    Function            Status        Message                                    </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> field_check         Passed        Passed: required fields VARNAME, VARDESC, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> pkg_field_check     Passed        Passed: package-level required fields TYPE…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> dimension_check     Passed        Passed: the variable count matches between…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> name_check          Failed        ERROR: the variable names DO NOT match bet…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed        Passed: All ID variable checks passed.     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> row_check           Passed        Passed: no blank or duplicate rows detecte…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> NA_check            Not attempted ERROR: Required pre-check name_check faile…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> type_check          Passed        Passed: All TYPE entries found are accepte…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Failed        ERROR: at least one VALUES check flagged p…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Not attempted ERROR: Required pre-check name_check faile…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Not attempted ERROR: Required pre-check name_check faile…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Failed        ERROR: at least one check failed.          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Failed        ERROR: missing and duplicate descriptions …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Not attempted ERROR: Required pre-check name_check faile…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed        Passed: all ID variable checks passed.     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> duplicated_id_check Passed        Passed: no duplicated SUBJECT_ID values fo…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> row_check           Passed        Passed: no blank or duplicate rows detecte…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> NA_check            Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> type_check          Passed        Passed: all TYPE entries found are accepte…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> values_check        Failed        ERROR: at least one VALUES check flagged p…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> integer_check       Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> decimal_check       Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> misc_format_check   Failed        ERROR: at least one check failed.          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> description_check   Failed        ERROR: missing and duplicate descriptions …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> minmax_check        Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> ascii_check         Passed        Passed: no non-ASCII characters detected i…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> missing_value_check Not attempted ERROR: Required pre-check name_check faile…</span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; name_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: the variable names DO NOT match between the data dictionary and the data. If the intention behind the variable names is correct, consider using the name_correct function to automatically rename variables to match. </span></span>
@@ -1129,32 +1141,38 @@ now, we will leave this example and move on to the next one!</p>
 <span><span class="co">#&gt; 15                                                    -9999=missing value</span></span>
 <span><span class="co">#&gt; 16                                                                 0=male</span></span>
 <span><span class="co">#&gt;                                                                         check</span></span>
-<span><span class="co">#&gt; 4                  Check 1: Is an equals sign present for all values columns?</span></span>
-<span><span class="co">#&gt; 6                  Check 1: Is an equals sign present for all values columns?</span></span>
-<span><span class="co">#&gt; 7                  Check 1: Is an equals sign present for all values columns?</span></span>
+<span><span class="co">#&gt; 4                     Check 1: Does each VALUES cell contain exactly one '='?</span></span>
+<span><span class="co">#&gt; 6                     Check 1: Does each VALUES cell contain exactly one '='?</span></span>
+<span><span class="co">#&gt; 7                     Check 1: Does each VALUES cell contain exactly one '='?</span></span>
 <span><span class="co">#&gt; 9  Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
 <span><span class="co">#&gt; 10 Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
 <span><span class="co">#&gt; 12 Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
 <span><span class="co">#&gt; 14  Check 3: Do all variables of TYPE encoded have at least one VALUES entry?</span></span>
 <span><span class="co">#&gt; 15            Check 4: Are all variables with VALUES entries of TYPE encoded?</span></span>
 <span><span class="co">#&gt; 16            Check 4: Are all variables with VALUES entries of TYPE encoded?</span></span>
+<span><span class="co">#&gt;    duplicated_meanings</span></span>
+<span><span class="co">#&gt; 4                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 6                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 7                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 9                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 10                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 12                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 14                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 15                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 16                &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; misc_format_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: at least one check failed. </span></span>
 <span><span class="co">#&gt; $misc_formatting_check.Info</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 6</span></span></span>
-<span><span class="co">#&gt;   check.name check.description             check.status details col.name correct</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check     Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in … Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column … Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES2  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES3  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES4  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES5  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES6  FALSE  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
+<span><span class="co">#&gt;   check.name check.description                              check.status details</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check                      Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check                  Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in variable names     Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column name check         Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` should be blank o… Failed       Invali…</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; description_check: Failed </span></span>
@@ -1238,24 +1256,26 @@ updated data set!</p>
 <span><span class="co">#&gt; [3].</span></span>
 <span><span class="co">#&gt; Warning: Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [1].</span></span>
 <span><span class="co">#&gt; Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [1].</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 3</span></span></span>
 <span><span class="co">#&gt;    Function            Status Message                                           </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                             </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> dimension_check     Passed Passed: the variable count matches between the da…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> name_check          Passed Passed: the variable names match between the data…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed Passed: All ID variable checks passed.            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> NA_check            Passed Passed: no NA values detected in data set.        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> type_check          Passed Passed: All TYPE entries found are accepted by db…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Failed ERROR: at least one VALUES check flagged potentia…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Failed ERROR: some variables listed as TYPE integer do n…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Failed ERROR: some variables listed as TYPE decimal do n…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Failed ERROR: at least one check failed.                 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Failed ERROR: missing and duplicate descriptions found i…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Failed ERROR: some variables have values outside of the …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Failed ERROR: some variables have non-encoded missing va…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed Passed: all ID variable checks passed.            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> duplicated_id_check Passed Passed: no duplicated SUBJECT_ID values found.    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> NA_check            Passed Passed: no NA values detected in data set.        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> type_check          Passed Passed: all TYPE entries found are accepted by db…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> values_check        Failed ERROR: at least one VALUES check flagged potentia…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> integer_check       Failed ERROR: some variables listed as TYPE integer do n…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> decimal_check       Failed ERROR: some variables listed as TYPE decimal do n…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> misc_format_check   Failed ERROR: at least one check failed.                 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> description_check   Failed ERROR: missing and duplicate descriptions found i…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> minmax_check        Failed ERROR: some variables have values outside of the …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> ascii_check         Passed Passed: no non-ASCII characters detected in data …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> missing_value_check Failed ERROR: some variables have non-encoded missing va…</span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; values_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: at least one VALUES check flagged potentials issues. See Information for more details. </span></span>
@@ -1281,15 +1301,25 @@ updated data set!</p>
 <span><span class="co">#&gt; 15                                                    -9999=missing value</span></span>
 <span><span class="co">#&gt; 16                                                                 0=male</span></span>
 <span><span class="co">#&gt;                                                                         check</span></span>
-<span><span class="co">#&gt; 4                  Check 1: Is an equals sign present for all values columns?</span></span>
-<span><span class="co">#&gt; 6                  Check 1: Is an equals sign present for all values columns?</span></span>
-<span><span class="co">#&gt; 7                  Check 1: Is an equals sign present for all values columns?</span></span>
+<span><span class="co">#&gt; 4                     Check 1: Does each VALUES cell contain exactly one '='?</span></span>
+<span><span class="co">#&gt; 6                     Check 1: Does each VALUES cell contain exactly one '='?</span></span>
+<span><span class="co">#&gt; 7                     Check 1: Does each VALUES cell contain exactly one '='?</span></span>
 <span><span class="co">#&gt; 9  Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
 <span><span class="co">#&gt; 10 Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
 <span><span class="co">#&gt; 12 Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
 <span><span class="co">#&gt; 14  Check 3: Do all variables of TYPE encoded have at least one VALUES entry?</span></span>
 <span><span class="co">#&gt; 15            Check 4: Are all variables with VALUES entries of TYPE encoded?</span></span>
 <span><span class="co">#&gt; 16            Check 4: Are all variables with VALUES entries of TYPE encoded?</span></span>
+<span><span class="co">#&gt;    duplicated_meanings</span></span>
+<span><span class="co">#&gt; 4                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 6                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 7                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 9                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 10                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 12                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 14                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 15                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 16                &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; integer_check: Failed </span></span>
@@ -1307,18 +1337,14 @@ updated data set!</p>
 <span><span class="co">#&gt; misc_format_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: at least one check failed. </span></span>
 <span><span class="co">#&gt; $misc_formatting_check.Info</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 6</span></span></span>
-<span><span class="co">#&gt;   check.name check.description             check.status details col.name correct</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check     Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in … Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column … Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES2  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES3  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES4  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES5  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES6  FALSE  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
+<span><span class="co">#&gt;   check.name check.description                              check.status details</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check                      Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check                  Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in variable names     Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column name check         Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` should be blank o… Failed       Invali…</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; description_check: Failed </span></span>
@@ -1335,14 +1361,14 @@ updated data set!</p>
 <span><span class="co">#&gt; ERROR: some variables have values outside of the MIN to MAX range. </span></span>
 <span><span class="co">#&gt; $minmax_check.Info</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 5</span></span></span>
-<span><span class="co">#&gt;   Trait              Check ListedMin ListedMax OutOfRangeValues </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> PERCEIVED_CONFLICT FALSE         1        15 <span style="color: #949494;">&lt;tibble [11 × 1]&gt;</span></span></span>
+<span><span class="co">#&gt;   Trait              Check ListedMin ListedMax OutOfRangeValues</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> PERCEIVED_CONFLICT FALSE         1        15 <span style="color: #949494;">&lt;int [11]&gt;</span>      </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; missing_value_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: some variables have non-encoded missing value codes. </span></span>
-<span><span class="co">#&gt; $missing_value_check.Info</span></span>
+<span><span class="co">#&gt; $Information</span></span>
 <span><span class="co">#&gt;     VARNAME VALUE MEANING  PASS</span></span>
 <span><span class="co">#&gt; 14   RESIST -9999    &lt;NA&gt; FALSE</span></span>
 <span><span class="co">#&gt; 16 CUFFSIZE -9999    &lt;NA&gt; FALSE</span></span>
@@ -1368,25 +1394,27 @@ we would correct this issue and return again to
 <p>Again, we will start with the <code>check_report</code> function.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">e3_report</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_report.html">check_report</a></span><span class="op">(</span><span class="va">DD.dict.B</span>, <span class="va">DS.data.B</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 3</span></span></span>
 <span><span class="co">#&gt;    Function            Status Message                                           </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                             </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> dimension_check     Passed Passed: the variable count matches between the da…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> name_check          Passed Passed: the variable names match between the data…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed Passed: All ID variable checks passed.            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> NA_check            Passed Passed: no NA values detected in data set.        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> type_check          Passed Passed: All TYPE entries found are accepted by db…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Passed Passed: all four VALUES checks look good.         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Passed Passed: all variables listed as TYPE integer appe…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Passed Passed: unique description present for all variab…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Passed Passed: when provided, all variables are within t…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Passed Passed: all missing value codes have a correspond…</span></span>
-<span><span class="co">#&gt; [1] "All 15 checks passed."</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed Passed: all ID variable checks passed.            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> duplicated_id_check Passed Passed: no duplicated SUBJECT_ID values found.    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> NA_check            Passed Passed: no NA values detected in data set.        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> type_check          Passed Passed: all TYPE entries found are accepted by db…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> values_check        Passed Passed: all four VALUES checks look good.         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> integer_check       Passed Passed: all variables listed as TYPE integer appe…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> description_check   Passed Passed: unique description present for all variab…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> minmax_check        Passed Passed: when provided, all variables are within t…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> ascii_check         Passed Passed: no non-ASCII characters detected in data …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> missing_value_check Passed Passed: all missing value codes have a correspond…</span></span>
+<span><span class="co">#&gt; [1] "All 17 checks passed."</span></span></code></pre></div>
 <p>In the above chunk, <code>check_report</code> determines that all 15
 checks were passed! But ALERT — this is misleading a we forgot to
 include an important parameter!!!!! Rerunning the check with our missing
@@ -1395,28 +1423,30 @@ value codes defined, we now see an issue at
 specifying missing value codes.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">e3_report.v2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_report.html">check_report</a></span><span class="op">(</span><span class="va">DD.dict.B</span>, <span class="va">DS.data.B</span>, non.NA.missing.codes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">9999</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 3</span></span></span>
 <span><span class="co">#&gt;    Function            Status Message                                           </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                             </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> dimension_check     Passed Passed: the variable count matches between the da…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> name_check          Passed Passed: the variable names match between the data…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed Passed: All ID variable checks passed.            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> NA_check            Passed Passed: no NA values detected in data set.        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> type_check          Passed Passed: All TYPE entries found are accepted by db…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Passed Passed: all four VALUES checks look good.         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Passed Passed: all variables listed as TYPE integer appe…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Passed Passed: unique description present for all variab…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Passed Passed: when provided, all variables are within t…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Failed ERROR: some variables have non-encoded missing va…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed Passed: all ID variable checks passed.            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> duplicated_id_check Passed Passed: no duplicated SUBJECT_ID values found.    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> NA_check            Passed Passed: no NA values detected in data set.        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> type_check          Passed Passed: all TYPE entries found are accepted by db…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> values_check        Passed Passed: all four VALUES checks look good.         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> integer_check       Passed Passed: all variables listed as TYPE integer appe…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> description_check   Passed Passed: unique description present for all variab…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> minmax_check        Passed Passed: when provided, all variables are within t…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> ascii_check         Passed Passed: no non-ASCII characters detected in data …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> missing_value_check Failed ERROR: some variables have non-encoded missing va…</span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; missing_value_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: some variables have non-encoded missing value codes. </span></span>
-<span><span class="co">#&gt; $missing_value_check.Info</span></span>
+<span><span class="co">#&gt; $Information</span></span>
 <span><span class="co">#&gt;     VARNAME VALUE MEANING  PASS</span></span>
 <span><span class="co">#&gt; 13 CUFFSIZE -9999    &lt;NA&gt; FALSE</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -1543,24 +1573,26 @@ example.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ExampleH</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">e4_report</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_report.html">check_report</a></span><span class="op">(</span><span class="va">DD.dict.H</span>, <span class="va">DS.data.H</span>, non.NA.missing.codes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4444</span>, <span class="op">-</span><span class="fl">9999</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 3</span></span></span>
 <span><span class="co">#&gt;    Function            Status Message                                           </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                             </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> dimension_check     Passed Passed: the variable count matches between the da…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> name_check          Passed Passed: the variable names match between the data…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed Passed: All ID variable checks passed.            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> NA_check            Passed Passed: no NA values detected in data set.        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> type_check          Passed Passed: All TYPE entries found are accepted by db…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Passed Passed: all four VALUES checks look good.         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Failed ERROR: some variables listed as TYPE integer do n…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Passed Passed: unique description present for all variab…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Passed Passed: when provided, all variables are within t…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Passed Passed: all missing value codes have a correspond…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed Passed: all ID variable checks passed.            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> duplicated_id_check Passed Passed: no duplicated SUBJECT_ID values found.    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> row_check           Passed Passed: no blank or duplicate rows detected in da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> NA_check            Passed Passed: no NA values detected in data set.        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> type_check          Passed Passed: all TYPE entries found are accepted by db…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> values_check        Passed Passed: all four VALUES checks look good.         </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> integer_check       Failed ERROR: some variables listed as TYPE integer do n…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> decimal_check       Passed Passed: all variables listed as TYPE decimal appe…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> misc_format_check   Passed Passed: no check-specific formatting issues ident…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> description_check   Passed Passed: unique description present for all variab…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> minmax_check        Passed Passed: when provided, all variables are within t…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> ascii_check         Passed Passed: no non-ASCII characters detected in data …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> missing_value_check Passed Passed: all missing value codes have a correspond…</span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; integer_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: some variables listed as TYPE integer do not appear to be integers. </span></span>
@@ -1634,24 +1666,26 @@ measurement/recording error.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ExampleN</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d5_report</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_report.html">check_report</a></span><span class="op">(</span><span class="va">DD.dict.N</span>, <span class="va">DS.data.N</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 3</span></span></span>
 <span><span class="co">#&gt;    Function            Status        Message                                    </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> field_check         Passed        Passed: required fields VARNAME, VARDESC, …</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> pkg_field_check     Passed        Passed: package-level required fields TYPE…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> dimension_check     Passed        Passed: the variable count matches between…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> name_check          Failed        ERROR: the variable names match between th…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed        Passed: All ID variable checks passed.     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> row_check           Passed        Passed: no blank or duplicate rows detecte…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> NA_check            Not attempted ERROR: Required pre-check name_check faile…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> type_check          Passed        Passed: All TYPE entries found are accepte…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> values_check        Failed        ERROR: at least one VALUES check flagged p…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> integer_check       Not attempted ERROR: Required pre-check name_check faile…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> decimal_check       Not attempted ERROR: Required pre-check name_check faile…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> misc_format_check   Failed        ERROR: at least one check failed.          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> description_check   Failed        ERROR: missing and duplicate descriptions …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> minmax_check        Not attempted ERROR: Required pre-check name_check faile…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> missing_value_check Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> id_check            Passed        Passed: all ID variable checks passed.     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> duplicated_id_check Passed        Passed: no duplicated SUBJECT_ID values fo…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> row_check           Passed        Passed: no blank or duplicate rows detecte…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> NA_check            Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> type_check          Passed        Passed: all TYPE entries found are accepte…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> values_check        Failed        ERROR: at least one VALUES check flagged p…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> integer_check       Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> decimal_check       Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> misc_format_check   Failed        ERROR: at least one check failed.          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> description_check   Failed        ERROR: missing and duplicate descriptions …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> minmax_check        Not attempted ERROR: Required pre-check name_check faile…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> ascii_check         Passed        Passed: no non-ASCII characters detected i…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> missing_value_check Not attempted ERROR: Required pre-check name_check faile…</span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; name_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: the variable names match between the data dictionary and the data, but they are in the wrong order. Consider using reorder_dictionary function to automatically reorder the dictionary so that you can continue working through the checks. </span></span>
@@ -1695,32 +1729,38 @@ measurement/recording error.</p>
 <span><span class="co">#&gt; 15                                                    -9999=missing value</span></span>
 <span><span class="co">#&gt; 16                                                                 0=male</span></span>
 <span><span class="co">#&gt;                                                                         check</span></span>
-<span><span class="co">#&gt; 4                  Check 1: Is an equals sign present for all values columns?</span></span>
-<span><span class="co">#&gt; 6                  Check 1: Is an equals sign present for all values columns?</span></span>
-<span><span class="co">#&gt; 7                  Check 1: Is an equals sign present for all values columns?</span></span>
+<span><span class="co">#&gt; 4                     Check 1: Does each VALUES cell contain exactly one '='?</span></span>
+<span><span class="co">#&gt; 6                     Check 1: Does each VALUES cell contain exactly one '='?</span></span>
+<span><span class="co">#&gt; 7                     Check 1: Does each VALUES cell contain exactly one '='?</span></span>
 <span><span class="co">#&gt; 9  Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
 <span><span class="co">#&gt; 10 Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
 <span><span class="co">#&gt; 12 Check 2: Are there any leading/trailing spaces near the first equals sign?</span></span>
 <span><span class="co">#&gt; 14  Check 3: Do all variables of TYPE encoded have at least one VALUES entry?</span></span>
 <span><span class="co">#&gt; 15            Check 4: Are all variables with VALUES entries of TYPE encoded?</span></span>
 <span><span class="co">#&gt; 16            Check 4: Are all variables with VALUES entries of TYPE encoded?</span></span>
+<span><span class="co">#&gt;    duplicated_meanings</span></span>
+<span><span class="co">#&gt; 4                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 6                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 7                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 9                 &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 10                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 12                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 14                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 15                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 16                &lt;NA&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; misc_format_check: Failed </span></span>
 <span><span class="co">#&gt; ERROR: at least one check failed. </span></span>
 <span><span class="co">#&gt; $misc_formatting_check.Info</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 6</span></span></span>
-<span><span class="co">#&gt;   check.name check.description             check.status details col.name correct</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check     Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in … Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column … Passed       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES2  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES3  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES4  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES5  FALSE  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> Check 5    Column names after `VALUES` … Failed       <span style="color: #BB0000;">NA</span>      VALUES6  FALSE  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
+<span><span class="co">#&gt;   check.name check.description                              check.status details</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check                      Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check                  Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in variable names     Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column name check         Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` should be blank o… Failed       Invali…</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; --------------------</span></span>
 <span><span class="co">#&gt; description_check: Failed </span></span>
@@ -1786,7 +1826,7 @@ pre-checks are embedded in many of the functions (e.g.,
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/id_check.html">id_check</a></span><span class="op">(</span><span class="va">DS.data.A</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Message</span></span>
-<span><span class="co">#&gt; [1] "Passed: All ID variable checks passed."</span></span>
+<span><span class="co">#&gt; [1] "Passed: all ID variable checks passed."</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $Information</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
@@ -1804,13 +1844,13 @@ pre-checks are embedded in many of the functions (e.g.,
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $Information</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
-<span><span class="co">#&gt;   check.name check.description                           check.status details   </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check                   Passed       <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check               Passed       <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in variable names  Passed       <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column name check      Passed       <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` should be empty Warning      ALERT: Yo…</span></span></code></pre></div>
+<span><span class="co">#&gt;   check.name check.description                              check.status details</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Check 1    Empty variable name check                      Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Check 2    Duplicate variable name check                  Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Check 3    Check for use of `dbgap` in variable names     Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Check 4    Duplicate dictionary column name check         Passed       <span style="color: #BB0000;">NA</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Check 5    Column names after `VALUES` should be blank o… Passed       <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/row_check.html">row_check</a></span><span class="op">(</span><span class="va">DD.dict.A</span>, <span class="va">DS.data.A</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $Message</span></span>
@@ -1845,7 +1885,7 @@ with the following code.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> PREGNANT FALSE         0         1 <span style="color: #949494;">&lt;int [2]&gt;</span></span></span>
 <span><span class="va">b</span><span class="op">$</span><span class="va">Information</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">OutOfRangeValues</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] -4444 -9999</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] -9999 -4444</span></span></code></pre></div>
 <p>Here we see that we forgot to specify our missing value codes when we
 ran <code>minmax_check</code>, so they are being flagged as errors.
 Let’s rerun the command specifying -4444 and -9999 as missing value
@@ -1898,9 +1938,9 @@ SPSS style missing data codes to add non-missing information from the
 data dictionary as attributes to the data.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">DS_labelled_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/label_data.html">label_data</a></span><span class="op">(</span><span class="va">DD.dict.A</span>, <span class="va">DS.data.A</span>, non.NA.missing.codes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">9999</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="http://larmarange.github.io/labelled/reference/var_label.html" class="external-link">var_label</a></span><span class="op">(</span><span class="va">DS_labelled_data</span><span class="op">$</span><span class="va">SEX</span><span class="op">)</span></span>
+<span><span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/labelled/reference/var_label.html" class="external-link">var_label</a></span><span class="op">(</span><span class="va">DS_labelled_data</span><span class="op">$</span><span class="va">SEX</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Sex assigned at birth"</span></span>
-<span><span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="http://larmarange.github.io/labelled/reference/val_labels.html" class="external-link">val_labels</a></span><span class="op">(</span><span class="va">DS_labelled_data</span><span class="op">$</span><span class="va">SEX</span><span class="op">)</span></span>
+<span><span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/labelled/reference/val_labels.html" class="external-link">val_labels</a></span><span class="op">(</span><span class="va">DS_labelled_data</span><span class="op">$</span><span class="va">SEX</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   male female </span></span>
 <span><span class="co">#&gt;      0      1</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">DS_labelled_data</span><span class="op">$</span><span class="va">SEX</span><span class="op">)</span></span>
@@ -1922,9 +1962,16 @@ data dictionary as attributes to the data.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $MAX</span></span>
 <span><span class="co">#&gt; [1] 1</span></span>
-<span><span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="http://larmarange.github.io/labelled/reference/na_values.html" class="external-link">na_values</a></span><span class="op">(</span><span class="va">DS_labelled_data</span><span class="op">$</span><span class="va">HX_DEPRESSION</span><span class="op">)</span></span>
+<span><span class="fu">labelled</span><span class="fu">::</span><span class="fu"><a href="https://larmarange.github.io/labelled/reference/na_values.html" class="external-link">na_values</a></span><span class="op">(</span><span class="va">DS_labelled_data</span><span class="op">$</span><span class="va">HX_DEPRESSION</span><span class="op">)</span></span>
 <span><span class="co">#&gt; missing value </span></span>
 <span><span class="co">#&gt;         -9999</span></span></code></pre></div>
+<p>Note that the label_data() function applies
+labelled::set_variable_labels() — it designed for cases where (1) you
+are working in R with packages that support variable labels (e.g.,
+haven, labelled — see below) or (2) you plan to export your data to
+environments like SPSS or SAS that can read and display variable labels.
+If you are writing the data to a .csv file, you will not see a
+difference since label metadata are unsupported.</p>
 </div>
 </div>
 <div class="section level2" number="6">
@@ -2527,29 +2574,28 @@ awareness reports were inspired by an elegant 2016 homework answer
 submitted by Tanbin Rahman in our HUGEN 2070 course ‘Bioinformatics for
 Human Genetics’. We would also like to thank Nick Moshgat for testing
 and providing feedback on our package during development.</p>
+<p>ChatGPT 4o was used to support changes in v1.2.0.</p>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Lacey W. Heinsberg, Daniel E. Weeks.</p>
+  <p>Developed by Lacey W. Heinsberg, Daniel E. Weeks.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>

@@ -26,6 +26,7 @@ reference:
   - reorder_data
   - id_first_data
   - id_first_dict
+  - ascii_cleaner
 - title: "Post-Cleaning Functions"
   desc: > 
     Functions designed to be used on the clean data set and data dictionary.  

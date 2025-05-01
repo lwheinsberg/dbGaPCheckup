@@ -1,11 +1,10 @@
 pandoc: 3.1.1
-pkgdown: 2.0.7
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  dbGaPCheckup: dbGaPCheckup.html
   dbGaPCheckup_vignette: dbGaPCheckup_vignette.html
-last_built: 2023-09-27T15:00Z
+  dbGaPCheckup: dbGaPCheckup.html
+last_built: 2025-05-01T14:06Z
 urls:
   reference: https://lwheinsberg.github.io/dbGaPCheckup/reference
   article: https://lwheinsberg.github.io/dbGaPCheckup/articles
-

@@ -17,7 +17,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 # To render to GitHub markdown:
-# render("dbGaPCheckup_vignette.Rmd",github_document(toc=TRUE, toc_depth=3, number_sections=TRUE))  
+# rmarkdown::render("dbGaPCheckup_vignette.Rmd",github_document(toc=TRUE, toc_depth=3, number_sections=TRUE))  
 ---
 
 ```{r, include = FALSE}
@@ -381,6 +381,8 @@ attributes(DS_labelled_data$SEX)
 labelled::na_values(DS_labelled_data$HX_DEPRESSION)
 ```
 
+Note that the label_data() function applies labelled::set_variable_labels() — it designed for cases where (1) you are working in R with packages that support variable labels (e.g., haven, labelled --- see below) or (2) you plan to export your data to environments like SPSS or SAS that can read and display variable labels. If you are writing the data to a .csv file, you will not see a difference since label metadata are unsupported.
+
 # Appendix: Reporting functions 
 
 As described above, there are a variety of awareness and reporting functions that are not built into the complete workflow approach. The purpose of this appendix is to highlight some of these features using the following example data.
@@ -567,3 +569,5 @@ Bug reports: https://github.com/lwheinsberg/dbGaPCheckup/issues
 # Acknowledgments
 
 This package was developed with partial support from the National Institutes of Health under award numbers R01HL093093, R01HL133040, and K99HD107030. The `eval_function` and `dat_function` functions that form the backbone of the awareness reports were inspired by an elegant 2016 homework answer submitted by Tanbin Rahman in our HUGEN 2070 course ‘Bioinformatics for Human Genetics’. We would also like to thank Nick Moshgat for testing and providing feedback on our package during development.
+
+ChatGPT 4o was used to support changes in v1.2.0.

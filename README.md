@@ -29,38 +29,41 @@ Heinsberg, L.W., Weeks, D.E. dbGaPCheckup: pre-submission checks of
 dbGaP-formatted subject phenotype files. BMC Bioinformatics 24, 77
 (2023). <https://doi.org/10.1186/s12859-023-05200-8>
 
-| Function_Name           | Function_Type         | Function_Description                                                                                                                                                                                                                                                                                                                  |
-|:------------------------|:----------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| field_check             | check                 | Checks for dbGaP required fields: variable name (VARNAME), variable description (VARDESC), units (UNITS), and variable value and meaning (VALUES).                                                                                                                                                                                    |
-| pkg_field_check         | check                 | Checks for package-level required fields: variable type (TYPE), minimum value (MIN), and maximum value (MAX).                                                                                                                                                                                                                         |
-| dimension_check         | check                 | Checks that the number of variables match between the data set and data dictionary.                                                                                                                                                                                                                                                   |
-| name_check              | check                 | Checks that variable names match between the data set and data dictionary.                                                                                                                                                                                                                                                            |
-| id_check                | check                 | Checks that the first column of the data set is the primary ID for each participant labeled as SUBJECT_ID, that values contain no illegal characters or padded zeros, and that each participant has an ID.                                                                                                                            |
-| row_check               | check                 | Checks for empty or duplicate rows in the data set and data dictionary.                                                                                                                                                                                                                                                               |
-| NA_check                | check                 | Checks for NA values in the data set and, if NA values are present, also checks for an encoded NA value=meaning description.                                                                                                                                                                                                          |
-| type_check              | check                 | If a TYPE field exists, this function checks for any TYPE entries that aren’t allowable per dbGaP instructions.                                                                                                                                                                                                                       |
-| values_check            | check                 | Checks for potential errors in the VALUES columns by ensuring (1) required format of `VALUE=MEANING` (e.g., 0=No or 1=Yes); (2) no leading/trailing spaces near the equals sign (e.g., 0=No vs. 0 = No); (3) all variables of TYPE encoded have VALUES entries; and (4) all variables with VALUES entries are listed as TYPE encoded. |
-| integer_check           | check                 | Checks for variables that appear to be incorrectly listed as TYPE integer.                                                                                                                                                                                                                                                            |
-| decimal_check           | check                 | Checks for variables that appear to be incorrectly listed as TYPE decimal.                                                                                                                                                                                                                                                            |
-| misc_format_check       | check                 | Checks miscellaneous dbGaP formatting requirements to ensure (1) no empty variable names; (2) no duplicate variable names; (3) variable names do not contain “dbgap”; (4) there are no duplicate column names in the dictionary; and (5) column names falling after `VALUES` column are unnamed.                                      |
-| description_check       | check                 | Checks for unique and non-missing descriptions (VARDESC) for every variable in the data dictionary.                                                                                                                                                                                                                                   |
-| minmax_check            | check                 | Checks for variables that have values exceeding the listed MIN or MAX.                                                                                                                                                                                                                                                                |
-| missing_value_check     | check                 | Checks for variables that have non-encoded missing value codes.                                                                                                                                                                                                                                                                       |
-| complete_check          | bulk check            | Runs the entire workflow (field_check, pkg_field_check, dimension_check, name_check, id_check, row_check, NA_check, type_check, values_check, integer_check, decimal_check, misc_format_check, description_check, minmax_check, and missing_value_check).                                                                             |
-| add_missing_fields      | utility               | Adds additional fields required by this package including variable type (‘TYPE’), minimum value (‘MIN’), and maximum value (‘MAX’).                                                                                                                                                                                                   |
-| name_correct            | utility               | Updates the data set so variable names match those listed in the data dictionary.                                                                                                                                                                                                                                                     |
-| reorder_dictionary      | utility               | Reorders the data dictionary to match the data set.                                                                                                                                                                                                                                                                                   |
-| reorder_data            | utility               | Reorders the data set to match the data dictionary.                                                                                                                                                                                                                                                                                   |
-| id_first_data           | utility               | Reorders the data set so that SUBJECT_ID comes first.                                                                                                                                                                                                                                                                                 |
-| id_first_dict           | utility               | Reorders the data dictionary so that SUBJECT_ID comes first.                                                                                                                                                                                                                                                                          |
-| label_data              | utility, awareness    | Adds non-missing information from the data dictionary as attributes to the data.                                                                                                                                                                                                                                                      |
-| value_meaning_table     | utility, awareness    | Generates a value-meaning table by parsing the VALUES fields.                                                                                                                                                                                                                                                                         |
-| missingness_summary     | awareness             | Summarizes the amount of missingness in the data set.                                                                                                                                                                                                                                                                                 |
-| value_missing_table     | awareness             | Checks for consistent usage of encoded values and missing value codes between the data dictionary and the data set.                                                                                                                                                                                                                   |
-| dictionary_search       | awareness             | Facilitates searches of the data dictionary.                                                                                                                                                                                                                                                                                          |
-| check_report            | bulk check, reporting | Generates a user-readable report of the checks run by the complete_check function.                                                                                                                                                                                                                                                    |
-| create_report           | reporting, awareness  | Generates a textual and graphical report of the selected variables in HTML format.                                                                                                                                                                                                                                                    |
-| create_awareness_report | reporting, awareness  | Generates an awareness report, calling missingness_summary and value_missing_table functions.                                                                                                                                                                                                                                         |
+| Function_Name           | Function_Type         | Function_Description                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+|:------------------------|:----------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| field_check             | check                 | Checks for dbGaP required fields: variable name (VARNAME), variable description (VARDESC), units (UNITS), and variable value and meaning (VALUES).                                                                                                                                                                                                                                                                                                   |
+| pkg_field_check         | check                 | Checks for package-level required fields: variable type (TYPE), minimum value (MIN), and maximum value (MAX).                                                                                                                                                                                                                                                                                                                                        |
+| dimension_check         | check                 | Checks that the number of variables match between the data set and data dictionary.                                                                                                                                                                                                                                                                                                                                                                  |
+| name_check              | check                 | Checks that variable names match between the data set and data dictionary.                                                                                                                                                                                                                                                                                                                                                                           |
+| id_check                | check                 | Checks that the first column of the data set is the primary ID for each participant labeled as SUBJECT_ID, that values contain no illegal characters or padded zeros, and that each participant has an ID.                                                                                                                                                                                                                                           |
+| duplicate_id_check      | check                 | Checks for duplicated SUBJECT_ID values are present in the dataset (while expected/allowable in longitudinal data, it may indicate an error in cross-sectional submissions)                                                                                                                                                                                                                                                                          |
+| row_check               | check                 | Checks for empty or duplicate rows in the data set and data dictionary.                                                                                                                                                                                                                                                                                                                                                                              |
+| NA_check                | check                 | Checks for NA values in the data set and, if NA values are present, also checks for an encoded NA value=meaning description.                                                                                                                                                                                                                                                                                                                         |
+| type_check              | check                 | If a TYPE field exists, this function checks for any TYPE entries that aren’t allowable per dbGaP instructions.                                                                                                                                                                                                                                                                                                                                      |
+| values_check            | check                 | Checks for potential errors in the VALUES columns by ensuring (1) required format of `VALUE=MEANING` (e.g., 0=Yes or 1=No) AND ensuring there is only one equals sign per cell; (2) no leading/trailing spaces near the equals sign; (3) all variables of TYPE encoded have VALUES entries; (4) all variables with VALUES entries are listed as TYPE encoded; and (5) there are no duplicated MEANINGs (e.g., 1=Yes; 2=Yes) within the same variable |
+| integer_check           | check                 | Checks for variables that appear to be incorrectly listed as TYPE integer.                                                                                                                                                                                                                                                                                                                                                                           |
+| decimal_check           | check                 | Checks for variables that appear to be incorrectly listed as TYPE decimal.                                                                                                                                                                                                                                                                                                                                                                           |
+| misc_format_check       | check                 | Checks miscellaneous dbGaP formatting requirements to ensure (1) no empty variable names; (2) no duplicate variable names; (3) variable names do not contain “dbgap”; (4) there are no duplicate column names in the dictionary; and (5) column names falling after `VALUES` column are unnamed.                                                                                                                                                     |
+| description_check       | check                 | Checks for unique and non-missing descriptions (VARDESC) for every variable in the data dictionary.                                                                                                                                                                                                                                                                                                                                                  |
+| minmax_check            | check                 | Checks for variables that have values exceeding the listed MIN or MAX.                                                                                                                                                                                                                                                                                                                                                                               |
+| ascii_check             | check                 | Scans for non-ASCII characters (e.g., with accents) and newline and carriage return characters (e.g., line breaks)                                                                                                                                                                                                                                                                                                                                   |
+| missing_value_check     | check                 | Checks for variables that have non-encoded missing value codes.                                                                                                                                                                                                                                                                                                                                                                                      |
+| complete_check          | bulk check            | Runs the entire workflow (field_check, pkg_field_check, dimension_check, name_check, id_check, row_check, NA_check, type_check, values_check, integer_check, decimal_check, misc_format_check, description_check, minmax_check, and missing_value_check).                                                                                                                                                                                            |
+| add_missing_fields      | utility               | Adds additional fields required by this package including variable type (‘TYPE’), minimum value (‘MIN’), and maximum value (‘MAX’).                                                                                                                                                                                                                                                                                                                  |
+| name_correct            | utility               | Updates the data set so variable names match those listed in the data dictionary.                                                                                                                                                                                                                                                                                                                                                                    |
+| reorder_dictionary      | utility               | Reorders the data dictionary to match the data set.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| reorder_data            | utility               | Reorders the data set to match the data dictionary.                                                                                                                                                                                                                                                                                                                                                                                                  |
+| id_first_data           | utility               | Reorders the data set so that SUBJECT_ID comes first.                                                                                                                                                                                                                                                                                                                                                                                                |
+| id_first_dict           | utility               | Reorders the data dictionary so that SUBJECT_ID comes first.                                                                                                                                                                                                                                                                                                                                                                                         |
+| ascii_cleaner           | utility               | Scans a data frame for common problematic characters and returns a cleaned version by: converting smart quotes (e.g., curved) to ASCII quotes (e.g., ” and ’); replacing accented characters with ASCII equivalents (e.g., e, n); removing newline and carriage return characters (that create line breaks)                                                                                                                                          |
+| label_data              | utility, awareness    | Adds non-missing information from the data dictionary as attributes to the data.                                                                                                                                                                                                                                                                                                                                                                     |
+| value_meaning_table     | utility, awareness    | Generates a value-meaning table by parsing the VALUES fields.                                                                                                                                                                                                                                                                                                                                                                                        |
+| missingness_summary     | awareness             | Summarizes the amount of missingness in the data set.                                                                                                                                                                                                                                                                                                                                                                                                |
+| value_missing_table     | awareness             | Checks for consistent usage of encoded values and missing value codes between the data dictionary and the data set.                                                                                                                                                                                                                                                                                                                                  |
+| dictionary_search       | awareness             | Facilitates searches of the data dictionary.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| check_report            | bulk check, reporting | Generates a user-readable report of the checks run by the complete_check function.                                                                                                                                                                                                                                                                                                                                                                   |
+| create_report           | reporting, awareness  | Generates a textual and graphical report of the selected variables in HTML format.                                                                                                                                                                                                                                                                                                                                                                   |
+| create_awareness_report | reporting, awareness  | Generates an awareness report, calling missingness_summary and value_missing_table functions.                                                                                                                                                                                                                                                                                                                                                        |
 
 List of function names and types.
 
@@ -106,17 +109,15 @@ library(dbGaPCheckup)
 
 Read in your Subject Phenotype data into `DS.data`.
 
-A special note: To ensure that checks run properly, it’s important that
-empty cells in your dataset and data dictionary are read into R as NA
-(missing values), not as empty strings (““). This is especially
-important for the VALUES column in your data dictionary. If blank cells
-are accidentally read as empty strings instead of NA, some checks may
-incorrectly flag errors—for example, by expecting encoded values for
-variable types that don’t require them (string, integer, or decimal).
-(See issue \#16). If you are reading in your data ase a csv., we
-recommend using `read.csv("your_file.csv", na.strings = c("", "NA"))`.
-Or for excel files you can use
-`readxl::read_xlsx("your_file.xlsx", na = c("", "NA"))`. Etc.
+A special note: To ensure that the checks run correctly, empty cells in
+your dataset and data dictionary must be read into R as NA (missing
+values)—not as empty strings (““). This is especially critical for the
+VALUES column in your data dictionary. If blank cells are mistakenly
+read as empty strings, some checks (like values_check()) may incorrectly
+expect encodings for variables that don’t require them (e.g., string,
+integer, or decimal variables). We strongly recommend using
+readr::read_csv() rather than base R’s read.csv(), as it handles missing
+values and column types more consistently.
 
 ``` r
 DS.path <- system.file("extdata", "DS_Example.txt",
@@ -143,24 +144,26 @@ specification of missing value codes are important for accurate results.
 
 ``` r
 report <- check_report(DD.dict = DD.dict, DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
-#> # A tibble: 15 × 3
+#> # A tibble: 17 × 3
 #>    Function            Status        Message                                    
 #>    <chr>               <chr>         <chr>                                      
 #>  1 field_check         Passed        Passed: required fields VARNAME, VARDESC, …
 #>  2 pkg_field_check     Failed        ERROR: not all package-level required fiel…
 #>  3 dimension_check     Passed        Passed: the variable count matches between…
 #>  4 name_check          Passed        Passed: the variable names match between t…
-#>  5 id_check            Passed        Passed: All ID variable checks passed.     
-#>  6 row_check           Passed        Passed: no blank or duplicate rows detecte…
-#>  7 NA_check            Not attempted ERROR: Required pre-check pkg_field_check …
-#>  8 type_check          Failed        ERROR: TYPE column not found. Consider usi…
-#>  9 values_check        Not attempted ERROR: Required pre-check type_check faile…
-#> 10 integer_check       Not attempted ERROR: Required pre-check pkg_field_check …
-#> 11 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check …
-#> 12 misc_format_check   Passed        Passed: no check-specific formatting issue…
-#> 13 description_check   Failed        ERROR: missing and duplicate descriptions …
-#> 14 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check …
-#> 15 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check …
+#>  5 id_check            Passed        Passed: all ID variable checks passed.     
+#>  6 duplicated_id_check Passed        Passed: no duplicated SUBJECT_ID values fo…
+#>  7 row_check           Passed        Passed: no blank or duplicate rows detecte…
+#>  8 NA_check            Not attempted ERROR: Required pre-check pkg_field_check …
+#>  9 type_check          Failed        ERROR: TYPE column not found. Consider usi…
+#> 10 values_check        Not attempted ERROR: Required pre-check type_check faile…
+#> 11 integer_check       Not attempted ERROR: Required pre-check pkg_field_check …
+#> 12 decimal_check       Not attempted ERROR: Required pre-check pkg_field_check …
+#> 13 misc_format_check   Passed        Passed: no check-specific formatting issue…
+#> 14 description_check   Failed        ERROR: missing and duplicate descriptions …
+#> 15 minmax_check        Not attempted ERROR: Required pre-check pkg_field_check …
+#> 16 ascii_check         Passed        Passed: no non-ASCII characters detected i…
+#> 17 missing_value_check Not attempted ERROR: Required pre-check pkg_field_check …
 #> --------------------
 #> pkg_field_check: Failed 
 #> ERROR: not all package-level required fields are present in the data dictionary. Consider using the add_missing_fields function to auto fill these fields. 
@@ -212,24 +215,26 @@ Don’t forget to use the updated dictionary though!
 
 ``` r
 report.v2 <- check_report(DD.dict = DD.dict.updated , DS.data = DS.data, non.NA.missing.codes=c(-4444, -9999))
-#> # A tibble: 15 × 3
+#> # A tibble: 17 × 3
 #>    Function            Status Message                                           
 #>    <chr>               <chr>  <chr>                                             
 #>  1 field_check         Passed Passed: required fields VARNAME, VARDESC, UNITS, …
 #>  2 pkg_field_check     Passed Passed: package-level required fields TYPE, MIN, …
 #>  3 dimension_check     Passed Passed: the variable count matches between the da…
 #>  4 name_check          Passed Passed: the variable names match between the data…
-#>  5 id_check            Passed Passed: All ID variable checks passed.            
-#>  6 row_check           Passed Passed: no blank or duplicate rows detected in da…
-#>  7 NA_check            Passed Passed: no NA values detected in data set.        
-#>  8 type_check          Passed Passed: All TYPE entries found are accepted by db…
-#>  9 values_check        Passed Passed: all four VALUES checks look good.         
-#> 10 integer_check       Passed Passed: all variables listed as TYPE integer appe…
-#> 11 decimal_check       Passed Passed: all variables listed as TYPE decimal appe…
-#> 12 misc_format_check   Passed Passed: no check-specific formatting issues ident…
-#> 13 description_check   Failed ERROR: missing and duplicate descriptions found i…
-#> 14 minmax_check        Passed Passed: when provided, all variables are within t…
-#> 15 missing_value_check Failed ERROR: some variables have non-encoded missing va…
+#>  5 id_check            Passed Passed: all ID variable checks passed.            
+#>  6 duplicated_id_check Passed Passed: no duplicated SUBJECT_ID values found.    
+#>  7 row_check           Passed Passed: no blank or duplicate rows detected in da…
+#>  8 NA_check            Passed Passed: no NA values detected in data set.        
+#>  9 type_check          Passed Passed: all TYPE entries found are accepted by db…
+#> 10 values_check        Passed Passed: all four VALUES checks look good.         
+#> 11 integer_check       Passed Passed: all variables listed as TYPE integer appe…
+#> 12 decimal_check       Passed Passed: all variables listed as TYPE decimal appe…
+#> 13 misc_format_check   Passed Passed: no check-specific formatting issues ident…
+#> 14 description_check   Failed ERROR: missing and duplicate descriptions found i…
+#> 15 minmax_check        Passed Passed: when provided, all variables are within t…
+#> 16 ascii_check         Passed Passed: no non-ASCII characters detected in data …
+#> 17 missing_value_check Failed ERROR: some variables have non-encoded missing va…
 #> --------------------
 #> description_check: Failed 
 #> ERROR: missing and duplicate descriptions found in data dictionary. 
@@ -245,7 +250,7 @@ report.v2 <- check_report(DD.dict = DD.dict.updated , DS.data = DS.data, non.NA.
 #> --------------------
 #> missing_value_check: Failed 
 #> ERROR: some variables have non-encoded missing value codes. 
-#> $missing_value_check.Info
+#> $Information
 #>     VARNAME VALUE MEANING  PASS
 #> 16 CUFFSIZE -9999    <NA> FALSE
 #> 
@@ -295,3 +300,5 @@ homework answer submitted by Tanbin Rahman in our HUGEN 2070 course
 ‘Bioinformatics for Human Genetics’. We would also like to thank Nick
 Moshgat for testing and providing feedback on our package during
 development.
+
+Update: ChatGPT 4o was used to support updates in v1.2.0.
