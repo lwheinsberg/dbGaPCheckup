@@ -293,12 +293,13 @@ Bug reports: <https://github.com/lwheinsberg/dbGaPCheckup/issues>
 # 6 Acknowledgments
 
 This package was developed with partial support from the National
-Institutes of Health under award numbers R01HL093093, R01HL133040, and
-K99HD107030. The `eval_function` and `dat_function` functions that form
-the backbone of the awareness reports were inspired by an elegant 2016
-homework answer submitted by Tanbin Rahman in our HUGEN 2070 course
-‘Bioinformatics for Human Genetics’. We would also like to thank Nick
-Moshgat for testing and providing feedback on our package during
-development.
+Institutes of Health under award numbers R01HL093093, R01HL133040,
+K99HD107030, and R00HD107030. The eval_function and dat_function
+functions—central to the awareness reports—were inspired by an elegant
+2016 homework submission by Tanbin Rahman in the HUGEN 2070 course
+Bioinformatics for Human Genetics. We are grateful to Nick Moshgat for
+testing and providing valuable feedback during package development.
 
-Update: ChatGPT 4o was used to support updates in v1.2.0.
+We also thank @pbuendia for thorough testing and for suggesting several
+excellent improvements. Updates in version 1.2.0 were supported in part
+by ChatGPT-4o.
