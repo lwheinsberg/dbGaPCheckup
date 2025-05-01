@@ -103,8 +103,21 @@ misc_format_check <- function (DD.dict, DS.data, verbose=TRUE) {
     Information <- bind_rows(check1.final, check2.final, check3.final, check4.final, check5.final)
     Time <- Sys.time()
     Function <- "misc_format_check"
-    Status <- if (any(Information$check.status == "Failed")) "Failed" else "Passed"
-    Message <- if (Status == "Passed") "Passed: no check-specific formatting issues identified." else "ERROR: at least one check failed."
+    #Status <- if (any(Information$check.status == "Failed")) "Failed" else "Passed"
+    #Message <- if (Status == "Passed") "Passed: no check-specific formatting issues identified." else "ERROR: at least one check failed."
+    Status <- if (any(Information$check.status == "Failed")) {
+      "Failed"
+    } else if (any(Information$check.status == "Warning")) {
+      "Warning"
+    } else {
+      "Passed"
+    }
+    
+    Message <- dplyr::case_when(
+      Status == "Failed" ~ "ERROR: at least one check failed.",
+      Status == "Warning" ~ "WARNING: at least one check returned a warning.",
+      TRUE ~ "Passed: no check-specific formatting issues identified."
+    )
     return_to_user <- list(Message = Message, Information = Information)
   }
   

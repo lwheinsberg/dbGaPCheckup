@@ -15,8 +15,7 @@ duplicated_id_check(DS.data, verbose = TRUE)
 Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Warning); (4) Message (A copy of the message the function printed out); (5) Information (Details about duplicated SUBJECT_ID values).
 }
 \description{
-This function checks whether any duplicated SUBJECT_ID values are present in the dataset.
-While duplication may be expected in longitudinal data, it may indicate an error in cross-sectional submissions.
+This function checks whether any duplicated SUBJECT_ID values are present in the dataset. While duplication may be expected in longitudinal data, it may indicate an error in cross-sectional submissions.
 }
 \details{
 Duplicated Subject IDs are allowed in longitudinal data sets. This is an informational check.

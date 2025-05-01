@@ -1,6 +1,5 @@
 #' @title Duplicated ID Check
-#' @description This function checks whether any duplicated SUBJECT_ID values are present in the dataset.
-#'              While duplication may be expected in longitudinal data, it may indicate an error in cross-sectional submissions.
+#' @description This function checks whether any duplicated SUBJECT_ID values are present in the dataset. While duplication may be expected in longitudinal data, it may indicate an error in cross-sectional submissions.
 #' @param DS.data Data set.
 #' @param verbose When TRUE, the function prints the Message out, as well as more detailed diagnostic information.
 #' @return Tibble, returned invisibly, containing: (1) Time (Time stamp); (2) Name (Name of the function); (3) Status (Passed/Warning); (4) Message (A copy of the message the function printed out); (5) Information (Details about duplicated SUBJECT_ID values).
